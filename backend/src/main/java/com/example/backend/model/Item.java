@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 @Entity
 public class Item {
 	@Id
+	@Column(name="item_id",length=6)
+	private String item_id;
 	@Column(name="item_description",length=25)
 	private String item_description;
 	private char issue_status;

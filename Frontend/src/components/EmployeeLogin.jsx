@@ -7,8 +7,8 @@ import "./EmployeeLogin.css"
 const EmployeeLogin = () => {
     const [employeeId, setEmployeeId] = useState("");
     const [employeePassword, setEmployeePassword] = useState("");
-    const [error, setError] = useState("Error SOme Random error To Check");
-    const [success, setSuccess] = useState("Success Some Random Success Message");
+    const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
 
     const handleEmployeeIdChange = (event) => {
         setEmployeeId(event.target.value);
@@ -21,10 +21,12 @@ const EmployeeLogin = () => {
     const handleFormSubmit = () => {
         if (employeeId === null || employeeId === "") {
             setError("Employee ID Cannot Be Empty!");
+            setSuccess(null)
             return;
         }
         if (employeePassword === null || employeePassword === "") {
             setError("Password Field Cannot Be Empty!")
+            setSuccess(null)
             return;
         }
         const backendURL = "http://localhost:80808/login"
@@ -32,9 +34,22 @@ const EmployeeLogin = () => {
             employee_id: employeeId,
             password: employeePassword
         })
-            .then(response => {
-                return response.json();
-            })
+        .then(response => {
+            if(response.data === ""){
+                if(response.data === ""){
+                    setError("Credentials didn't Match!");
+                    setSuccess(null);
+                } else {
+                    setSuccess(`Login Successfull ! Hello User ${response.data.employee_name}`);
+                    setError(null);
+                }
+            }
+        })
+        .catch(err => {
+            console.log(err)
+            setError("Server Error !");
+            setSuccess(null);
+        })
     }
 
     return (
@@ -49,7 +64,7 @@ const EmployeeLogin = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Enter Password" value={employeePassword} onChange={(e) => handlePasswordChange(e)} />
                 </Form.Group>
-                <Button variant="primary" type="Submit">  Submit </Button>
+                <Button variant="primary" onClick={handleFormSubmit}>  Submit </Button>
                 {error ? <div className="error">{error}</div> : null}
                 {success ? <div className="success">{success}</div> : null}
             </Form>

@@ -1,7 +1,8 @@
 package com.example.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+
 import org.springframework.stereotype.Service;
 
 import com.example.backend.model.Employee;
@@ -11,15 +12,11 @@ import com.example.backend.repository.EmployeeRepository;
 @Service
 public class LoginService {
 	@Autowired 
-	BCryptPasswordEncoder bCryptPasswordEnocder;
-	@Autowired 
 	EmployeeRepository employeeRepository;
 	
 	public Employee login(LoginRequest loginRequest) {
-		
 		Employee employee = employeeRepository.findById(loginRequest.getEmployee_id()).get();
 		if(employee.getPassword().equals(loginRequest.getPassword()))return employee;
-		//if(bCryptPasswordEnocder.matches(loginRequest.getPassword(), employee.getPassword())) return employee;
 		return null;
 		
 	}

@@ -15,6 +15,5 @@ public class LoginService {
 		Employee employee = employeeRepository.findById(loginRequest.getEmployee_id()).get();
 		if(employee.getPassword().equals(loginRequest.getPassword()))return employee;
 		return null;
-		
 	}
 }

@@ -1,5 +1,7 @@
 package com.example.backend.controller;
 
+
+import com.example.backend.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,10 +16,14 @@ import com.example.backend.service.LoginService;
 @RestController
 public class EmployeeController {
 	@Autowired LoginService loginService;
-	
+	@Autowired
+	RegisterService registerService;
+	@PostMapping("/register")
+	public Employee register(@RequestBody Employee employee){
+		return  registerService.register(employee);
+	}
 	@PostMapping("/login")
 	public Employee login(@RequestBody LoginRequest loginRequest) {
-		System.out.println("Request received");
 		return loginService.login(loginRequest);		
 	}
 

@@ -12,6 +12,14 @@ public class Employee {
 	@Id
 	@Column(name="employee_id",length=6)
 	private String employee_id;
+	@Column(name="password",length=60)
+	private String password;
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	@Column(name="employee_name",length=25)
 	private String employee_name;
 	@Column(name="designation",length=25)

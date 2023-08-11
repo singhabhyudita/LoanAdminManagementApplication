@@ -36,15 +36,16 @@ const EmployeeLogin = () => {
             password: employeePassword
         })
             .then(response => {
-                if (response.data === null) {
-                    setError("Credentials didn't match!");
+                if (response.data === "") {
+                    setError("Credentials didn't Match!");
                     setSuccess(null);
                 } else {
-                    setSuccess("Login Successfull !");
+                    setSuccess(`Login Successfull ! Hello User ${response.data.employee_name}`);
                     setError(null);
                 }
             })
             .catch(err => {
+                console.log(err)
                 setError("Server Error !");
                 setSuccess(null);
             })
@@ -62,7 +63,7 @@ const EmployeeLogin = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Enter Password" value={employeePassword} onChange={(e) => handlePasswordChange(e)} />
                 </Form.Group>
-                <Button variant="primary" onClick={(e) => handleFormSubmit(e)}>  Submit </Button>
+                <Button variant="primary" onClick={handleFormSubmit}>  Submit </Button>
                 {error ? <div className="error">{error}</div> : null}
                 {success ? <div className="success">{success}</div> : null}
             </Form>

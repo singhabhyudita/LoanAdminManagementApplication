@@ -17,7 +17,7 @@ public class LoginService {
 	public String login(LoginRequest loginRequest) {
 		String result="";
 		Employee employee = null;
-		Optional<Employee>	obj=employeeRepo.findById(loginRequest.getEmployee_id());
+		Optional<Employee>	obj=employeeRepo.findById(loginRequest.getLogin_id());
 		if(obj.isPresent())
 		{
 			employee=obj.get();

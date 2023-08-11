@@ -39,13 +39,16 @@ const EmployeeLogin = () => {
             password: employeePassword
         })
             .then(response => {
-                if (response.data === "") {
-                    setError("Credentials didn't Match!");
+                if (response.data === "Invalid user") {
+                    setError("User data not found!");
+                    setSuccess(null);
+                }else if(response.data === "Password not matching"){
+                    setError("Invalid Credentials!");
                     setSuccess(null);
                 } else {
                     setSuccess(`Login Successfull !`);
                     setError(null);
-                    sessionStorage.setItem("username", response.data.employee_name)
+                    sessionStorage.setItem("username", response.data)
                     navigate("/dashboard");
                 }
             })

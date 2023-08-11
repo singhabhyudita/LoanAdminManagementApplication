@@ -2,6 +2,9 @@ package com.example.backend.controller;
 
 
 import com.example.backend.service.RegisterService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,11 +22,11 @@ public class EmployeeController {
 	@Autowired
 	RegisterService registerService;
 	@PostMapping("/register")
-	public Employee register(@RequestBody Employee employee){
+	public Employee register(@RequestBody @Valid Employee employee){
 		return  registerService.register(employee);
 	}
 	@PostMapping("/login")
-	public Employee login(@RequestBody LoginRequest loginRequest) {
+	public String login(@RequestBody LoginRequest loginRequest) {
 		return loginService.login(loginRequest);		
 	}
 

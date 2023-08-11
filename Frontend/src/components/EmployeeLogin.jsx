@@ -3,12 +3,15 @@ import { Container, Form, Button } from 'react-bootstrap'
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
 import "./EmployeeLogin.css"
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const EmployeeLogin = () => {
     const [employeeId, setEmployeeId] = useState("");
     const [employeePassword, setEmployeePassword] = useState("");
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
+    const navigate = useNavigate();
 
     const handleEmployeeIdChange = (event) => {
         setEmployeeId(event.target.value);
@@ -30,7 +33,7 @@ const EmployeeLogin = () => {
             setSuccess(null)
             return;
         }
-        const backendURL = "http://localhost:80808/login"
+        const backendURL = "http://localhost:8080/login"
         axios.post(backendURL, {
             employee_id: employeeId,
             password: employeePassword
@@ -40,8 +43,10 @@ const EmployeeLogin = () => {
                     setError("Credentials didn't Match!");
                     setSuccess(null);
                 } else {
-                    setSuccess(`Login Successfull ! Hello User ${response.data.employee_name}`);
+                    setSuccess(`Login Successfull !`);
                     setError(null);
+                    sessionStorage.setItem("username", response.data.employee_name)
+                    navigate("/dashboard");
                 }
             })
             .catch(err => {
@@ -67,6 +72,7 @@ const EmployeeLogin = () => {
                 {error ? <div className="error">{error}</div> : null}
                 {success ? <div className="success">{success}</div> : null}
             </Form>
+            <div className="routing"><div>Don't have an account ? </div><Link to="/register"><Button variant="primary">Register</Button></Link></div>
         </Container>
     )
 }

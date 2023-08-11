@@ -27,12 +27,15 @@ const AdminLogin = () => {
             setError("Password Field Cannot Be Empty!")
             return;
         }
-        const backendURL = "http://localhost:80808/login"
+        const backendURL = "http://localhost:8080/adminLogin"
+        console.log(adminId,adminPassword)
         axios.post(backendURL, {
-            admin_id: adminId,
+        
+            login_id: adminId,
             password: adminPassword
         })
             .then(response => {
+                console.log(response.data)
                 return response.json();
             })
     }
@@ -49,7 +52,7 @@ const AdminLogin = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Enter Password" value={adminPassword} onChange={(e) => handlePasswordChange(e)} />
                 </Form.Group>
-                <Button variant="primary" type="Submit">  Submit </Button>
+                <Button variant="primary" onClick={handleFormSubmit}>  Submit </Button>
                 {error ? <div className="error">{error}</div> : null}
                 {success ? <div className="success">{success}</div> : null}
             </Form>

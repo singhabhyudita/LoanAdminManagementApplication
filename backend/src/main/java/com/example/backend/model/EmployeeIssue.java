@@ -4,6 +4,8 @@ import java.util.Date;
 
 import jakarta.persistence.*;
 
+@Entity
+
 public class EmployeeIssue {
 	@Id
 	@Column(name="issue_id",length=6)

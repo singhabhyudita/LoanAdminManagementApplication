@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 public class RegisterService {
     @Autowired
     EmployeeRepository employeeRepository;
-    public Employee register(Employee employee){
-        employeeRepository.save(employee);
-        return employee;
+    public Employee register(Employee emp){
+        employeeRepository.save(emp);
+        return emp;
     }
     
     public int checkEmployeeExists(Employee employee)

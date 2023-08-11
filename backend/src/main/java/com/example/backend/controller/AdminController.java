@@ -19,7 +19,7 @@ public class AdminController {
 	
 	@PostMapping("/adminLogin")
 	public Admin login(@RequestBody LoginRequest loginRequest) {
-		System.out.println(loginRequest.getEmployee_id());
+		System.out.println(loginRequest.getLogin_id());
 		return loginService.login(loginRequest);		
 	}
 

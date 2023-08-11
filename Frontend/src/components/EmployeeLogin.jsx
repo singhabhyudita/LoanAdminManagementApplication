@@ -3,6 +3,7 @@ import { Container, Form, Button } from 'react-bootstrap'
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
 import "./EmployeeLogin.css"
+import { Link } from 'react-router-dom';
 
 const EmployeeLogin = () => {
     const [employeeId, setEmployeeId] = useState("");
@@ -30,7 +31,7 @@ const EmployeeLogin = () => {
             setSuccess(null)
             return;
         }
-        const backendURL = "http://localhost:80808/login"
+        const backendURL = "http://localhost:8080/login"
         axios.post(backendURL, {
             employee_id: employeeId,
             password: employeePassword
@@ -67,6 +68,7 @@ const EmployeeLogin = () => {
                 {error ? <div className="error">{error}</div> : null}
                 {success ? <div className="success">{success}</div> : null}
             </Form>
+            <div className="routing"><div>Don't have an account ? </div><Link to="/register"><Button variant="primary">Register</Button></Link></div>
         </Container>
     )
 }

@@ -1,0 +1,59 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.register-form{
+    width : 800px;
+    padding: 20px;
+    border : 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+    width: 500px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.register-form h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-form button {
+    margin-top: 10px;
+    width: 100%
+}
+
+.register-form button {
+    margin-top: 10px;
+    width: 100%
+}
+
+
+.formGroup {
+    margin: 20px 0;
+}
+
+.error {
+    text-align: center;
+    color: red;
+    margin-top: 5px;
+}
+
+.success {
+    text-align: center;
+    color: green;
+    margin-top: 5px;
+}

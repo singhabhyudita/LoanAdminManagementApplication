@@ -27,13 +27,13 @@ const AdminLogin = () => {
             setError("Password Field Cannot Be Empty!")
             return;
         }
-        const backendURL = "http://localhost:80808/login"
+        const backendURL = "http://localhost:8080/adminLogin"
         axios.post(backendURL, {
             admin_id: adminId,
             password: adminPassword
         })
             .then(response => {
-                return response.json();
+                
             })
     }
 

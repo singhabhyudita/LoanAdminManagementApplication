@@ -18,7 +18,7 @@ public class AdminController {
 	@Autowired AdminLoginService loginService;
 	
 	@PostMapping("/adminLogin")
-	public Admin login(@RequestBody LoginRequest loginRequest) {
+	public String login(@RequestBody LoginRequest loginRequest) {
 		System.out.println(loginRequest.getLogin_id());
 		return loginService.login(loginRequest);		
 	}

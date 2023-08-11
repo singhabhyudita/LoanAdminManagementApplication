@@ -30,7 +30,7 @@ public class LoginService {
 		else
 		{
 			if(loginRequest.getPassword().equals(employee.getPassword())) {
-				result="Login success";
+				result=employee.getEmployee_name();
 			}
 			else
 			{

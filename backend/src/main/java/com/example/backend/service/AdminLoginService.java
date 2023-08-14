@@ -16,12 +16,12 @@ public class AdminLoginService {
 	private AdminRepository adminRepo;
 	
 	public String login(LoginRequest loginRequest) {
-		System.out.println(loginRequest.getLogin_id());
+		System.out.println(loginRequest.getLoginId());
 		
-		Optional<Admin> admin= adminRepo.findById(loginRequest.getLogin_id());
-		System.out.println(loginRequest.getLogin_id());
+		Optional<Admin> admin= adminRepo.findById(loginRequest.getLoginId());
+		System.out.println(loginRequest.getLoginId());
 		if(admin.isPresent())
-			if(admin.get().getPassword().equals(loginRequest.getPassword()))return admin.get().getName();
+			if(admin.get().getPassword().equals(loginRequest.getPassword()))return admin.get().getAdmin_id();
 			else return "Password not matching";
 		return "Invalid user";
 		

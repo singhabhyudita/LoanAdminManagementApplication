@@ -2,8 +2,11 @@ package com.example.backend.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.Date;
+
+import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.*;
 
@@ -11,8 +14,12 @@ import jakarta.persistence.*;
 public class Employee {
 	@Id
 	@Column(name="employee_id",length=6)
+	@NotBlank(message="Employee Id can't be blank")
+	@Length(min=6,max=6, message="Employee Id can be of 6 characters only ")
 	private String employee_id;
 	@Column(name="password",length=60)
+	@NotBlank(message="Password can't be blank")
+	@Length(min=10,max=60,message="Password can be of 10-60 characters only")
 	private String password;
 	public String getPassword() {
 		return password;

@@ -33,16 +33,17 @@ const EmployeeLogin = () => {
             setSuccess(null)
             return;
         }
+        console.log(employeeId)
         const backendURL = "http://localhost:8080/login"
         axios.post(backendURL, {
-            employee_id: employeeId,
+            loginId: employeeId,
             password: employeePassword
         })
             .then(response => {
                 if (response.data === "Invalid user") {
                     setError("User data not found!");
                     setSuccess(null);
-                }else if(response.data === "Password not matching"){
+                } else if (response.data === "Password not matching") {
                     setError("Invalid Credentials!");
                     setSuccess(null);
                 } else {

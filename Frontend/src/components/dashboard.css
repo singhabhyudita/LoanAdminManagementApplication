@@ -1,0 +1,21 @@
+.dashboard-container {
+    width: 100vw;
+}
+
+.welcome-text {
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.controllers {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    min-height: 250px;
+}
+
+.log-out {
+    display: fixed;
+    top: 10px;
+}

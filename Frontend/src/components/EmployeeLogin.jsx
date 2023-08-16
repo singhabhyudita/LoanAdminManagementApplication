@@ -5,6 +5,8 @@ import axios from 'axios';
 import "./EmployeeLogin.css"
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from "./AuthContext";
+
 
 const EmployeeLogin = () => {
     const [employeeId, setEmployeeId] = useState("");
@@ -12,6 +14,7 @@ const EmployeeLogin = () => {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
     const navigate = useNavigate();
+    // const { setAuthenticated } = useAuth();
 
     const handleEmployeeIdChange = (event) => {
         setEmployeeId(event.target.value);
@@ -49,6 +52,7 @@ const EmployeeLogin = () => {
                 } else {
                     setSuccess(`Login Successfull !`);
                     setError(null);
+                    // setAuthenticated(true);
                     sessionStorage.setItem("username", response.data)
                     navigate("/dashboard");
                 }

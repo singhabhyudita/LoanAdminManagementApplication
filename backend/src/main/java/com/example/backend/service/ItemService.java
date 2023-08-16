@@ -43,6 +43,7 @@ public class ItemService {
 		Loan loan = loanRepository.findByLoanType(type);
 		int duration = loan.getDuration();
 		
+
 		EmployeeIssue employeeIssue = new EmployeeIssue(new Date(),this.getReturnDate(new Date(), duration),id,item.getItemId());
 		list.add(employeeIssueRepository.save(employeeIssue));
 		

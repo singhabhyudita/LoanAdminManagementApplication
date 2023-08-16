@@ -1,12 +1,13 @@
 package com.example.backend.model;
 
 public class PurchasedItem {
-	private String issueId;
+
+	private int issueId;
 	private Item item;
-	public String getIssueId() {
+	public int getIssueId() {
 		return issueId;
 	}
-	public void setIssueId(String issueId) {
+	public void setIssueId(int issueId) {
 		this.issueId = issueId;
 	}
 	public Item getItem() {
@@ -15,7 +16,7 @@ public class PurchasedItem {
 	public void setItem(Item item) {
 		this.item = item;
 	}
-	public PurchasedItem(String issueId, Item item) {
+	public PurchasedItem(int issueId, Item item) {
 		super();
 		this.issueId = issueId;
 		this.item = item;

@@ -9,7 +9,7 @@ public class EmployeeIssue {
 	@Id
 	@Column(name="issue_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String issueId;
+	private int issueId;
 	@Column(name="issue_date")
 	private Date issueDate;
 	@Column(name="return_date")
@@ -30,10 +30,10 @@ public class EmployeeIssue {
 	public EmployeeIssue() {
 		super();
 	}
-	public String getIssue_id() {
+	public int getIssue_id() {
 		return issueId;
 	}
-	public void setIssue_id(String issue_id) {
+	public void setIssue_id(int issue_id) {
 		this.issueId = issue_id;
 	}
 	public Date getIssue_date() {
@@ -48,10 +48,10 @@ public class EmployeeIssue {
 	public void setReturn_date(Date return_date) {
 		this.return_date = return_date;
 	}
-	public String getIssueId() {
+	public int getIssueId() {
 		return issueId;
 	}
-	public void setIssueId(String issueId) {
+	public void setIssueId(int issueId) {
 		this.issueId = issueId;
 	}
 	public Date getIssueDate() {

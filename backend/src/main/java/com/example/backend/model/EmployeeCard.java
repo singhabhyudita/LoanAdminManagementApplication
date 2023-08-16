@@ -10,7 +10,7 @@ import jakarta.persistence.*;
 public class EmployeeCard {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String cardId;
+	private int cardId;
 	
 	
 	@Column(name="employee_id")
@@ -59,11 +59,11 @@ public class EmployeeCard {
 		this.loanId = loanId;
 	}
 
-	public String getCardId() {
+	public int getCardId() {
 		return cardId;
 	}
 
-	public void setCardId(String cardId) {
+	public void setCardId(int cardId) {
 		this.cardId = cardId;
 	}
 

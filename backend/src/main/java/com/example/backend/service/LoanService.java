@@ -21,7 +21,7 @@ public class LoanService {
 	
 	public List<LoanAvailed> getItemsById(String id) {
 		List<LoanAvailed> list = new ArrayList<>();
-		employeeCardRepository.findByEmployeeId(id).forEach((obj)-> list.add(new LoanAvailed(loanRepository.findById(obj.getLoanId()).get(),obj.getCard_issue_date())));
+		employeeCardRepository.findByEmployeeId(id).forEach((obj)-> list.add(new LoanAvailed(loanRepository.findById(obj.getLoanId()).get(),obj.getCardIssueDate())));
 		return list;
 		
 	}

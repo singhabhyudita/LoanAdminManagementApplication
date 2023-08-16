@@ -18,7 +18,7 @@ public class Employee {
 	@Column(name="employee_id",length=6)
 	@NotBlank(message="Employee Id can't be blank")
 	@Length(min=6,max=6, message="Employee Id can be of 6 characters only ")
-	private String employee_id;
+	private String employeeId;
 	@Column(name="password",length=60)
 	@NotBlank(message="Password can't be blank")
 	@Length(min=10,max=60,message="Password can be of 10-60 characters only")
@@ -30,15 +30,21 @@ public class Employee {
 		this.password = password;
 	}
 	@Column(name="employee_name",length=25)
-	private String employee_name;
+	private String employeeName;
 	@Column(name="designation",length=25)
 	private String designation;
 	@Column(name="department",length=25)
 	private String department;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="issue_id")
+	@JoinColumn(name="employee_id")
 	private List<EmployeeIssue> issues;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="employee_id")
+	private List<EmployeeCard> cards;
+	
+
 	
 	public Employee() {
 		super();
@@ -46,8 +52,8 @@ public class Employee {
 	public Employee(String employee_id, String employee_name, String designation, String department, char gender,
 			Date date_of_birth, Date date_of_joining) {
 		super();
-		this.employee_id = employee_id;
-		this.employee_name = employee_name;
+		this.employeeId = employee_id;
+		this.employeeName = employee_name;
 		this.designation = designation;
 		this.department = department;
 		this.gender = gender;
@@ -59,16 +65,16 @@ public class Employee {
 	private Date date_of_birth;
 	private Date date_of_joining;
 	public String getEmployee_id() {
-		return employee_id;
+		return employeeId;
 	}
 	public void setEmployee_id(String employee_id) {
-		this.employee_id = employee_id;
+		this.employeeId = employee_id;
 	}
 	public String getEmployee_name() {
-		return employee_name;
+		return employeeName;
 	}
 	public void setEmployee_name(String employee_name) {
-		this.employee_name = employee_name;
+		this.employeeName = employee_name;
 	}
 	public String getDesignation() {
 		return designation;

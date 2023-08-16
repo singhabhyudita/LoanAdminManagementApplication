@@ -1,8 +1,13 @@
 package com.example.backend.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Loan {
@@ -13,6 +18,10 @@ public class Loan {
 	private String loanType;
 	@Column(name="duration_in_years", length=2)
 	private int duration;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="loan_id")
+	private List<EmployeeCard> employees;
 	
 	public String getLoan_id() {
 		return loan_id;

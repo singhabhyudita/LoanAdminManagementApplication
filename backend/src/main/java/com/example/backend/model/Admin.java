@@ -9,14 +9,14 @@ public class Admin {
 	
 	@Id
 	@Column(name="admin_id",length=6)
-	private String admin_id;
+	private String adminId;
 	@Column(name="password",length=60)
 	private String password;
 	@Column(name="admin_name")
 	private String name;
 	public Admin(String admin_id, String password, String name) {
 		super();
-		this.admin_id = admin_id;
+		this.adminId = admin_id;
 		this.password = password;
 		this.name = name;
 	}
@@ -24,10 +24,10 @@ public class Admin {
 		super();
 	}
 	public String getAdmin_id() {
-		return admin_id;
+		return adminId;
 	}
 	public void setAdmin_id(String admin_id) {
-		this.admin_id = admin_id;
+		this.adminId = admin_id;
 	}
 	public String getPassword() {
 		return password;

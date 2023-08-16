@@ -13,7 +13,7 @@ import jakarta.persistence.OneToMany;
 public class Loan {
 	@Id
 	@Column(name="loan_id", length=6)
-	private String loan_id;
+	private String loanId;
 	@Column(name="loan_type", length=15)
 	private String loanType;
 	@Column(name="duration_in_years", length=2)
@@ -24,10 +24,10 @@ public class Loan {
 	private List<EmployeeCard> employees;
 	
 	public String getLoan_id() {
-		return loan_id;
+		return loanId;
 	}
 	public void setLoan_id(String loan_id) {
-		this.loan_id = loan_id;
+		this.loanId = loan_id;
 	}
 	public String getLoan_type() {
 		return loanType;

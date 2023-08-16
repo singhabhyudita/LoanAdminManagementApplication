@@ -1,6 +1,5 @@
 package com.example.backend.model;
 
-import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 
 import java.util.Date;
@@ -9,57 +8,66 @@ import jakarta.persistence.*;
 
 @Entity
 public class EmployeeCard {
-	@EmbeddedId
-	private EmployeeLoanKey pk;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private String cardId;
 	
-	@ManyToOne
-	@MapsId("employee_id")
-	@JoinColumn(name="employee_id")
-	private Employee employee;
 	
-	@ManyToOne
-	@MapsId("loan_id")
-	@JoinColumn(name="loan_id")
-	private Loan loan;
+	@Column(name="employee_id")
+	private String  employeeId;
+	
+	
+	@Column(name="loan_id")
+	private String loanId;
 	
 	private Date card_issue_date;
 
 	public EmployeeCard() {
 		super();
 	}
+	
+	
 
-	public EmployeeCard(EmployeeLoanKey pk, Employee employee, Loan loan, Date card_issue_date) {
+	public EmployeeCard(String employeeId, String loanId, Date card_issue_date) {
 		super();
-		this.pk = pk;
-		this.employee = employee;
-		this.loan = loan;
+		this.employeeId = employeeId;
+		this.loanId = loanId;
 		this.card_issue_date = card_issue_date;
 	}
 
-	public EmployeeLoanKey getPk() {
-		return pk;
+
+
+	public String getEmployeeId() {
+		return employeeId;
 	}
 
-	public void setPk(EmployeeLoanKey pk) {
-		this.pk = pk;
+
+
+	public void setEmployeeId(String employeeId) {
+		this.employeeId = employeeId;
 	}
 
-	public Employee getEmployee() {
-		return employee;
+
+
+	public String getLoanId() {
+		return loanId;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+
+
+	public void setLoanId(String loanId) {
+		this.loanId = loanId;
 	}
 
-	public Loan getLoan() {
-		return loan;
+	public String getCardId() {
+		return cardId;
 	}
 
-	public void setLoan(Loan loan) {
-		this.loan = loan;
+	public void setCardId(String cardId) {
+		this.cardId = cardId;
 	}
 
+	
 	public Date getCard_issue_date() {
 		return card_issue_date;
 	}

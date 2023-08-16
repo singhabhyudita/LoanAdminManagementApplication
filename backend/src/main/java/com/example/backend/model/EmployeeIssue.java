@@ -7,32 +7,40 @@ import jakarta.persistence.*;
 @Entity
 public class EmployeeIssue {
 	@Id
-	@Column(name="issue_id",length=6)
-	private String issue_id;
+	@Column(name="issue_id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private String issueId;
 	@Column(name="issue_date")
-	private Date issue_date;
+	private Date issueDate;
 	@Column(name="return_date")
 	private Date return_date;
-	public EmployeeIssue(String issue_id, Date issue_date, Date return_date) {
+	@Column(name="employee_id")
+	private String employeeId;
+	@Column(name="item_id")
+	private String itemId;
+	
+	
+	public EmployeeIssue(Date issueDate, Date return_date, String employeeId, String itemId) {
 		super();
-		this.issue_id = issue_id;
-		this.issue_date = issue_date;
+		this.issueDate = issueDate;
 		this.return_date = return_date;
+		this.employeeId = employeeId;
+		this.itemId = itemId;
 	}
 	public EmployeeIssue() {
 		super();
 	}
 	public String getIssue_id() {
-		return issue_id;
+		return issueId;
 	}
 	public void setIssue_id(String issue_id) {
-		this.issue_id = issue_id;
+		this.issueId = issue_id;
 	}
 	public Date getIssue_date() {
-		return issue_date;
+		return issueDate;
 	}
 	public void setIssue_date(Date issue_date) {
-		this.issue_date = issue_date;
+		this.issueDate = issue_date;
 	}
 	public Date getReturn_date() {
 		return return_date;
@@ -40,6 +48,31 @@ public class EmployeeIssue {
 	public void setReturn_date(Date return_date) {
 		this.return_date = return_date;
 	}
+	public String getIssueId() {
+		return issueId;
+	}
+	public void setIssueId(String issueId) {
+		this.issueId = issueId;
+	}
+	public Date getIssueDate() {
+		return issueDate;
+	}
+	public void setIssueDate(Date issueDate) {
+		this.issueDate = issueDate;
+	}
+	public String getEmployeeId() {
+		return employeeId;
+	}
+	public void setEmployeeId(String employeeId) {
+		this.employeeId = employeeId;
+	}
+	public String getItemId() {
+		return itemId;
+	}
+	public void setItemId(String itemId) {
+		this.itemId = itemId;
+	}
+	
 	
 	
 }

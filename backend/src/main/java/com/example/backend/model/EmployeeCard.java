@@ -10,7 +10,7 @@ import jakarta.persistence.*;
 public class EmployeeCard {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String cardId;
+	private int cardId;
 	
 	
 	@Column(name="employee_id")
@@ -20,7 +20,7 @@ public class EmployeeCard {
 	@Column(name="loan_id")
 	private String loanId;
 	
-	private Date card_issue_date;
+	private Date cardIssueDate;
 
 	public EmployeeCard() {
 		super();
@@ -32,7 +32,7 @@ public class EmployeeCard {
 		super();
 		this.employeeId = employeeId;
 		this.loanId = loanId;
-		this.card_issue_date = card_issue_date;
+		this.cardIssueDate = card_issue_date;
 	}
 
 
@@ -59,22 +59,26 @@ public class EmployeeCard {
 		this.loanId = loanId;
 	}
 
-	public String getCardId() {
+	public int getCardId() {
 		return cardId;
 	}
 
-	public void setCardId(String cardId) {
+	public void setCardId(int cardId) {
 		this.cardId = cardId;
 	}
 
-	
-	public Date getCard_issue_date() {
-		return card_issue_date;
+
+
+	public Date getCardIssueDate() {
+		return cardIssueDate;
 	}
 
-	public void setCard_issue_date(Date card_issue_date) {
-		this.card_issue_date = card_issue_date;
+
+
+	public void setCardIssueDate(Date cardIssueDate) {
+		this.cardIssueDate = cardIssueDate;
 	}
+
 	
 	
 	

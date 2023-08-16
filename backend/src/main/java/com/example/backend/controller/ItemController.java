@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +28,7 @@ public class ItemController {
 		return itemService.getAllItems();
 	}
 	
-	@GetMapping("/apply/{id}")
+	@PostMapping("/apply/{id}")
 	public List<Object> apply(@RequestBody Item item, @PathVariable String id){
 		return itemService.apply(item,id);	
 	}
@@ -36,5 +37,5 @@ public class ItemController {
 	public List<PurchasedItem> getItemsById(@PathVariable String id){
 		return itemService.getItemsById(id);
 	}
-
+	
 }

@@ -44,6 +44,8 @@ public class Employee {
 	@JoinColumn(name="employee_id")
 	private List<EmployeeCard> cards;
 	
+
+	
 	public Employee() {
 		super();
 	}

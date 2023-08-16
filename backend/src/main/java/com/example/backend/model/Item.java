@@ -28,6 +28,7 @@ public class Item {
 	@JoinColumn(name="item_id")
 	private List<EmployeeIssue> employees;
 	
+
 	public Item() {
 		super();
 	}

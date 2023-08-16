@@ -47,12 +47,15 @@ const ApplyLoan = () => {
     const [description, setDescription] = useState("");
     const [valuation, setValuation] = useState("");
     const [selectedId, setSelectedId] = useState("");
+    const [response, setResponse] = useState("");
 
     useEffect(() => {
         const getBasicDetails = async () => {
-            setEmployeeId(sessionStorage.getItem("username"));
-            // const response = await axios.get("http://localhost:8080/getCategories");
-            setItemCategory([...new Set(dummyData
+            const employeeIdFromSession = sessionStorage.getItem("username");
+            setEmployeeId(employeeIdFromSession);
+            const responseValue = await axios.get(`http://localhost:8080/apply/${employeeIdFromSession}`);
+            setResponse(responseValue.data)
+            setItemCategory([...new Set(responseValue
                 .map((item, index) => {
                     return item.item_category
                 }))])
@@ -65,7 +68,7 @@ const ApplyLoan = () => {
 
     const handleCategoryChange = (event) => {
         setCategory(event.target.value)
-        setMakeCategory([...new Set(dummyData
+        setMakeCategory([...new Set(response
             .filter(item => item.item_category === event.target.value)
             .map((item, index) => {
                 return item.item_make;
@@ -76,7 +79,7 @@ const ApplyLoan = () => {
 
     const handleMakeChange = (event) => {
         setMake(event.target.value)
-        setDescriptionCategory([...new Set(dummyData
+        setDescriptionCategory([...new Set(response
             .filter(item => item.item_category === category && item.item_make === event.target.value)
             .map((item, index) => {
                 return item.item_description;
@@ -86,12 +89,12 @@ const ApplyLoan = () => {
 
     const handleDescriptionChange = (event) => {
         setDescription(event.target.value);
-        setValuation(dummyData
+        setValuation(response
             .filter(item => item.item_category === category && item.item_make === make && item.item_description === event.target.value)
             .map((item, index) => {
                 return item.item_valuation;
             })[0])
-        setSelectedId(dummyData
+        setSelectedId(response
             .filter(item => item.item_category === category && item.item_make === make && item.item_description === event.target.value)
             .map((item, index) => {
                 return item.id;

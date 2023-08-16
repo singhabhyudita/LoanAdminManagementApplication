@@ -30,5 +30,5 @@ public class ItemController {
 		return itemService.getItems(itemCategory);
 		
 	}
-
+	
 }

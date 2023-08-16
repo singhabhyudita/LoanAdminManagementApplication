@@ -48,6 +48,31 @@ public class EmployeeIssue {
 	public void setReturn_date(Date return_date) {
 		this.return_date = return_date;
 	}
+	public String getIssueId() {
+		return issueId;
+	}
+	public void setIssueId(String issueId) {
+		this.issueId = issueId;
+	}
+	public Date getIssueDate() {
+		return issueDate;
+	}
+	public void setIssueDate(Date issueDate) {
+		this.issueDate = issueDate;
+	}
+	public String getEmployeeId() {
+		return employeeId;
+	}
+	public void setEmployeeId(String employeeId) {
+		this.employeeId = employeeId;
+	}
+	public String getItemId() {
+		return itemId;
+	}
+	public void setItemId(String itemId) {
+		this.itemId = itemId;
+	}
+	
 	
 	
 }

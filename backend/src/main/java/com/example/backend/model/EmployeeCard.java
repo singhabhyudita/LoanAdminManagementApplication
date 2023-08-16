@@ -1,6 +1,5 @@
 package com.example.backend.model;
 
-import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 
 import java.util.Date;
@@ -59,11 +58,6 @@ public class EmployeeCard {
 	public void setLoanId(String loanId) {
 		this.loanId = loanId;
 	}
-
-
-
-	
-
 
 	public String getCardId() {
 		return cardId;

@@ -10,7 +10,7 @@ const AdminLogin = () => {
     const [adminPassword, setAdminPassword] = useState("");
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const handleAdminIdChange = (event) => {
         setAdminId(event.target.value);
     }
@@ -28,9 +28,9 @@ const AdminLogin = () => {
             setError("Password Field Cannot Be Empty!")
             return;
         }
-        const backendURL = "http://localhost:8080/adminLogin"
+        const backendURL = "http://localhost:8080/api/admin/adminLogin"
         axios.post(backendURL, {
-        
+
             login_id: adminId,
             password: adminPassword
         })
@@ -38,7 +38,7 @@ const AdminLogin = () => {
                 if (response.data === "Invalid user") {
                     setError("User data not found!");
                     setSuccess(null);
-                }else if(response.data === "Password not matching"){
+                } else if (response.data === "Password not matching") {
                     setError("Invalid Credentials!");
                     setSuccess(null);
                 } else {
@@ -48,8 +48,8 @@ const AdminLogin = () => {
                     navigate("/dashboard");
                 }
             })
-                
-            
+
+
     }
 
     return (

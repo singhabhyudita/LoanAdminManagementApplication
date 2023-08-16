@@ -1,10 +1,9 @@
 package com.example.backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -14,7 +13,7 @@ import jakarta.persistence.*;
 
 @Entity
 public class Employee {
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	
 	@Id
 	@Column(name="employee_id",length=6)
 	@NotBlank(message="Employee Id can't be blank")
@@ -36,6 +35,11 @@ public class Employee {
 	private String designation;
 	@Column(name="department",length=25)
 	private String department;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="issue_id")
+	private List<EmployeeIssue> issues;
+	
 	public Employee() {
 		super();
 	}

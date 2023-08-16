@@ -1,8 +1,13 @@
 package com.example.backend.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Item {
@@ -18,6 +23,10 @@ public class Item {
 	private String itemCategory;
 	@Column(name="item_valuation",length=6)
 	private int item_valuation;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="issue_id")
+	private List<EmployeeIssue> issues;
 	public Item() {
 		super();
 	}

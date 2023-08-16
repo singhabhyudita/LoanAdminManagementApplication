@@ -2,41 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Row, Form, Container, Button } from 'react-bootstrap';
 import axios from 'axios';
 
-const dummyData = [
-    {
-        item_id: 1,
-        issue_status: 'N',
-        item_category: 'Furniture',
-        item_description: 'Chair',
-        item_make: 'Wooden',
-        item_valuation: 4000
-    },
-    {
-        item_id: 2,
-        issue_status: 'N',
-        item_category: 'Furniture',
-        item_description: 'Sofa',
-        item_make: 'Wooden',
-        item_valuation: 4000
-    },
-    {
-        item_id: 3,
-        issue_status: 'N',
-        item_category: 'Furniture',
-        item_description: 'Something Made from steel',
-        item_make: 'Steel',
-        item_valuation: 4000
-    },
-    {
-        item_id: 4,
-        issue_status: 'N',
-        item_category: 'Crcokery',
-        item_description: 'Glass',
-        item_make: 'Glasses',
-        item_valuation: 4000
-    }
-]
-
 const ApplyLoan = () => {
     const [employeeId, setEmployeeId] = useState(null);
     const [itemCategory, setItemCategory] = useState(null);
@@ -46,22 +11,27 @@ const ApplyLoan = () => {
     const [make, setMake] = useState("");
     const [description, setDescription] = useState("");
     const [valuation, setValuation] = useState("");
-    const [selectedId, setSelectedId] = useState("");
+    const [object, setObject] = useState(null);
     const [response, setResponse] = useState("");
+    const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
 
     useEffect(() => {
         const getBasicDetails = async () => {
             const employeeIdFromSession = sessionStorage.getItem("username");
             setEmployeeId(employeeIdFromSession);
-            const responseValue = await axios.get(`http://localhost:8080/apply/${employeeIdFromSession}`);
+            const responseValue = await axios.get(`http://localhost:8080/api/items/showItems`);
             setResponse(responseValue.data)
-            setItemCategory([...new Set(responseValue
+            console.log(responseValue.data)
+            setItemCategory([...new Set(responseValue.data
                 .map((item, index) => {
-                    return item.item_category
+                    return item.itemCategory
                 }))])
             setCategory("");
             setMake("");
             setDescription("");
+            setError(null);
+            setSuccess(null);
         }
         getBasicDetails();
     }, [])
@@ -69,20 +39,22 @@ const ApplyLoan = () => {
     const handleCategoryChange = (event) => {
         setCategory(event.target.value)
         setMakeCategory([...new Set(response
-            .filter(item => item.item_category === event.target.value)
+            .filter(item => item.itemCategory === event.target.value)
             .map((item, index) => {
-                return item.item_make;
+                return item.itemMake;
             }))])
         setMake("");
         setDescription("");
+        setError(null);
+        setSuccess(null);
     }
 
     const handleMakeChange = (event) => {
         setMake(event.target.value)
         setDescriptionCategory([...new Set(response
-            .filter(item => item.item_category === category && item.item_make === event.target.value)
+            .filter(item => item.itemCategory === category && item.itemMake === event.target.value)
             .map((item, index) => {
-                return item.item_description;
+                return item.itemDescription;
             }))])
         setDescription("");
     }
@@ -90,19 +62,35 @@ const ApplyLoan = () => {
     const handleDescriptionChange = (event) => {
         setDescription(event.target.value);
         setValuation(response
-            .filter(item => item.item_category === category && item.item_make === make && item.item_description === event.target.value)
+            .filter(item => item.itemCategory === category && item.itemMake === make && item.itemDescription === event.target.value)
             .map((item, index) => {
-                return item.item_valuation;
+                return item.itemValuation;
             })[0])
-        setSelectedId(response
-            .filter(item => item.item_category === category && item.item_make === make && item.item_description === event.target.value)
+        setObject(response
+            .filter(item => item.itemCategory === category && item.itemMake === make && item.itemDescription === event.target.value)
             .map((item, index) => {
-                return item.id;
+                return item;
             })[0])
+        setError(null);
+        setSuccess(null);
     }
 
-    const handleFormSubmit = () => {
-
+    const handleFormSubmit = async () => {
+        try {
+            const response = await axios.post(`http://localhost:8080/api/items/apply/${employeeId}`, {
+                itemId: object.itemId,
+                itemDescription: object.itemDescription,
+                issueStatus: object.issueStatus,
+                itemMake: object.itemMake,
+                itemCategory: object.itemCategory,
+                itemValuation: object.itemValuation
+            });
+            setSuccess("Successfully Submitted Data");
+            setError(null);
+        } catch (err) {
+            setError("Not Able To Submit !");
+            setSuccess(null);
+        }
     }
 
     return (
@@ -150,8 +138,8 @@ const ApplyLoan = () => {
                                             <Form.Label>Item Value</Form.Label>
                                             <Form.Control type="text" placeholder="Enter Item Value" value={valuation} />
                                         </Row>
-                                        {selectedId !== "" ?
-                                            <Button variant="primary" style={{ width: "100%" }}>  Submit </Button> : null
+                                        {object ?
+                                            <Button variant="primary" style={{ width: "100%" }} onClick={handleFormSubmit}>  Submit </Button> : null
                                         } </> :
                                     null
                                 }
@@ -159,6 +147,8 @@ const ApplyLoan = () => {
                             : null}
                     </>
                     : null}
+                {error ? <div className="error">{error}</div> : null}
+                {success ? <div className="success">{success}</div> : null}
             </Form>
 
         </Container>

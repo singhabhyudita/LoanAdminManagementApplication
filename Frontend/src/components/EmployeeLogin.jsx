@@ -37,7 +37,7 @@ const EmployeeLogin = () => {
             return;
         }
         console.log(employeeId)
-        const backendURL = "http://localhost:8080/login"
+        const backendURL = "http://localhost:8080/api/employee/login"
         axios.post(backendURL, {
             loginId: employeeId,
             password: employeePassword

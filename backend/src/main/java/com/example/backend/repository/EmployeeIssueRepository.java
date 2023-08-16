@@ -8,6 +8,6 @@ import com.example.backend.model.Employee;
 import com.example.backend.model.EmployeeIssue;
 
 public interface EmployeeIssueRepository extends JpaRepository<EmployeeIssue,String>{
-	List<EmployeeIssue> findByEmployee(Employee e);
+	List<EmployeeIssue> findByEmployeeId(String employee_id);
 
 }

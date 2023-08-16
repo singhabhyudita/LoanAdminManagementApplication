@@ -11,7 +11,4 @@ import com.example.backend.model.EmployeeLoanKey;
 
 @Repository
 public interface EmployeeCardRepository extends JpaRepository<EmployeeCard,EmployeeLoanKey> {
-
-	ArrayList<EmployeeCard> findByEmployee(Employee e);
-
 }

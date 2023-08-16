@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.backend.model.Loan;
 
 public interface LoanRepository extends JpaRepository<Loan,String>{
-
+	public Loan findByLoanType(String type);
 }

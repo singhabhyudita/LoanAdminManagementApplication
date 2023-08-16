@@ -71,4 +71,34 @@ public class Item {
 	public void setItem_valuation(int item_valuation) {
 		this.item_valuation = item_valuation;
 	}
+	public String getItemId() {
+		return itemId;
+	}
+	public void setItemId(String itemId) {
+		this.itemId = itemId;
+	}
+	public char getIssueStatus() {
+		return issueStatus;
+	}
+	public void setIssueStatus(char issueStatus) {
+		this.issueStatus = issueStatus;
+	}
+	public String getItemMake() {
+		return itemMake;
+	}
+	public void setItemMake(String itemMake) {
+		this.itemMake = itemMake;
+	}
+	public String getItemCategory() {
+		return itemCategory;
+	}
+	public void setItemCategory(String itemCategory) {
+		this.itemCategory = itemCategory;
+	}
+	public List<EmployeeIssue> getEmployees() {
+		return employees;
+	}
+	public void setEmployees(List<EmployeeIssue> employees) {
+		this.employees = employees;
+	}
 }

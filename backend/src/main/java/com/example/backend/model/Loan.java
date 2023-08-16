@@ -15,7 +15,7 @@ public class Loan {
 	@Column(name="loan_id", length=6)
 	private String loan_id;
 	@Column(name="loan_type", length=15)
-	private String loan_type;
+	private String loanType;
 	@Column(name="duration_in_years", length=2)
 	private int duration;
 	
@@ -30,10 +30,10 @@ public class Loan {
 		this.loan_id = loan_id;
 	}
 	public String getLoan_type() {
-		return loan_type;
+		return loanType;
 	}
 	public void setLoan_type(String loan_type) {
-		this.loan_type = loan_type;
+		this.loanType = loan_type;
 	}
 	public int getDuration() {
 		return duration;

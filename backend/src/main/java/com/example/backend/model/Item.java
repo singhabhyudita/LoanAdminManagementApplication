@@ -15,8 +15,8 @@ public class Item {
 	@Column(name="item_make",length=25)
 	private String item_make;
 	@Column(name="item_category",length=25)
-	private String item_category;
-	@Column(name="String",length=6)
+	private String itemCategory;
+	@Column(name="item_valuation",length=6)
 	private int item_valuation;
 	public Item() {
 		super();
@@ -27,7 +27,7 @@ public class Item {
 		this.item_description = item_description;
 		this.issue_status = issue_status;
 		this.item_make = item_make;
-		this.item_category = item_category;
+		this.itemCategory = item_category;
 		this.item_valuation = item_valuation;
 	}
 	public String getItem_description() {
@@ -49,10 +49,10 @@ public class Item {
 		this.item_make = item_make;
 	}
 	public String getItem_category() {
-		return item_category;
+		return itemCategory;
 	}
 	public void setItem_category(String item_category) {
-		this.item_category = item_category;
+		this.itemCategory = item_category;
 	}
 	public int getItem_valuation() {
 		return item_valuation;

@@ -8,10 +8,13 @@ import java.util.Date;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.*;
 
 @Entity
 public class Employee {
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Id
 	@Column(name="employee_id",length=6)
 	@NotBlank(message="Employee Id can't be blank")
@@ -48,6 +51,7 @@ public class Employee {
 		this.date_of_joining = date_of_joining;
 	}
 	private char gender;
+	@JsonFormat(pattern="yyyy-MM-DD")
 	private Date date_of_birth;
 	private Date date_of_joining;
 	public String getEmployee_id() {

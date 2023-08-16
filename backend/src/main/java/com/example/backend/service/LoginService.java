@@ -17,7 +17,7 @@ public class LoginService {
 	public String login(LoginRequest loginRequest) {
 		String result="";
 		Employee employee = null;
-		Optional<Employee>	obj=employeeRepo.findById(loginRequest.getLogin_id());
+		Optional<Employee>	obj=employeeRepo.findById(loginRequest.getLoginId());
 		if(obj.isPresent())
 		{
 			employee=obj.get();
@@ -30,7 +30,7 @@ public class LoginService {
 		else
 		{
 			if(loginRequest.getPassword().equals(employee.getPassword())) {
-				result=employee.getEmployee_name();
+				result=employee.getEmployee_id();
 			}
 			else
 			{

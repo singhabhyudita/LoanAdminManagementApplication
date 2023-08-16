@@ -13,20 +13,21 @@ import jakarta.persistence.OneToMany;
 public class Item {
 	@Id
 	@Column(name="item_id",length=6)
-	private String item_id;
+	private String itemId;
 	@Column(name="item_description",length=25)
 	private String item_description;
-	private char issue_status;
+	private char issueStatus;
 	@Column(name="item_make",length=25)
-	private String item_make;
+	private String itemMake;
 	@Column(name="item_category",length=25)
 	private String itemCategory;
 	@Column(name="item_valuation",length=6)
 	private int item_valuation;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="issue_id")
-	private List<EmployeeIssue> issues;
+	@JoinColumn(name="item_id")
+	private List<EmployeeIssue> employees;
+	
 	public Item() {
 		super();
 	}
@@ -34,8 +35,8 @@ public class Item {
 			int item_valuation) {
 		super();
 		this.item_description = item_description;
-		this.issue_status = issue_status;
-		this.item_make = item_make;
+		this.issueStatus = issue_status;
+		this.itemMake = item_make;
 		this.itemCategory = item_category;
 		this.item_valuation = item_valuation;
 	}
@@ -46,16 +47,16 @@ public class Item {
 		this.item_description = item_description;
 	}
 	public char getIssue_status() {
-		return issue_status;
+		return issueStatus;
 	}
 	public void setIssue_status(char issue_status) {
-		this.issue_status = issue_status;
+		this.issueStatus = issue_status;
 	}
 	public String getItem_make() {
-		return item_make;
+		return itemMake;
 	}
 	public void setItem_make(String item_make) {
-		this.item_make = item_make;
+		this.itemMake = item_make;
 	}
 	public String getItem_category() {
 		return itemCategory;

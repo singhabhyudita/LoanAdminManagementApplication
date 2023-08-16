@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.model.Item;
+import com.example.backend.repository.EmployeeIssueRepository;
+import com.example.backend.repository.EmployeeRepository;
 import com.example.backend.repository.ItemRepository;
 import java.util.*;
 
@@ -12,29 +14,23 @@ public class ItemService {
 	@Autowired
 	ItemRepository itemRepository;
 	
-	public Item saveItem(Item it) {
-		
-		Item i= itemRepository.save(it);
-		return i;
-		
-	}
+	@Autowired
+	EmployeeIssueRepository employeeIssueRepository;
+	
+	@Autowired
+	EmployeeRepository employeeRepository;
 	
 	public List<Item> getAllItems(){
 		return itemRepository.findAll();
 	}
 	
-	public List<String> getCategories(){
-		List<String> categories = new ArrayList<String>();
-		List<Item> items =itemRepository.findAll();	
-		
-		for(Item item : items) {
-			
-			categories.add(item.getItem_category());
-		}
-		return categories;
-		}
-	public List<Item> getItems(String itemCategory){
-		return itemRepository.findByItemCategory(itemCategory);
-		
+	public String apply(Item item, String id) {
+		return "";		
 	}
+	public List<Item> getItemsById(String id){
+		List<Item> list= new ArrayList<>();
+	//	employeeIssueRepository.findByEmployee(employeeRepository.findById(id).get()).forEach((obj)-> list.add(obj.getItem()));
+		return list;
+	}
+	
 }

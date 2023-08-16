@@ -3,9 +3,11 @@ package com.example.backend.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.backend.model.EmployeeCard;
 import com.example.backend.model.EmployeeIssue;
 import com.example.backend.model.Item;
 import com.example.backend.model.Loan;
+import com.example.backend.model.PurchasedItem;
 import com.example.backend.repository.EmployeeCardRepository;
 import com.example.backend.repository.EmployeeIssueRepository;
 import com.example.backend.repository.EmployeeRepository;
@@ -35,19 +37,24 @@ public class ItemService {
 		return itemRepository.findAll();
 	}
 	
-	public String apply(Item item, String id) {
+	public List<Object> apply(Item item, String id) {
+		List<Object> list = new ArrayList<>();
 		String type = item.getItem_category();
 		Loan loan = loanRepository.findByLoanType(type);
 		int duration = loan.getDuration();
-//		EmployeeIssue employeeIssue = new EmployeeIssue(id,loan.getLoan_id(),new Date(),this.getReturnDate(new Date(), duration));
-//		employeeIssueRepository.save(employeeIssue);
 		
+		EmployeeIssue employeeIssue = new EmployeeIssue(new Date(),this.getReturnDate(new Date(), duration),id,item.getItemId());
+		list.add(employeeIssueRepository.save(employeeIssue));
 		
-		return "";		
+		EmployeeCard employeeCard = new EmployeeCard(id,loan.getLoan_id(),new Date());
+		list.add(employeeCardRepository.save(employeeCard));
+	
+		return list;		
 	}
-	public List<Item> getItemsById(String id){
-		List<Item> list= new ArrayList<>();
-		//employeeIssueRepository.findByEmployeeId(id).forEach((obj)-> list.add(obj.getItem()));
+	
+	public List<PurchasedItem> getItemsById(String id){
+		List<PurchasedItem> list= new ArrayList<>();
+		employeeIssueRepository.findByEmployeeId(id).forEach((obj)-> list.add(new PurchasedItem(obj.getIssue_id(),itemRepository.findById(obj.getItemId()).get())));
 		return list;
 	}
 	private Date getReturnDate(Date startDate, int duration) {

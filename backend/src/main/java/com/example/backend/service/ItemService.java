@@ -39,14 +39,15 @@ public class ItemService {
 	
 	public List<Object> apply(Item item, String id) {
 		List<Object> list = new ArrayList<>();
-		String type = item.getItem_category();
+		String type = item.getItemCategory();
 		Loan loan = loanRepository.findByLoanType(type);
 		int duration = loan.getDuration();
 		
 
 		EmployeeIssue employeeIssue = new EmployeeIssue(new Date(),this.getReturnDate(new Date(), duration),id,item.getItemId());
 		list.add(employeeIssueRepository.save(employeeIssue));
-		
+//		List<EmployeeCard> ec = employeeCardRepository.findByEmployeeId(id);
+//		List
 		EmployeeCard employeeCard = new EmployeeCard(id,loan.getLoan_id(),new Date());
 		list.add(employeeCardRepository.save(employeeCard));
 	

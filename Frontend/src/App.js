@@ -5,6 +5,8 @@ import Home from "./components/Home";
 import Register from "./components/Register";
 import Dashboard from './components/dashboard'
 import ApplyLoan from "./components/ApplyLoan";
+import PrivateRoute from "./components/PrivateRoute";
+import { AuthProvider } from "./components/AuthContext";
 
 function App() {
   return (
@@ -13,8 +15,8 @@ function App() {
         <Route exact path="/login/employee" element={<EmployeeLogin />} />
         <Route exact path="/login/admin" element={<AdminLogin />} />
         <Route exact path="/register" element={<Register />} />
-        <Route exact path="/dashboard" element={<Dashboard />} />
-        <Route exact path="/apply-loan" element={<ApplyLoan />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/apply-loan" element={<ApplyLoan />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>

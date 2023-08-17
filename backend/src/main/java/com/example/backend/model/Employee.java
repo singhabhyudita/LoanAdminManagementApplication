@@ -63,6 +63,7 @@ public class Employee {
 	}
 	@JsonFormat(pattern="yyyy-MM-DD")
 	private Date date_of_birth;
+	@JsonFormat(pattern="yyyy-MM-DD")
 	private Date date_of_joining;
 	public String getEmployee_id() {
 		return employeeId;

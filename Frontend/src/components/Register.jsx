@@ -73,7 +73,7 @@ const Register = () => {
       genderChar = "O"
 
     const formattedDateOfBirth = new Date(dateOfBirth).toISOString().split('T')[0];
-    const formattedDateOfJoining = new Date(dateOfJoining).toISOString().split('T')[0];
+    const formattedDateOfJoining = new Date(dateOfJoining).toISOString().split('T')[0]
 
     const backendURL = 'http://localhost:8080/api/employee/register';
     axios.post(backendURL, {

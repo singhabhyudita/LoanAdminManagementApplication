@@ -66,4 +66,20 @@ public class ItemService {
 		return calendar.getTime();
 	}
 	
+	public List<Item> findAllItems(){
+		return itemRepository.findAll();
+	}
+	
+	public Item addItem(Item item) {
+		return itemRepository.save(item);
+	}
+	
+	public String deleteItem(String id) {
+		itemRepository.deleteById(id);
+		return "Success";
+	}
+	public Item updateItem(Item item) {
+		itemRepository.deleteById(item.getItemId());
+		return itemRepository.save(item);
+	}
 }

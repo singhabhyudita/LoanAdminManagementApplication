@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container, Form, Button, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import './EmployeeLogin.css';
+import '../styles/EmployeeLogin.css';
 import { Link } from 'react-router-dom';
 
 const Register = () => {

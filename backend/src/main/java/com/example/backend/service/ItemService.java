@@ -46,8 +46,6 @@ public class ItemService {
 
 		EmployeeIssue employeeIssue = new EmployeeIssue(new Date(),this.getReturnDate(new Date(), duration),id,item.getItemId());
 		list.add(employeeIssueRepository.save(employeeIssue));
-//		List<EmployeeCard> ec = employeeCardRepository.findByEmployeeId(id);
-//		List
 		EmployeeCard employeeCard = new EmployeeCard(id,loan.getLoan_id(),new Date());
 		list.add(employeeCardRepository.save(employeeCard));
 	

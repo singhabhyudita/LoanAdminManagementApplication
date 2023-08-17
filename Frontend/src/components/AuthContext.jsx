@@ -11,7 +11,7 @@ export function AuthProvider({ children }) {
         } else {
             setAuthenticated(false);
         }
-    })
+    }, [])
     return (
         <AuthContext Provider value={{ authenticated, setAuthenticated }}>
             {children}

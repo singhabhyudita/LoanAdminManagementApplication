@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
-import "./EmployeeLogin.css"
+import "../styles/EmployeeLogin.css"
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "./AuthContext";
+import LoginServices from '../services/LoginServices';
 
 
 const EmployeeLogin = () => {
@@ -36,12 +37,11 @@ const EmployeeLogin = () => {
             setSuccess(null)
             return;
         }
-        console.log(employeeId)
-        const backendURL = "http://localhost:8080/api/employee/login"
-        axios.post(backendURL, {
+        const loginObject = {
             loginId: employeeId,
             password: employeePassword
-        })
+        }
+        LoginServices.employeeLoginService(loginObject)
             .then(response => {
                 if (response.data === "Invalid user") {
                     setError("User data not found!");

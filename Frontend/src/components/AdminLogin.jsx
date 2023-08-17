@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
-import "./EmployeeLogin.css"
+import "../styles/EmployeeLogin.css"
 import { useNavigate } from 'react-router-dom';
+import LoginServices from '../services/LoginServices';
 
 const AdminLogin = () => {
     const [adminId, setAdminId] = useState("");
@@ -28,12 +29,11 @@ const AdminLogin = () => {
             setError("Password Field Cannot Be Empty!")
             return;
         }
-        const backendURL = "http://localhost:8080/api/admin/adminLogin"
-        axios.post(backendURL, {
-
-            login_id: adminId,
+        const loginObject = {
+            loginId: adminId,
             password: adminPassword
-        })
+        }
+        LoginServices.adminLoginService(loginObject)
             .then(response => {
                 if (response.data === "Invalid user") {
                     setError("User data not found!");

@@ -5,10 +5,10 @@ import Home from "./components/Home";
 import Register from "./components/Register";
 import Dashboard from './components/dashboard'
 import ApplyLoan from "./components/ApplyLoan";
-import PrivateRoute from "./components/PrivateRoute";
-import { AuthProvider } from "./components/AuthContext";
 import ViewPurchase from "./components/ViewPurchase"
-import ViewCard from "./components/viewcard"
+import AdminLoan from "./components/AdminLoan";
+import ViewLoan from "./components/ViewLoan";
+import AdminViewLoan from "./components/AdminViewLoan";
 
 function App() {
   return (
@@ -20,8 +20,10 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/apply-loan" element={<ApplyLoan />} />
         <Route path="/view-purchase" element={<ViewPurchase />} />
-        <Route path="/view-loan" element={<ViewCard />} />
+        <Route path="/view-loan" element={<ViewLoan />} />
         <Route path="/" element={<Home />} />
+        <Route exact path="/admin/loan/add" element={<AdminLoan/>}/>
+        <Route exact path="/admin/loan/view" element={<AdminViewLoan/>}/>
       </Routes>
     </BrowserRouter>
   )

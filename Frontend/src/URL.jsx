@@ -1,6 +1,8 @@
 export const employeeRegisterUrl = "http://localhost:8080/api/employee/register";
 export const employeeLoginUrl = "http://localhost:8080/api/employee/login";
 export const adminLoginUrl = "http://localhost:8080/api/admin/login";
+export const adminApplyLoanUrl = "http://localhost:8080/api/admin/loans/add";
+export const adminViewLoanUrl = "http://localhost:8080/api/admin/loans/all";
 export const applyLoanUrl = (employeeId) => {
     return `http://localhost:8080/api/items/apply/${employeeId}`
 }

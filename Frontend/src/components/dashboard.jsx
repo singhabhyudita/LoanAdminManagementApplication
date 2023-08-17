@@ -22,7 +22,7 @@ const Dashboard = () => {
     }
 
     const handleViewLoan = () => {
-
+        navigate("/view-loan")
     }
 
     const handleApplyLoan = () => {
@@ -30,7 +30,7 @@ const Dashboard = () => {
     }
 
     const handleChooseItem = () => {
-
+        navigate("/view-purchase")
     }
 
     return (

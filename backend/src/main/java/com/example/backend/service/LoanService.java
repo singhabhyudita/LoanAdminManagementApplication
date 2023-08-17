@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.backend.model.Loan;
 import com.example.backend.model.LoanAvailed;
 import com.example.backend.repository.EmployeeCardRepository;
 import com.example.backend.repository.LoanRepository;
@@ -22,8 +23,25 @@ public class LoanService {
 	public List<LoanAvailed> getItemsById(String id) {
 		List<LoanAvailed> list = new ArrayList<>();
 		employeeCardRepository.findByEmployeeId(id).forEach((obj)-> list.add(new LoanAvailed(loanRepository.findById(obj.getLoanId()).get(),obj.getCardIssueDate())));
-		return list;
-		
+		return list;	
+	}
+	
+	public List<Loan> findAllLoans(){
+		return loanRepository.findAll();
+	}
+	
+	public Loan addLoan(Loan loan) {
+		return loanRepository.save(loan);
+	}
+	
+	public String deleteLoan(String id) {
+		loanRepository.deleteById(id);
+		return "Success";
+	}
+	
+	public Loan updateLoan(Loan loan) {
+		loanRepository.deleteById(loan.getLoan_id());
+		return loanRepository.save(loan);
 	}
 	
 }

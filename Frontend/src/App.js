@@ -7,6 +7,8 @@ import Dashboard from './components/dashboard'
 import ApplyLoan from "./components/ApplyLoan";
 import PrivateRoute from "./components/PrivateRoute";
 import { AuthProvider } from "./components/AuthContext";
+import ViewPurchase from "./components/ViewPurchase"
+import ViewLoan from "./components/ViewLoan"
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route exact path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/apply-loan" element={<ApplyLoan />} />
+        <Route path="/view-purchase" element={<ViewPurchase />} />
+        <Route path="/view-loan" element={<ViewLoan />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>

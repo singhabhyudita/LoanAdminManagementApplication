@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Container, Form, Button, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios';
 import '../styles/EmployeeLogin.css';
 import { Link } from 'react-router-dom';
+import RegisterServices from "../services/RegisterServices";
 
 const Register = () => {
   const [employeeId, setEmployeeId] = useState('');
@@ -49,6 +49,17 @@ const Register = () => {
     setEmployeePassword(event.target.value);
   }
 
+  const clearFields = () => {
+    setEmployeeId("");
+    setEmployeeName("");
+    setDateOfBirth("");
+    setDateOfJoining("");
+    setDepartment("");
+    setDesignation("");
+    setGender("");
+    setEmployeePassword("");
+  }
+
   const handleFormSubmit = () => {
     if (employeeId === "" || !employeeName === "" || !designation === "" || department === "" || gender === "" || dateOfBirth === "" || dateOfJoining === "" || employeePassword === "") {
       setError('You need to fill all the fields to register!');
@@ -75,8 +86,7 @@ const Register = () => {
     const formattedDateOfBirth = new Date(dateOfBirth).toISOString().split('T')[0];
     const formattedDateOfJoining = new Date(dateOfJoining).toISOString().split('T')[0]
 
-    const backendURL = 'http://localhost:8080/api/employee/register';
-    axios.post(backendURL, {
+    const registerObject = {
       employee_id: employeeId,
       employee_name: employeeName,
       designation: designation,
@@ -85,15 +95,16 @@ const Register = () => {
       date_of_birth: formattedDateOfBirth,
       date_of_joining: formattedDateOfJoining,
       password: employeePassword
-    })
+    }
+    RegisterServices.registerEmployee(registerObject)
       .then(response => {
-        console.log(response.data)
         if (response.data === "") {
           setError("Couldn't create user Data , Try Again!");
           setSuccess(null);
         } else {
           setSuccess(`Register Successfull , Please Log In !`);
           setError(null);
+          clearFields();
         }
       })
       .catch(err => {

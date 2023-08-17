@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Form, Container, Button } from 'react-bootstrap';
-import axios from 'axios';
+import itemServiceObject from '../services/ItemServices';
 
 const ApplyLoan = () => {
     const [employeeId, setEmployeeId] = useState("");
@@ -20,7 +20,7 @@ const ApplyLoan = () => {
         const getBasicDetails = async () => {
             const employeeIdFromSession = sessionStorage.getItem("username");
             setEmployeeId(employeeIdFromSession);
-            const responseValue = await axios.get(`http://localhost:8080/api/items/showItems`);
+            const responseValue = await itemServiceObject.viewItemsService();
             setResponse(responseValue.data)
             setItemCategory([...new Set(responseValue.data
                 .map((item, index) => {
@@ -76,14 +76,15 @@ const ApplyLoan = () => {
 
     const handleFormSubmit = async () => {
         try {
-            await axios.post(`http://localhost:8080/api/items/apply/${employeeId}`, {
+            const itemObject = {
                 itemId: object.itemId,
                 itemDescription: object.itemDescription,
                 issueStatus: object.issueStatus,
                 itemMake: object.itemMake,
                 itemCategory: object.itemCategory,
                 itemValuation: object.itemValuation
-            });
+            }
+            await itemServiceObject.applyLoanService(itemObject, employeeId)
             setSuccess("Successfully Submitted Data");
             setError(null);
         } catch (err) {

@@ -7,16 +7,11 @@ import jakarta.persistence.*;
 @Entity
 public class EmployeeIssue {
 	@Id
-	@Column(name="issue_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int issueId;
-	@Column(name="issue_date")
 	private Date issueDate;
-	@Column(name="return_date")
 	private Date return_date;
-	@Column(name="employee_id")
 	private String employeeId;
-	@Column(name="item_id")
 	private String itemId;
 	
 	

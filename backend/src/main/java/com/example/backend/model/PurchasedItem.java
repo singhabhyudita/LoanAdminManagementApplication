@@ -1,6 +1,7 @@
 package com.example.backend.model;
 
 public class PurchasedItem {
+
 	private int issueId;
 	private Item item;
 	public int getIssueId() {

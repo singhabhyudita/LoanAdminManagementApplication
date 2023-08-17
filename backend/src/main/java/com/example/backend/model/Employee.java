@@ -15,11 +15,9 @@ import jakarta.persistence.*;
 public class Employee {
 	
 	@Id
-	@Column(name="employee_id",length=6)
 	@NotBlank(message="Employee Id can't be blank")
 	@Length(min=6,max=6, message="Employee Id can be of 6 characters only ")
 	private String employeeId;
-	@Column(name="password",length=60)
 	@NotBlank(message="Password can't be blank")
 	@Length(min=10,max=60,message="Password can be of 10-60 characters only")
 	private String password;
@@ -29,19 +27,16 @@ public class Employee {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	@Column(name="employee_name",length=25)
 	private String employeeName;
-	@Column(name="designation",length=25)
 	private String designation;
-	@Column(name="department",length=25)
 	private String department;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="employee_id")
+	@JoinColumn(name="employeeId")
 	private List<EmployeeIssue> issues;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="employee_id")
+	@JoinColumn(name="employeeId")
 	private List<EmployeeCard> cards;
 	
 
@@ -49,18 +44,23 @@ public class Employee {
 	public Employee() {
 		super();
 	}
-	public Employee(String employee_id, String employee_name, String designation, String department, char gender,
-			Date date_of_birth, Date date_of_joining) {
+	
+	private char gender;
+	public Employee(
+			@NotBlank(message = "Employee Id can't be blank") @Length(min = 6, max = 6, message = "Employee Id can be of 6 characters only ") String employeeId,
+			@NotBlank(message = "Password can't be blank") @Length(min = 10, max = 60, message = "Password can be of 10-60 characters only") String password,
+			String employeeName, String designation, String department, char gender, Date date_of_birth,
+			Date date_of_joining) {
 		super();
-		this.employeeId = employee_id;
-		this.employeeName = employee_name;
+		this.employeeId = employeeId;
+		this.password = password;
+		this.employeeName = employeeName;
 		this.designation = designation;
 		this.department = department;
 		this.gender = gender;
 		this.date_of_birth = date_of_birth;
 		this.date_of_joining = date_of_joining;
 	}
-	private char gender;
 	@JsonFormat(pattern="yyyy-MM-DD")
 	private Date date_of_birth;
 	private Date date_of_joining;

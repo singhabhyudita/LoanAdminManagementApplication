@@ -20,9 +20,10 @@ export const ViewCard = () => {
     }, [])
 
     return (
-        <div>
-          <h1> Loan Cards Availed </h1>
-          <Table striped bordered hover>
+        
+         <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "100vh", minWidth: "100vw" }}>
+            <h2 className="table-header" style={{ marginBottom: "20px" }}>Loan Cards Availed</h2>
+            <Table striped bordered hover responsive style={{ minWidth: "80vw" }}>
           
           <thead>
             <tr>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
 import "bootstrap/dist/css/bootstrap.min.css";
-import axios from 'axios';
 import "../styles/EmployeeLogin.css"
 import { useNavigate } from 'react-router-dom';
 import LoginServices from '../services/LoginServices';

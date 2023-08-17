@@ -16,4 +16,6 @@ class LoginServices {
     }
 }
 
-export default new LoginServices();
+const loginServiceObject = new LoginServices();
+
+export default loginServiceObject;

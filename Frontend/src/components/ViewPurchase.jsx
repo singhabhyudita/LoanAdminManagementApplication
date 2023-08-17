@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
 import { Table } from 'react-bootstrap';
+import itemServiceObject from '../services/ItemServices';
 
 const ViewPurchase = () => {
     const [tableData, setTableData] = useState(null);
     useEffect(() => {
         const userId = sessionStorage.getItem("username");
         const getPurchasedItems = async () => {
-            const result = await axios.get(`http://localhost:8080/api/items/all/${userId}`);
+            const result = await itemServiceObject.viewPurchasedItemService(userId);
             setTableData(result.data)
         }
         getPurchasedItems();

@@ -11,15 +11,8 @@ public class EmployeeCard {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int cardId;
-	
-	
-	@Column(name="employee_id")
 	private String  employeeId;
-	
-	
-	@Column(name="loan_id")
 	private String loanId;
-	
 	private Date cardIssueDate;
 
 	public EmployeeCard() {

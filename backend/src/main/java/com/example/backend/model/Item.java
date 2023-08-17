@@ -3,7 +3,6 @@ package com.example.backend.model;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -20,7 +19,7 @@ public class Item {
 	private int itemValuation;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="item_id")
+	@JoinColumn(name="itemId")
 	private List<EmployeeIssue> employees;
 
 	public String getItemId() {

@@ -1,6 +1,5 @@
 package com.example.backend.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -8,11 +7,8 @@ import jakarta.persistence.Id;
 public class Admin {
 	
 	@Id
-	@Column(name="admin_id",length=6)
 	private String adminId;
-	@Column(name="password",length=60)
 	private String password;
-	@Column(name="admin_name")
 	private String name;
 	public Admin(String admin_id, String password, String name) {
 		super();

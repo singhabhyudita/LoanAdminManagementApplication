@@ -10,3 +10,4 @@ export const viewPurchaseUrl = (userId) => {
 export const viewLoanUrl = (id) => {
     return `http://localhost:8080/api/loans/all/${id}`
 }
+export const viewItemsUrl = "http://localhost:8080/api/items/showItems"

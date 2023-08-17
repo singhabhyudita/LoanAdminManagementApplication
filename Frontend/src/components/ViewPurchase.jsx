@@ -13,7 +13,8 @@ const ViewPurchase = () => {
         getPurchasedItems();
     }, [])
     return (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh", minWidth: "100vw" }}>
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "100vh", minWidth: "100vw" }}>
+            <h2 className="table-header" style={{ marginBottom: "20px" }}>Items Purchased</h2>
             <Table striped bordered hover responsive style={{ minWidth: "80vw" }}>
                 <thead>
                     <tr>

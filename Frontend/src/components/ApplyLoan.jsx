@@ -3,7 +3,7 @@ import { Row, Form, Container, Button } from 'react-bootstrap';
 import axios from 'axios';
 
 const ApplyLoan = () => {
-    const [employeeId, setEmployeeId] = useState(null);
+    const [employeeId, setEmployeeId] = useState("");
     const [itemCategory, setItemCategory] = useState(null);
     const [makeCategory, setMakeCategory] = useState(null);
     const [descriptionCategory, setDescriptionCategory] = useState(null);
@@ -22,7 +22,6 @@ const ApplyLoan = () => {
             setEmployeeId(employeeIdFromSession);
             const responseValue = await axios.get(`http://localhost:8080/api/items/showItems`);
             setResponse(responseValue.data)
-            console.log(responseValue.data)
             setItemCategory([...new Set(responseValue.data
                 .map((item, index) => {
                     return item.itemCategory
@@ -77,7 +76,7 @@ const ApplyLoan = () => {
 
     const handleFormSubmit = async () => {
         try {
-            const response = await axios.post(`http://localhost:8080/api/items/apply/${employeeId}`, {
+            await axios.post(`http://localhost:8080/api/items/apply/${employeeId}`, {
                 itemId: object.itemId,
                 itemDescription: object.itemDescription,
                 issueStatus: object.issueStatus,
@@ -99,7 +98,7 @@ const ApplyLoan = () => {
                 <h2>Apply For Loan</h2>
                 <Row className='formGroup'>
                     <Form.Label>Employee ID</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Employee ID" value={employeeId} />
+                    <Form.Control type="text" placeholder="Enter Employee ID" value={employeeId} disabled style={{ cursor: "not-allowed" }} />
                 </Row>
                 <Row className="formGroup">
                     <Form.Label>Item Category</Form.Label>
@@ -136,7 +135,7 @@ const ApplyLoan = () => {
                                     <>
                                         <Row className='formGroup'>
                                             <Form.Label>Item Value</Form.Label>
-                                            <Form.Control type="text" placeholder="Enter Item Value" value={valuation} />
+                                            <Form.Control type="text" placeholder="Enter Item Value" value={valuation} disabled style={{ cursor: "not-allowed" }} />
                                         </Row>
                                         {object ?
                                             <Button variant="primary" style={{ width: "100%" }} onClick={handleFormSubmit}>  Submit </Button> : null

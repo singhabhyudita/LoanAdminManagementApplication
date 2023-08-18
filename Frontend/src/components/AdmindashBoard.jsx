@@ -29,16 +29,16 @@ const Dashboard = () => {
                     <h1 className="welcome-text">Welcome {userData}</h1>
                     <div className="controllers">
                         <DropdownButton id="dropdown-basic-button" title="Add/View Employee Data">
-                            <Dropdown.Item onClick={() => navigate("/view-employee")}>View All Employee Data</Dropdown.Item>
-                            <Dropdown.Item onClick={() => navigate("/add-employee")}>Add New Employee Data</Dropdown.Item>
+                            <Dropdown.Item onClick={() => navigate("/admin/employee/view")}>View All Employee Data</Dropdown.Item>
+                            <Dropdown.Item onClick={() => navigate("/admin/employee/add")}>Add New Employee Data</Dropdown.Item>
                         </DropdownButton>
                         <DropdownButton id="dropdown-basic-button" title="Add/View Loan Data">
-                            <Dropdown.Item onClick={() => navigate("/view-employee")}>View All Loan Data</Dropdown.Item>
-                            <Dropdown.Item onClick={() => navigate("/add-employee")}>Add New Loan Data</Dropdown.Item>
+                            <Dropdown.Item onClick={() => navigate("/admin/loan/view")}>View All Loan Data</Dropdown.Item>
+                            <Dropdown.Item onClick={() => navigate("/admin/loan/add")}>Add New Loan Data</Dropdown.Item>
                         </DropdownButton>
                         <DropdownButton id="dropdown-basic-button" title="Add/View Item Data">
-                            <Dropdown.Item onClick={() => navigate("/view-employee")}>View All Item Data</Dropdown.Item>
-                            <Dropdown.Item onClick={() => navigate("/add-employee")}>Add New Item Data</Dropdown.Item>
+                            <Dropdown.Item onClick={() => navigate("/admin/employee/view")}>View All Item Data</Dropdown.Item>
+                            <Dropdown.Item onClick={() => navigate("/admin/employe/add")}>Add New Item Data</Dropdown.Item>
                         </DropdownButton>
                     </div>
                 </> :

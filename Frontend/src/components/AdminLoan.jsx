@@ -7,7 +7,6 @@ const AdminLoan = () => {
     const [loanId, setLoanId] = useState("");
     const [loanType, setLoanType] = useState("");
     const [duration, setDuration] = useState(0);
-    const [message, setMessage] = useState("");
     const navigate = useNavigate();
 
     const handleLoanIdChange = (event) => {
@@ -31,10 +30,11 @@ const AdminLoan = () => {
             duration: duration
         }
         AdminLoanService.addLoan(loan).then(response => {
-            if(response.data != null) setMessage("Loan added successfully")
-            else setMessage("Error occured");
+            if(response.data != null) {
+                alert("Loan added successfully");
+                navigate("/admin/loan/view");
+            }
         })
-        navigate("/admin/loan/view");
     }
     return(
         <Container className="admin-apply-loan">
@@ -68,7 +68,6 @@ const AdminLoan = () => {
                     Submit
                 </Button>
             </Form>
-            <div>{message}</div>
         </Container>
     )
 }

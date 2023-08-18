@@ -1,4 +1,4 @@
-import { adminApplyLoanUrl, adminDeleteLoanUrl, adminEditLoanUrl, adminViewLoanUrl } from "../URL";
+import { adminAddLoanUrl, adminDeleteLoanUrl, adminEditLoanUrl, adminViewLoanUrl } from "../URL";
 import axios from 'axios';
 class AdminLoanService {
     constructor(){
@@ -8,7 +8,7 @@ class AdminLoanService {
         this.deleteLoan=this.deleteLoan.bind(this);
      }
     addLoan(loan){
-        return axios.post(adminApplyLoanUrl,loan);
+        return axios.post(adminAddLoanUrl,loan);
     }
     viewLoan(){
         return axios.get(adminViewLoanUrl);

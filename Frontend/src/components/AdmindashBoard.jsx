@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 import "../styles/dashboard.css";
 
-const Dashboard = () => {
+const AdminDashBoard = () => {
     const [userData, setUserData] = useState(null);
     const navigate = useNavigate();
     useEffect(() => {
@@ -37,8 +37,8 @@ const Dashboard = () => {
                             <Dropdown.Item onClick={() => navigate("/admin/loan/add")}>Add New Loan Data</Dropdown.Item>
                         </DropdownButton>
                         <DropdownButton id="dropdown-basic-button" title="Add/View Item Data">
-                            <Dropdown.Item onClick={() => navigate("/admin/employee/view")}>View All Item Data</Dropdown.Item>
-                            <Dropdown.Item onClick={() => navigate("/admin/employe/add")}>Add New Item Data</Dropdown.Item>
+                            <Dropdown.Item onClick={() => navigate("/admin/item/view")}>View All Item Data</Dropdown.Item>
+                            <Dropdown.Item onClick={() => navigate("/admin/item/add")}>Add New Item Data</Dropdown.Item>
                         </DropdownButton>
                     </div>
                 </> :
@@ -47,4 +47,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+export default AdminDashBoard;

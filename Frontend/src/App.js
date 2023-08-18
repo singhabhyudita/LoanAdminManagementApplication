@@ -6,12 +6,14 @@ import Register from "./components/Register";
 import Dashboard from './components/dashboard'
 import ApplyLoan from "./components/ApplyLoan";
 import ViewPurchase from "./components/ViewPurchase"
-import ViewEmployee from "./components/ViewEmployee";
-import AddEmployee from "./components/AddEmployee";
-import AdmindashBoard from "./components/AdmindashBoard";
-import AdminLoan from "./components/AdminLoan";
 import ViewLoan from "./components/ViewLoan";
 import AdminViewLoan from "./components/AdminViewLoan";
+import AdminItem from "./components/AdminItem";
+import AdminViewItem from "./components/AdminViewItem";
+import ViewEmployee from "./components/ViewEmployee";
+import AddEmployee from "./components/AddEmployee";
+import AdminDashBoard from "./components/AdminDashBoard";
+import AdminLoan from "./components/AdminLoan";
 
 function App() {
   return (
@@ -23,13 +25,15 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/apply-loan" element={<ApplyLoan />} />
         <Route path="/view-purchase" element={<ViewPurchase />} />
-        <Route path="/admin/employee/view" element={<ViewEmployee />} />
-        <Route path="/admin/employee/add" element={<AddEmployee />} />
-        <Route path="/admin/dashboard" element={<AdmindashBoard />} />
         <Route path="/view-loan" element={<ViewLoan />} />
         <Route path="/" element={<Home />} />
-        <Route exact path="/admin/loan/add" element={<AdminLoan />} />
-        <Route exact path="/admin/loan/view" element={<AdminViewLoan />} />
+        <Route exact path="/admin/loan/add" element={<AdminLoan/>}/>
+        <Route exact path="/admin/loan/view" element={<AdminViewLoan/>}/>
+        <Route exact path= "/admin/item/add" element={<AdminItem/>}/>
+        <Route exact path= "/admin/item/view" element ={<AdminViewItem/>}/>
+        <Route path="/admin/employee/view" element={<ViewEmployee />} />
+        <Route path="/admin/employee/add" element={<AddEmployee />} />
+        <Route path="/admin/dashboard" element={<AdminDashBoard />} />
       </Routes>
     </BrowserRouter>
   )

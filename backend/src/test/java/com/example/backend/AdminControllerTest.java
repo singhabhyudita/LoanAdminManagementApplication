@@ -99,7 +99,7 @@ public class AdminControllerTest {
 		loginRequest.setLoginId("123456");
 		loginRequest.setPassword("Password@1");
 		String str = "string";
-		Mockito.when(loginService.login(ArgumentMatchers.any())).thenReturn(str);
+		Mockito.when(adminService.login(ArgumentMatchers.any())).thenReturn(str);
 		String json = mapper.writeValueAsString(loginRequest);
 		MvcResult requestResult = mvc.perform(post("/api/admin/login").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
 		String result = requestResult.getResponse().getContentAsString();

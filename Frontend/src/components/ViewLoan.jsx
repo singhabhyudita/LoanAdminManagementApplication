@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import Table from 'react-bootstrap/Table';
 import itemServiceObject from '../services/ItemServices';
+import { useNavigate } from 'react-router-dom';
 
 
 export const ViewLoan = () => {
-  const [data, setData] = useState(null)
+  const [data, setData] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getinfo = async () => {
       const id = sessionStorage.getItem("username");
+      if (!id) navigate("/login/employee");
       const response = await itemServiceObject.viewLoanService(id);
       console.log(response.data)
       setData(response.data);

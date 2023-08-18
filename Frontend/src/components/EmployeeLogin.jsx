@@ -53,7 +53,7 @@ const EmployeeLogin = () => {
                     setError(null);
                     // setAuthenticated(true);
                     sessionStorage.setItem("username", response.data)
-                    navigate("/dashboard");
+                    navigate("/");
                 }
             })
             .catch(err => {

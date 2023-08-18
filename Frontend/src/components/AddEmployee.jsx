@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Form, Button, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/EmployeeLogin.css';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import RegisterServices from "../services/RegisterServices";
+import AdminEmployeeService from '../services/AdminEmployeeService';
 
 const Register = () => {
     const [employeeId, setEmployeeId] = useState('');
@@ -16,6 +17,14 @@ const Register = () => {
     const [employeePassword, setEmployeePassword] = useState('');
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const adminname = sessionStorage.getItem("adminname");
+        if (!adminname) {
+            navigate("/login/admin")
+        }
+    }, [])
 
     const handleEmployeeIdChange = (event) => {
         setEmployeeId(event.target.value);
@@ -76,9 +85,9 @@ const Register = () => {
         }
 
         let genderChar;
-        if (gender === "Male")
+        if (gender === "male")
             genderChar = "M";
-        else if (gender === "Female")
+        else if (gender === "female")
             genderChar = "F"
         else
             genderChar = "O"
@@ -96,13 +105,13 @@ const Register = () => {
             date_of_joining: formattedDateOfJoining,
             password: employeePassword
         }
-        RegisterServices.registerEmployee(registerObject)
+        AdminEmployeeService.addEmployee(registerObject)
             .then(response => {
                 if (response.data === "") {
                     setError("Couldn't create user Data , Try Again!");
                     setSuccess(null);
                 } else {
-                    setSuccess(`Register Successfull , Please Log In !`);
+                    setSuccess(`Added New User !`);
                     setError(null);
                     clearFields();
                 }

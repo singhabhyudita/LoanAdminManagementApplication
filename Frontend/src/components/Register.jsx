@@ -76,9 +76,9 @@ const Register = () => {
     }
 
     let genderChar;
-    if (gender === "Male")
+    if (gender === "male")
       genderChar = "M";
-    else if (gender === "Female")
+    else if (gender === "female")
       genderChar = "F"
     else
       genderChar = "O"

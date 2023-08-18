@@ -8,17 +8,18 @@ const AdminDashBoard = () => {
     const [userData, setUserData] = useState(null);
     const navigate = useNavigate();
     useEffect(() => {
-        const username = sessionStorage.getItem("username");
-        if (username) {
-            setUserData(username);
+        const adminname = sessionStorage.getItem("adminname");
+        if (adminname) {
+            setUserData(adminname);
         } else {
             setUserData(null);
+            navigate("/login/admin")
         }
     }, [])
 
     const handleLogout = () => {
         sessionStorage.removeItem("username");
-        navigate("/login/employee");
+        navigate("/login/admin");
     }
 
     return (

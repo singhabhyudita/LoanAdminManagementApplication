@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Form, Container, Button } from 'react-bootstrap';
 import itemServiceObject from '../services/ItemServices';
+import { useNavigate } from 'react-router-dom';
 
 const ApplyLoan = () => {
     const [employeeId, setEmployeeId] = useState("");
@@ -16,9 +17,12 @@ const ApplyLoan = () => {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         const getBasicDetails = async () => {
             const employeeIdFromSession = sessionStorage.getItem("username");
+            if (!employeeIdFromSession) navigate("/login/employee")
             setEmployeeId(employeeIdFromSession);
             const responseValue = await itemServiceObject.viewItemsService();
             setResponse(responseValue.data)

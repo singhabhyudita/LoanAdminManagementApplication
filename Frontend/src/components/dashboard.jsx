@@ -13,6 +13,7 @@ const Dashboard = () => {
             setUserData(username);
         } else {
             setUserData(null);
+            navigate("/login/employee");
         }
     }, [])
 

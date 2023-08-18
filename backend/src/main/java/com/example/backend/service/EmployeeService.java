@@ -22,6 +22,8 @@ public class EmployeeService {
 	}
 	
 	public String deleteEmployee(String id) {
+		System.out.println(employeeRepository.findById(id));
+		if(!employeeRepository.findById(id).isPresent()) return "Failure";
 		employeeRepository.deleteById(id);
 		return "Success";
 	}

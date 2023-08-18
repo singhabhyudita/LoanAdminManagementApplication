@@ -9,6 +9,9 @@ import PrivateRoute from "./components/PrivateRoute";
 import { AuthProvider } from "./components/AuthContext";
 import ViewPurchase from "./components/ViewPurchase"
 import ViewCard from "./components/viewcard"
+import ViewEmployee from "./components/ViewEmployee";
+import AddEmployee from "./components/AddEmployee";
+import AdmindashBoard from "./components/AdmindashBoard";
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
         <Route path="/apply-loan" element={<ApplyLoan />} />
         <Route path="/view-purchase" element={<ViewPurchase />} />
         <Route path="/view-loan" element={<ViewCard />} />
+        <Route path="/view-employee" element={<ViewEmployee />} />
+        <Route path="/add-employee" element={<AddEmployee />} />
+        <Route path="/admin-dashboard" element={<AdmindashBoard />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>

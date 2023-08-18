@@ -26,8 +26,8 @@ public class Item {
 		return itemId;
 	}
 
-	public void setItemId(String itemId) {
-		this.itemId = itemId;
+	public void setItemId(String i) {
+		this.itemId = i;
 	}
 
 	public String getItemDescription() {

@@ -9,6 +9,8 @@ import ViewPurchase from "./components/ViewPurchase"
 import AdminLoan from "./components/AdminLoan";
 import ViewLoan from "./components/ViewLoan";
 import AdminViewLoan from "./components/AdminViewLoan";
+import AdminItem from "./components/AdminItem";
+import AdminViewItem from "./components/AdminViewItem";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route exact path="/admin/loan/add" element={<AdminLoan/>}/>
         <Route exact path="/admin/loan/view" element={<AdminViewLoan/>}/>
+        <Route exact path= "/admin/item/add" element={<AdminItem/>}/>
+        <Route exact path= "/admin/item/view" element ={<AdminViewItem/>}/>
       </Routes>
     </BrowserRouter>
   )

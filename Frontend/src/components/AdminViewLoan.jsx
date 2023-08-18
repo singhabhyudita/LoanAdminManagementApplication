@@ -45,7 +45,7 @@ const AdminViewLoan = () => {
         AdminLoanService.deleteLoan(loan.loan_id).then(response => {
             if(response!=null){
                 alert(response.data);
-                const updatedLoans = loans.filter(obj => obj.loan_id != loan.loan_id);
+                const updatedLoans = loans.filter(obj => obj.loan_id !== loan.loan_id);
                 setLoans(updatedLoans);
             }
         })

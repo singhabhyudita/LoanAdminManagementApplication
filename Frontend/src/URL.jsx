@@ -21,5 +21,5 @@ export const adminDeleteLoanUrl = (loanId) => {
     return `http://localhost:8080/api/admin/loans/delete/${loanId}`
 }
 export const adminDeleteItemUrl = (itemId) => {
-    return `http://localhost:8080/api/admin/loans/delete/${itemId}`
+    return `http://localhost:8080/api/admin/items/delete/${itemId}`
 }

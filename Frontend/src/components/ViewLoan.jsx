@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 import itemServiceObject from '../services/ItemServices';
 
 
-export const ViewCard = () => {
+export const ViewLoan = () => {
   const [data, setData] = useState(null)
 
   useEffect(() => {
@@ -43,4 +43,4 @@ export const ViewCard = () => {
     </div>
   )
 }
-export default ViewCard
+export default ViewLoan;

@@ -121,7 +121,9 @@ public class AdminControllerTest {
 		e.setPassword("Password@1");
 		Mockito.when(employeeService.addEmployee(ArgumentMatchers.any())).thenReturn(e);
 		String json = mapper.writeValueAsString(e);
-		mvc.perform(post("/api/admin/add").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(status().isOk()).andExpect(jsonPath("$.employeeId",Matchers.equalTo(e.getEmployee_id())));
+
+		mvc.perform(post("/api/admin/add").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(status().isOk()).andExpect(jsonPath("$.employee_id",Matchers.equalTo(e.getEmployee_id())));
+
 		
 	
 	}
@@ -133,7 +135,9 @@ public class AdminControllerTest {
 		l.setLoan_type("Furniture");
 		Mockito.when(loanService.addLoan(ArgumentMatchers.any())).thenReturn(l);
 		String json = mapper.writeValueAsString(l);
-		mvc.perform(post("/api/admin/loans/add").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$.loanId",Matchers.equalTo(l.getLoan_id())));
+
+		mvc.perform(post("/api/admin/loans/add").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$.loan_id",Matchers.equalTo(l.getLoan_id())));
+
 		
 	
 	
@@ -227,7 +231,9 @@ public class AdminControllerTest {
 		e.setPassword("Password@1");
 		//list.add(e);
 		String json = mapper.writeValueAsString(e);
-		mvc.perform(put("/api/admin/update").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$.employeeId",Matchers.equalTo(e.getEmployee_id())));
+
+		mvc.perform(put("/api/admin/update").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$.employee_id",Matchers.equalTo(e.getEmployee_id())));
+
 		
 		
 	
@@ -253,7 +259,9 @@ public class AdminControllerTest {
 		l.setLoan_type("Furniture");
 		Mockito.when(loanService.updateLoan(ArgumentMatchers.any())).thenReturn(l);
 		String json = mapper.writeValueAsString(l);
-		mvc.perform(put("/api/admin/loans/update").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$.loanId",Matchers.equalTo(l.getLoan_id())));
+
+		mvc.perform(put("/api/admin/loans/update").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$.loan_id",Matchers.equalTo(l.getLoan_id())));
+
 	
 		
 	}

@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
 import { Table } from 'react-bootstrap';
+import itemServiceObject from '../services/ItemServices';
+import { useNavigate } from 'react-router-dom';
 
 const ViewPurchase = () => {
     const [tableData, setTableData] = useState(null);
+    const navigate = useNavigate();
     useEffect(() => {
         const userId = sessionStorage.getItem("username");
+        if (!userId) navigate("/login/employee");
         const getPurchasedItems = async () => {
-            const result = await axios.get(`http://localhost:8080/api/items/all/${userId}`);
+            const result = await itemServiceObject.viewPurchasedItemService(userId);
             setTableData(result.data)
         }
         getPurchasedItems();

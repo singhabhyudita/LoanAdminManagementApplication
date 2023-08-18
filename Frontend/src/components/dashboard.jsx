@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-import "./dashboard.css";
+import "../styles/dashboard.css";
 
 const Dashboard = () => {
     const [userData, setUserData] = useState(null);
@@ -13,6 +13,7 @@ const Dashboard = () => {
             setUserData(username);
         } else {
             setUserData(null);
+            navigate("/login/employee");
         }
     }, [])
 
@@ -50,4 +51,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+export default Dashboard;

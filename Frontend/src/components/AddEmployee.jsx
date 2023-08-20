@@ -3,8 +3,8 @@ import { Container, Form, Button, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/EmployeeLogin.css';
 import { useNavigate } from 'react-router-dom';
-import RegisterServices from "../services/RegisterServices";
 import AdminEmployeeService from '../services/AdminEmployeeService';
+import Navbar from './Navbar';
 
 const Register = () => {
     const [employeeId, setEmployeeId] = useState('');
@@ -24,7 +24,7 @@ const Register = () => {
         if (!adminname) {
             navigate("/login/admin")
         }
-    }, [])
+    }, [navigate])
 
     const handleEmployeeIdChange = (event) => {
         setEmployeeId(event.target.value);
@@ -114,6 +114,7 @@ const Register = () => {
                     setSuccess(`Added New User !`);
                     setError(null);
                     clearFields();
+                    navigate("/admin/employee/view")
                 }
             })
             .catch(err => {
@@ -124,61 +125,64 @@ const Register = () => {
     }
 
     return (
-        <Container className="login-container">
-            <Form className="register-form">
-                <h2>Employee Registration</h2>
-                <Row className='formGroup'>
-                    <Col>
-                        <Form.Label>Employee ID</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Employee ID" value={employeeId} onChange={handleEmployeeIdChange} />
-                    </Col>
-                    <Col>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Enter Password" value={employeePassword} onChange={handleEmployeePasswordChange} />
-                    </Col>
-                </Row>
-                <Row className="formGroup">
-                    <Col>
-                        <Form.Label>Employee Name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Employee Name" value={employeeName} onChange={handleEmployeeNameChange} />
-                    </Col>
-                    <Col>
-                        <Form.Label>Gender</Form.Label>
-                        <Form.Control as="select" value={gender} onChange={handleGenderChange}>
-                            <option value="">Select Gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
-                        </Form.Control>
-                    </Col>
-                </Row>
-                <Row className="formGroup">
-                    <Col>
-                        <Form.Label>Department</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Department" value={department} onChange={handleDepartmentChange} />
-                    </Col>
-                    <Col>
-                        <Form.Label>Designation</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Designation" value={designation} onChange={handleDesignationChange} />
-                    </Col>
-                </Row>
-                <Row className="formGroup">
-                    <Col>
-                        <Form.Label>Date of Birth</Form.Label>
-                        <Form.Control type="date" value={dateOfBirth} onChange={handleDateOfBirthChange} />
-                    </Col>
-                    <Col>
-                        <Form.Label>Date of Joining</Form.Label>
-                        <Form.Control type="date" value={dateOfJoining} onChange={handleDateOfJoiningChange} />
-                    </Col>
-                </Row>
-                <Button variant="primary" type="button" onClick={handleFormSubmit}>
-                    Submit
-                </Button>
-                {error ? <div className="error">{error}</div> : null}
-                {success ? <div className="success">{success}</div> : null}
-            </Form>
-        </Container>
+        <>
+            <Navbar userType={"admin"}/>
+            <Container className="login-container">
+                <Form className="register-form">
+                    <h2>Employee Registration</h2>
+                    <Row className='formGroup'>
+                        <Col>
+                            <Form.Label>Employee ID</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Employee ID" value={employeeId} onChange={handleEmployeeIdChange} />
+                        </Col>
+                        <Col>
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" placeholder="Enter Password" value={employeePassword} onChange={handleEmployeePasswordChange} />
+                        </Col>
+                    </Row>
+                    <Row className="formGroup">
+                        <Col>
+                            <Form.Label>Employee Name</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Employee Name" value={employeeName} onChange={handleEmployeeNameChange} />
+                        </Col>
+                        <Col>
+                            <Form.Label>Gender</Form.Label>
+                            <Form.Control as="select" value={gender} onChange={handleGenderChange}>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </Form.Control>
+                        </Col>
+                    </Row>
+                    <Row className="formGroup">
+                        <Col>
+                            <Form.Label>Department</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Department" value={department} onChange={handleDepartmentChange} />
+                        </Col>
+                        <Col>
+                            <Form.Label>Designation</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Designation" value={designation} onChange={handleDesignationChange} />
+                        </Col>
+                    </Row>
+                    <Row className="formGroup">
+                        <Col>
+                            <Form.Label>Date of Birth</Form.Label>
+                            <Form.Control type="date" value={dateOfBirth} onChange={handleDateOfBirthChange} />
+                        </Col>
+                        <Col>
+                            <Form.Label>Date of Joining</Form.Label>
+                            <Form.Control type="date" value={dateOfJoining} onChange={handleDateOfJoiningChange} />
+                        </Col>
+                    </Row>
+                    <Button variant="primary" type="button" onClick={handleFormSubmit}>
+                        Submit
+                    </Button>
+                    {error ? <div className="error">{error}</div> : null}
+                    {success ? <div className="success">{success}</div> : null}
+                </Form>
+            </Container>
+        </>
     );
 }
 

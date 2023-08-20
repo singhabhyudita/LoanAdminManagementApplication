@@ -116,7 +116,7 @@ const Register = () => {
 
   return (
     <Container className="login-container">
-      <Form className="register-form">
+      <Form className="register-form" style={{marginTop : "60px"}}>
         <h2>Employee Registration</h2>
         <Row className='formGroup'>
           <Col>

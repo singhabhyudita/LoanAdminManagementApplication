@@ -31,7 +31,7 @@ const AdminViewLoan = () => {
     }
 
     const handleSaveEdit = () => {
-        if(editedLoanData.loan_id === "" || editedLoanData.loan_type === "" || editedLoanData.duration === ""){
+        if (editedLoanData.loan_id === "" || editedLoanData.loan_type === "" || editedLoanData.duration === "") {
             setErrorModal("You need to fill all the fields !");
             return;
         }
@@ -44,9 +44,9 @@ const AdminViewLoan = () => {
                 setErrorModal("Error occured while updating!")
             }
         })
-        .catch(err => {
-            setErrorModal("Error occured while updating!")
-        })
+            .catch(err => {
+                setErrorModal("Error occured while updating!")
+            })
     }
 
     const handleEditFormChange = (e) => {
@@ -68,12 +68,15 @@ const AdminViewLoan = () => {
     useEffect(() => {
         AdminLoanService.viewLoan().then(response => {
             setLoans(response.data);
-        });
+        })
+            .catch(err => {
+                console.log(err);
+            })
     }, []);
     return (
         <>
-        <Navbar userType={"admin"} />
-        <Modal show={showEditModal} onHide={() => {setShowEditModal(false);setErrorModal(null)}} style={{ minWidth: "700px" }}>
+            <Navbar userType={"admin"} />
+            <Modal show={showEditModal} onHide={() => { setShowEditModal(false); setErrorModal(null) }} style={{ minWidth: "700px" }}>
                 <Modal.Header closeButton>
                     <Modal.Title >Edit Loan Data For {editedLoanData.loan_id}</Modal.Title>
                 </Modal.Header>
@@ -82,7 +85,7 @@ const AdminViewLoan = () => {
                         <Row className="formGroup">
                             <Col>
                                 <Form.Label>Loan ID</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Loan ID" value={editedLoanData.loan_id} readOnly style={{cursor : "not-allowed"}}/>
+                                <Form.Control type="text" placeholder="Enter Loan ID" value={editedLoanData.loan_id} readOnly style={{ cursor: "not-allowed" }} />
                             </Col>
                         </Row>
                         <Row className="formGroup">
@@ -104,32 +107,32 @@ const AdminViewLoan = () => {
                     </Form>
                 </ModalBody>
             </Modal>
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "90vh", minWidth: "100vw" }}>
-            <h2 className="table-header" style={{ marginBottom: "20px" }}>Loan List</h2>
-            <Table triped bordered hover responsive style={{ minWidth: "80vw" }}>
-                <thead>
-                    <tr>
-                        <th>Loan ID</th>
-                        <th>Loan Type</th>
-                        <th>Duration</th>
-                        <th>Action(s)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {loans.map(loan => (
-                        <tr key={loan.loan_id}>
-                            <td>{loan.loan_id}</td>
-                            <td>{loan.loan_type}</td>
-                            <td>{loan.duration}</td>
-                            <td>
-                                <Button style={{ margin: "5px", cursor: "pointer" }} variant="warning" onClick={() => handleEdit(loan)}>Edit</Button>
-                                <Button style={{ margin: "5px", cursor: "pointer" }} variant="danger" onClick={() => handleDelete(loan)}>Delete</Button>
-                            </td>
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "90vh", minWidth: "100vw" }}>
+                <h2 className="table-header" style={{ marginBottom: "20px" }}>Loan List</h2>
+                <Table triped bordered hover responsive style={{ minWidth: "80vw" }}>
+                    <thead>
+                        <tr>
+                            <th>Loan ID</th>
+                            <th>Loan Type</th>
+                            <th>Duration</th>
+                            <th>Action(s)</th>
                         </tr>
-                    ))}
-                </tbody>
-            </Table>
-        </div>
+                    </thead>
+                    <tbody>
+                        {loans.map(loan => (
+                            <tr key={loan.loan_id}>
+                                <td>{loan.loan_id}</td>
+                                <td>{loan.loan_type}</td>
+                                <td>{loan.duration}</td>
+                                <td>
+                                    <Button style={{ margin: "5px", cursor: "pointer" }} variant="warning" onClick={() => handleEdit(loan)}>Edit</Button>
+                                    <Button style={{ margin: "5px", cursor: "pointer" }} variant="danger" onClick={() => handleDelete(loan)}>Delete</Button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            </div>
         </>
     )
 }

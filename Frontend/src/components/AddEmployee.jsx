@@ -95,6 +95,11 @@ const Register = () => {
         const formattedDateOfBirth = new Date(dateOfBirth).toISOString().split('T')[0];
         const formattedDateOfJoining = new Date(dateOfJoining).toISOString().split('T')[0]
 
+        if (formattedDateOfBirth >= formattedDateOfJoining) {
+            setError("Date Of Birth Cannot Be Greater Than Date Of Joining!")
+            return;
+        }
+
         const registerObject = {
             employee_id: employeeId,
             employee_name: employeeName,
@@ -126,7 +131,7 @@ const Register = () => {
 
     return (
         <>
-            <Navbar userType={"admin"}/>
+            <Navbar userType={"admin"} />
             <Container className="login-container">
                 <Form className="register-form">
                     <h2>Employee Registration</h2>

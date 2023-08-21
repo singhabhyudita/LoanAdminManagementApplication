@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Button, Form, Modal, ModalBody, Table, Row,Col } from "react-bootstrap";
+import { Button, Form, Modal, ModalBody, Table, Row, Col } from "react-bootstrap";
 import AdminItemService from "../services/AdminItemService";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 const AdminViewItem = () => {
     const navigate = useNavigate();
-    const [errorModal,setErrorModal] = useState(null);
+    const [errorModal, setErrorModal] = useState(null);
     useEffect(() => {
         const adminname = sessionStorage.getItem("adminname");
         if (!adminname) {
@@ -50,7 +50,7 @@ const AdminViewItem = () => {
     }
 
     const handleSaveEdit = () => {
-        if(editItemData.itemId === "" || editItemData.itemCategory === "" || editItemData.itemMake === "" || editItemData.itemDescription === "" || editItemData.itemValuation === "" || editItemData.issueStatus === ""){
+        if (editItemData.itemId === "" || editItemData.itemCategory === "" || editItemData.itemMake === "" || editItemData.itemDescription === "" || editItemData.itemValuation === "" || editItemData.issueStatus === "") {
             setErrorModal("You need to fill all the fields !");
             return;
         }
@@ -63,19 +63,22 @@ const AdminViewItem = () => {
                 setErrorModal("Error occured while updating!")
             }
         })
-        .catch(err => {
-            setErrorModal("Error occured while updating!")
-        })
+            .catch(err => {
+                setErrorModal("Error occured while updating!")
+            })
     }
     useEffect(() => {
         AdminItemService.viewItem().then(response => {
             setItems(response.data);
         })
+            .catch(err => {
+                console.log(err);
+            })
     }, []);
     return (
         <>
-        <Navbar userType={"admin"}/>
-        <Modal show={showEditModal} onHide={() => {setShowEditModal(false);setErrorModal(null)}} style={{ minWidth: "700px" }}>
+            <Navbar userType={"admin"} />
+            <Modal show={showEditModal} onHide={() => { setShowEditModal(false); setErrorModal(null) }} style={{ minWidth: "700px" }}>
                 <Modal.Header closeButton>
                     <Modal.Title >Edit Loan Data For {editItemData.itemId}</Modal.Title>
                 </Modal.Header>
@@ -84,27 +87,27 @@ const AdminViewItem = () => {
                         <Row className="formGroup">
                             <Col>
                                 <Form.Label>Item ID</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Item ID" value={editItemData.itemId} readOnly style={{cursor : "not-allowed"}}/>
+                                <Form.Control type="text" placeholder="Enter Item ID" value={editItemData.itemId} readOnly style={{ cursor: "not-allowed" }} />
                             </Col>
                             <Col>
                                 <Form.Label>Category</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Item Category" name="itemCategory" value={editItemData.itemCategory} onChange={handleEditFormChange}/>
+                                <Form.Control type="text" placeholder="Enter Item Category" name="itemCategory" value={editItemData.itemCategory} onChange={handleEditFormChange} />
                             </Col>
                         </Row>
                         <Row className="formGroup">
                             <Col>
                                 <Form.Label>Item Make</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Item Make" name="itemMake"  value={editItemData.itemMake} onChange={handleEditFormChange}/>
+                                <Form.Control type="text" placeholder="Enter Item Make" name="itemMake" value={editItemData.itemMake} onChange={handleEditFormChange} />
                             </Col>
                             <Col>
                                 <Form.Label>Description</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Item Description" name="itemDescription" value={editItemData.itemDescription} onChange={handleEditFormChange}/>
+                                <Form.Control type="text" placeholder="Enter Item Description" name="itemDescription" value={editItemData.itemDescription} onChange={handleEditFormChange} />
                             </Col>
                         </Row>
                         <Row className="formGroup">
                             <Col>
                                 <Form.Label>Item Valuation</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Item Valuation" name="itemValuation"  value={editItemData.itemValuation} onChange={handleEditFormChange}/>
+                                <Form.Control type="text" placeholder="Enter Item Valuation" name="itemValuation" value={editItemData.itemValuation} onChange={handleEditFormChange} />
                             </Col>
                             <Col>
                                 <Form.Label>Issue Status</Form.Label>
@@ -122,38 +125,38 @@ const AdminViewItem = () => {
                     </Form>
                 </ModalBody>
             </Modal>
-        <div  style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "90vh", minWidth: "100vw" }}>
-            <h2 className="table-header" style={{ marginBottom: "20px" }}>Items List</h2>
-            <Table triped bordered hover responsive style={{ minWidth: "80vw" }}>
-                <thead>
-                    <tr>
-                        <th>Item ID</th>
-                        <th>Category</th>
-                        <th>Make</th>
-                        <th>Description</th>
-                        <th>Valuation</th>
-                        <th>Issue Status</th>
-                        <th>Action(s)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {items.map(item => (
-                        <tr key={item.itemId}>
-                            <td>{item.itemId}</td>
-                            <td>{item.itemCategory}</td>
-                            <td>{item.itemMake}</td>
-                            <td>{item.itemDescription}</td>
-                            <td>{item.itemValuation}</td>
-                            <td>{item.issueStatus}</td>
-                            <td>
-                                <Button style={{ margin: "5px", cursor: "pointer" }} variant="warning" onClick={() => handleEdit(item)}>Edit</Button>
-                                <Button style={{ margin: "5px", cursor: "pointer" }} variant="danger" onClick={() => handleDelete(item)}>Delete</Button>
-                            </td>
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "90vh", minWidth: "100vw" }}>
+                <h2 className="table-header" style={{ marginBottom: "20px" }}>Items List</h2>
+                <Table triped bordered hover responsive style={{ minWidth: "80vw" }}>
+                    <thead>
+                        <tr>
+                            <th>Item ID</th>
+                            <th>Category</th>
+                            <th>Make</th>
+                            <th>Description</th>
+                            <th>Valuation</th>
+                            <th>Issue Status</th>
+                            <th>Action(s)</th>
                         </tr>
-                    ))}
-                </tbody>
-            </Table>
-        </div>
+                    </thead>
+                    <tbody>
+                        {items.map(item => (
+                            <tr key={item.itemId}>
+                                <td>{item.itemId}</td>
+                                <td>{item.itemCategory}</td>
+                                <td>{item.itemMake}</td>
+                                <td>{item.itemDescription}</td>
+                                <td>{item.itemValuation}</td>
+                                <td>{item.issueStatus}</td>
+                                <td>
+                                    <Button style={{ margin: "5px", cursor: "pointer" }} variant="warning" onClick={() => handleEdit(item)}>Edit</Button>
+                                    <Button style={{ margin: "5px", cursor: "pointer" }} variant="danger" onClick={() => handleDelete(item)}>Delete</Button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            </div>
         </>
     )
 }

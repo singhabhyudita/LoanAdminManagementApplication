@@ -7,7 +7,13 @@ import org.springframework.stereotype.Repository;
 
 import com.example.backend.model.EmployeeCard;
 
+import jakarta.transaction.Transactional;
+
 @Repository
 public interface EmployeeCardRepository extends JpaRepository<EmployeeCard,String> {
 	public List<EmployeeCard> findByEmployeeId(String employeeId);
+	@Transactional
+	void deleteAllByEmployeeId(String employee_id);
+	@Transactional
+	void deleteAllByLoanId(String item_id);
 }

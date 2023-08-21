@@ -14,6 +14,8 @@ import com.example.backend.repository.EmployeeRepository;
 import com.example.backend.repository.ItemRepository;
 import com.example.backend.repository.LoanRepository;
 
+import jakarta.transaction.Transactional;
+
 import java.util.*;
 
 @Service
@@ -37,6 +39,7 @@ public class ItemService {
 		return itemRepository.findAll();
 	}
 	
+	@Transactional
 	public List<Object> apply(Item item, String id) {
 		List<Object> list = new ArrayList<>();
 		String type = item.getItemCategory();
@@ -73,6 +76,7 @@ public class ItemService {
 	}
 	
 	public String deleteItem(String id) {
+		employeeIssueRepository.deleteAllByItemId(id);
 		itemRepository.deleteById(id);
 		return "Success";
 	}

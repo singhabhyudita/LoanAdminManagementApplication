@@ -12,8 +12,11 @@ public class EmployeeIssue {
 	private int issueId;
 	private Date issueDate;
 	private Date return_date;
+	@Column
 	private String employeeId;
+	@Column
 	private String itemId;
+	
 	
 	public EmployeeIssue(Date issueDate, Date return_date, String employeeId, String itemId) {
 		super();

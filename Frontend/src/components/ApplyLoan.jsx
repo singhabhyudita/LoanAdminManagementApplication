@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Form, Container, Button } from 'react-bootstrap';
 import itemServiceObject from '../services/ItemServices';
+import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const ApplyLoan = () => {
     const [employeeId, setEmployeeId] = useState("");
@@ -16,9 +18,12 @@ const ApplyLoan = () => {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         const getBasicDetails = async () => {
             const employeeIdFromSession = sessionStorage.getItem("username");
+            if (!employeeIdFromSession) navigate("/login/employee")
             setEmployeeId(employeeIdFromSession);
             const responseValue = await itemServiceObject.viewItemsService();
             setResponse(responseValue.data)
@@ -33,7 +38,7 @@ const ApplyLoan = () => {
             setSuccess(null);
         }
         getBasicDetails();
-    }, [])
+    }, [navigate])
 
     const handleCategoryChange = (event) => {
         setCategory(event.target.value)
@@ -85,7 +90,7 @@ const ApplyLoan = () => {
                 itemValuation: object.itemValuation
             }
             await itemServiceObject.applyLoanService(itemObject, employeeId)
-            setSuccess("Successfully Submitted Data");
+            navigate("/view-purchase")
             setError(null);
         } catch (err) {
             setError("Not Able To Submit !");
@@ -94,6 +99,8 @@ const ApplyLoan = () => {
     }
 
     return (
+        <>
+        <Navbar userType={employeeId}/>
         <Container className="login-container">
             <Form className="register-form">
                 <h2>Apply For Loan</h2>
@@ -152,6 +159,7 @@ const ApplyLoan = () => {
             </Form>
 
         </Container>
+        </>
     )
 }
 

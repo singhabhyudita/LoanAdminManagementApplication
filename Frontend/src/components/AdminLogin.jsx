@@ -43,8 +43,8 @@ const AdminLogin = () => {
                 } else {
                     setSuccess(`Login Successfull !`);
                     setError(null);
-                    sessionStorage.setItem("username", response.data)
-                    navigate("/dashboard");
+                    sessionStorage.setItem("adminname", response.data)
+                    navigate("/admin/dashboard");
                 }
             })
 

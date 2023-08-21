@@ -22,10 +22,17 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.example.backend.model.Item;
 import com.example.backend.model.Loan;
 import com.example.backend.repository.EmployeeCardRepository;
+import com.example.backend.repository.EmployeeIssueRepository;
 import com.example.backend.repository.EmployeeRepository;
 import com.example.backend.repository.ItemRepository;
 import com.example.backend.repository.LoanRepository;
+import com.example.backend.service.AdminLoginService;
+import com.example.backend.service.EmployeeService;
+import com.example.backend.service.ItemService;
 import com.example.backend.service.LoanService;
+import com.example.backend.service.LoginService;
+import com.example.backend.service.RegisterService;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
@@ -48,7 +55,29 @@ public class LoanControllerTest {
 	private EmployeeRepository EmpRepo;
 	
 	@MockBean
-	EmployeeCardRepository employeeCardRepository;
+	private EmployeeCardRepository employeeCardRepository;
+	
+	@MockBean
+	private EmployeeIssueRepository employeeissueRepo;
+	
+	@MockBean
+	private ItemService itemservice;
+	
+	@MockBean
+	private EmployeeService employeeservice;
+	
+	@MockBean
+	private LoginService loginservice;
+	
+	@MockBean
+	private RegisterService registerservice;
+	
+	@MockBean
+	private AdminLoginService adminloginservice;
+	
+	
+	
+	
 	
 //	System.out.println("test methods");
 	

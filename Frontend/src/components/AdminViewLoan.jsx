@@ -91,12 +91,12 @@ const AdminViewLoan = () => {
                         <Row className="formGroup">
                             <Col>
                                 <Form.Label>Loan Type</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Loan Type" name="loan_type" value={editedLoanData.loan_type} onChange={handleEditFormChange} />
+                                <Form.Control type="text" name="loan_type" value={editedLoanData.loan_type} readOnly />
                             </Col>
                         </Row>
                         <Row className="formGroup">
                             <Col>
-                                <Form.Label>duration</Form.Label>
+                                <Form.Label>Duration</Form.Label>
                                 <Form.Control type="text" placeholder="Enter Duration" name="duration" value={editedLoanData.duration} onChange={handleEditFormChange} />
                             </Col>
                         </Row>

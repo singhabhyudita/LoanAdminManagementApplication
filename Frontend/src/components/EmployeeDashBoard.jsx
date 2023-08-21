@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/dashboard.css";
 import Navbar from './Navbar';
 
-const AdminDashBoard = () => {
+const EmployeeDashBoard = () => {
     const [userData, setUserData] = useState(null);
     const navigate = useNavigate();
     useEffect(() => {
@@ -42,4 +42,4 @@ const AdminDashBoard = () => {
     )
 }
 
-export default AdminDashBoard;
+export default EmployeeDashBoard;

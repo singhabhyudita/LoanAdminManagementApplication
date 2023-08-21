@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.model.Admin;
-import com.example.backend.model.Employee;
 import com.example.backend.model.LoginRequest;
 import com.example.backend.repository.AdminRepository;
 

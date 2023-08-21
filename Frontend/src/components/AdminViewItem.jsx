@@ -87,17 +87,17 @@ const AdminViewItem = () => {
                         <Row className="formGroup">
                             <Col>
                                 <Form.Label>Item ID</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Item ID" value={editItemData.itemId} readOnly style={{ cursor: "not-allowed" }} />
+                                <Form.Control type="text" value={editItemData.itemId} readOnly style={{ cursor: "not-allowed" }} />
                             </Col>
                             <Col>
                                 <Form.Label>Category</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Item Category" name="itemCategory" value={editItemData.itemCategory} onChange={handleEditFormChange} />
+                                <Form.Control type="text" name="itemCategory" value={editItemData.itemCategory} readOnly />
                             </Col>
                         </Row>
                         <Row className="formGroup">
                             <Col>
                                 <Form.Label>Item Make</Form.Label>
-                                <Form.Control type="text" placeholder="Enter Item Make" name="itemMake" value={editItemData.itemMake} onChange={handleEditFormChange} />
+                                <Form.Control type="text" name="itemMake" value={editItemData.itemMake} readOnly />
                             </Col>
                             <Col>
                                 <Form.Label>Description</Form.Label>
@@ -111,11 +111,7 @@ const AdminViewItem = () => {
                             </Col>
                             <Col>
                                 <Form.Label>Issue Status</Form.Label>
-                                <Form.Control as="select" name="issueStatus" value={editItemData.issueStatus} onChange={handleEditFormChange}>
-                                    <option value="">Select Issue Status</option>
-                                    <option value="Y">Yes</option>
-                                    <option value="N">No</option>
-                                </Form.Control>
+                                <Form.Control type="text" name="issueStatus" value={editItemData.issueStatus} readOnly />
                             </Col>
                         </Row>
                         <Button variant="primary" type="button" onClick={handleSaveEdit} style={{ width: "100%" }}>

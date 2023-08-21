@@ -15,7 +15,6 @@ public class EmployeeIssue {
 	private String employeeId;
 	private String itemId;
 	
-	
 	public EmployeeIssue(Date issueDate, Date return_date, String employeeId, String itemId) {
 		super();
 		this.issueDate = issueDate;

@@ -20,5 +20,8 @@ public class PurchasedItem {
 		super();
 		this.issueId = issueId;
 		this.item = item;
+	}
+	public PurchasedItem() {
+		super();
 	}	
 }

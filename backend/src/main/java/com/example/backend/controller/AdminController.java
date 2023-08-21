@@ -107,5 +107,4 @@ public class AdminController {
 	public List<String> getCategory(){
 		return loanService.getCategories();
 	}
-	
 }

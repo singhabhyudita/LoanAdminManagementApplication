@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap';
 import itemServiceObject from '../services/ItemServices';
+import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const ViewPurchase = () => {
     const [tableData, setTableData] = useState(null);
+    const [userData , setUserData] = useState(null);
+    const navigate = useNavigate();
     useEffect(() => {
         const userId = sessionStorage.getItem("username");
+        if (!userId) navigate("/login/employee");
+        setUserData(userId)
         const getPurchasedItems = async () => {
             const result = await itemServiceObject.viewPurchasedItemService(userId);
             setTableData(result.data)
         }
         getPurchasedItems();
-    }, [])
+    }, [navigate])
     return (
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "100vh", minWidth: "100vw" }}>
+        <>
+        <Navbar userType={userData} />
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "90vh", minWidth: "100vw" }}>
             <h2 className="table-header" style={{ marginBottom: "20px" }}>Items Purchased</h2>
             <Table striped bordered hover responsive style={{ minWidth: "80vw" }}>
                 <thead>
@@ -46,6 +54,7 @@ const ViewPurchase = () => {
                 </tbody>
             </Table>
         </div >
+        </>
     )
 }
 

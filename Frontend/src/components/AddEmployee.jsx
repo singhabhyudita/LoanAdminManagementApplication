@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Form, Button, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/EmployeeLogin.css';
-import { Link } from 'react-router-dom';
-import RegisterServices from "../services/RegisterServices";
+import { useNavigate } from 'react-router-dom';
+import AdminEmployeeService from '../services/AdminEmployeeService';
+import Navbar from './Navbar';
 
 const Register = () => {
     const [employeeId, setEmployeeId] = useState('');
@@ -16,6 +17,14 @@ const Register = () => {
     const [employeePassword, setEmployeePassword] = useState('');
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const adminname = sessionStorage.getItem("adminname");
+        if (!adminname) {
+            navigate("/login/admin")
+        }
+    }, [navigate])
 
     const handleEmployeeIdChange = (event) => {
         setEmployeeId(event.target.value);
@@ -76,9 +85,9 @@ const Register = () => {
         }
 
         let genderChar;
-        if (gender === "Male")
+        if (gender === "male")
             genderChar = "M";
-        else if (gender === "Female")
+        else if (gender === "female")
             genderChar = "F"
         else
             genderChar = "O"
@@ -96,15 +105,16 @@ const Register = () => {
             date_of_joining: formattedDateOfJoining,
             password: employeePassword
         }
-        RegisterServices.registerEmployee(registerObject)
+        AdminEmployeeService.addEmployee(registerObject)
             .then(response => {
                 if (response.data === "") {
                     setError("Couldn't create user Data , Try Again!");
                     setSuccess(null);
                 } else {
-                    setSuccess(`Register Successfull , Please Log In !`);
+                    setSuccess(`Added New User !`);
                     setError(null);
                     clearFields();
+                    navigate("/admin/employee/view")
                 }
             })
             .catch(err => {
@@ -115,61 +125,64 @@ const Register = () => {
     }
 
     return (
-        <Container className="login-container">
-            <Form className="register-form">
-                <h2>Employee Registration</h2>
-                <Row className='formGroup'>
-                    <Col>
-                        <Form.Label>Employee ID</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Employee ID" value={employeeId} onChange={handleEmployeeIdChange} />
-                    </Col>
-                    <Col>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Enter Password" value={employeePassword} onChange={handleEmployeePasswordChange} />
-                    </Col>
-                </Row>
-                <Row className="formGroup">
-                    <Col>
-                        <Form.Label>Employee Name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Employee Name" value={employeeName} onChange={handleEmployeeNameChange} />
-                    </Col>
-                    <Col>
-                        <Form.Label>Gender</Form.Label>
-                        <Form.Control as="select" value={gender} onChange={handleGenderChange}>
-                            <option value="">Select Gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
-                        </Form.Control>
-                    </Col>
-                </Row>
-                <Row className="formGroup">
-                    <Col>
-                        <Form.Label>Department</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Department" value={department} onChange={handleDepartmentChange} />
-                    </Col>
-                    <Col>
-                        <Form.Label>Designation</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Designation" value={designation} onChange={handleDesignationChange} />
-                    </Col>
-                </Row>
-                <Row className="formGroup">
-                    <Col>
-                        <Form.Label>Date of Birth</Form.Label>
-                        <Form.Control type="date" value={dateOfBirth} onChange={handleDateOfBirthChange} />
-                    </Col>
-                    <Col>
-                        <Form.Label>Date of Joining</Form.Label>
-                        <Form.Control type="date" value={dateOfJoining} onChange={handleDateOfJoiningChange} />
-                    </Col>
-                </Row>
-                <Button variant="primary" type="button" onClick={handleFormSubmit}>
-                    Submit
-                </Button>
-                {error ? <div className="error">{error}</div> : null}
-                {success ? <div className="success">{success}</div> : null}
-            </Form>
-        </Container>
+        <>
+            <Navbar userType={"admin"}/>
+            <Container className="login-container">
+                <Form className="register-form">
+                    <h2>Employee Registration</h2>
+                    <Row className='formGroup'>
+                        <Col>
+                            <Form.Label>Employee ID</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Employee ID" value={employeeId} onChange={handleEmployeeIdChange} />
+                        </Col>
+                        <Col>
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" placeholder="Enter Password" value={employeePassword} onChange={handleEmployeePasswordChange} />
+                        </Col>
+                    </Row>
+                    <Row className="formGroup">
+                        <Col>
+                            <Form.Label>Employee Name</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Employee Name" value={employeeName} onChange={handleEmployeeNameChange} />
+                        </Col>
+                        <Col>
+                            <Form.Label>Gender</Form.Label>
+                            <Form.Control as="select" value={gender} onChange={handleGenderChange}>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                            </Form.Control>
+                        </Col>
+                    </Row>
+                    <Row className="formGroup">
+                        <Col>
+                            <Form.Label>Department</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Department" value={department} onChange={handleDepartmentChange} />
+                        </Col>
+                        <Col>
+                            <Form.Label>Designation</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Designation" value={designation} onChange={handleDesignationChange} />
+                        </Col>
+                    </Row>
+                    <Row className="formGroup">
+                        <Col>
+                            <Form.Label>Date of Birth</Form.Label>
+                            <Form.Control type="date" value={dateOfBirth} onChange={handleDateOfBirthChange} />
+                        </Col>
+                        <Col>
+                            <Form.Label>Date of Joining</Form.Label>
+                            <Form.Control type="date" value={dateOfJoining} onChange={handleDateOfJoiningChange} />
+                        </Col>
+                    </Row>
+                    <Button variant="primary" type="button" onClick={handleFormSubmit}>
+                        Submit
+                    </Button>
+                    {error ? <div className="error">{error}</div> : null}
+                    {success ? <div className="success">{success}</div> : null}
+                </Form>
+            </Container>
+        </>
     );
 }
 

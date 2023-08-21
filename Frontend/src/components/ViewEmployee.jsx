@@ -1,6 +1,8 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Button, Modal, Table, Col, Form, Row } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import AdminEmployeeService from '../services/AdminEmployeeService';
+import Navbar from './Navbar';
 
 const ViewEmployee = () => {
     const [employeeData, setEmployeeData] = useState(null);
@@ -16,6 +18,8 @@ const ViewEmployee = () => {
     const [employeePassword, setEmployeePassword] = useState('');
     const [errorModal, setErrorModal] = useState(null);
     const [successModal, setSuccessModal] = useState(null);
+
+    const navigate = useNavigate();
 
     const handleEmployeeNameChange = (event) => {
         setEmployeeName(event.target.value);
@@ -78,8 +82,7 @@ const ViewEmployee = () => {
             password: employeePassword
         }
 
-        console.log(registerObject)
-        axios.put("http://localhost:8080/api/admin/update", registerObject)
+        AdminEmployeeService.editEmployee(registerObject)
             .then(response => {
                 const newEmployeeData = employeeData.map(employee => {
                     if (employee.employee_id === response.data.employee_id) {
@@ -99,11 +102,13 @@ const ViewEmployee = () => {
 
     useEffect(() => {
         const getEmployeeData = async () => {
-            const response = await axios.get("http://localhost:8080/api/admin/all")
+            const adminname = sessionStorage.getItem("adminname")
+            if (!adminname) navigate("/login/admin")
+            const response = await AdminEmployeeService.viewEmployee();
             setEmployeeData(response.data)
         }
         getEmployeeData();
-    }, [])
+    }, [navigate])
 
     const handleEdit = (employee) => {
         setEmployeeId(employee.employee_id);
@@ -118,7 +123,7 @@ const ViewEmployee = () => {
     }
     const handleDelete = async (id) => {
         try {
-            const response = await axios.delete(`http://localhost:8080/api/admin/delete/${id}`);
+            const response = await AdminEmployeeService.deleteEmployee(id)
             if (response.data === "Failure") {
                 setError("User Id Not Found");
             } else {
@@ -132,6 +137,7 @@ const ViewEmployee = () => {
     }
     return (
         <>
+            <Navbar userType={"admin"}/>
             <Modal show={isModalShown} onHide={() => setIsModalShown(false)} style={{ minWidth: "700px" }}>
                 <Modal.Header closeButton>
                     <Modal.Title >Edit Data for user {employeeName}</Modal.Title>
@@ -182,7 +188,7 @@ const ViewEmployee = () => {
                     </Form>
                 </Modal.Body>
             </Modal>
-            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "100vh", minWidth: "100vw" }}>
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "90vh", minWidth: "100vw" }}>
                 <h2 className="table-header" style={{ marginBottom: "20px" }}>Employee List</h2>
                 <Table striped bordered hover responsive style={{ minWidth: "80vw" }}>
                     <thead>
@@ -209,7 +215,7 @@ const ViewEmployee = () => {
                                         <td>{employee.gender}</td>
                                         <td>{employee.date_of_birth}</td>
                                         <td>{employee.date_of_joining}</td>
-                                        <td><span style={{ color: "green", textDecoration: "underline", margin: "5px", cursor: "pointer" }} onClick={() => handleEdit(employee)}>Edit</span><span style={{ color: "red", textDecoration: "underline", margin: "5px", cursor: "pointer" }} onClick={() => handleDelete(employee.employee_id)}>Delete</span></td>
+                                        <td><Button variant="warning" style={{ margin: "5px", cursor: "pointer" }} onClick={() => handleEdit(employee)}>Edit</Button><Button variant="danger" style={{ margin: "5px", cursor: "pointer" }} onClick={() => handleDelete(employee.employee_id)}>Delete</Button></td>
                                     </tr>
                                 )
                             }) : null

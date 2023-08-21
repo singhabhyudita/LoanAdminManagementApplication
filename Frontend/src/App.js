@@ -10,7 +10,7 @@ import AdminItem from "./components/AdminItem";
 import AdminViewItem from "./components/AdminViewItem";
 import ViewEmployee from "./components/ViewEmployee";
 import AddEmployee from "./components/AddEmployee";
-import AdminDashBoard from "./components/AdminDashBoard"
+import AdminDashBoard from "./components/AdminDashBoard";
 import AdminLoan from "./components/AdminLoan";
 import EmployeeDashBoard from "./components/EmployeeDashBoard";
 

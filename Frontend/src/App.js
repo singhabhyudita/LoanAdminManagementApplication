@@ -11,7 +11,7 @@ import AdminItem from "./components/AdminItem";
 import AdminViewItem from "./components/AdminViewItem";
 import ViewEmployee from "./components/ViewEmployee";
 import AddEmployee from "./components/AddEmployee";
-import AdminDashBoard from "./components/AdminDashBoard"
+import AdmindashBoard from "./components/AdmindashBoard"
 import AdminLoan from "./components/AdminLoan";
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
         <Route exact path="/admin/item/view" element={<AdminViewItem />} />
         <Route exact path="/admin/employee/view" element={<ViewEmployee />} />
         <Route exact path="/admin/employee/add" element={<AddEmployee />} />
-        <Route exact path="/admin/dashboard" element={<AdminDashBoard />} />
+        <Route exact path="/admin/dashboard" element={<AdmindashBoard />} />
       </Routes>
     </BrowserRouter>
   )

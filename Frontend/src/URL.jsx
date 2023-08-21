@@ -8,8 +8,9 @@ export const viewItemsUrl = "http://localhost:8080/api/items/showItems";
 export const adminAddItemUrl = "http://localhost:8080/api/admin/items/add";
 export const adminViewItemUrl = "http://localhost:8080/api/admin/items/all";
 export const adminEditItemUrl = "http://localhost:8080/api/admin/items/update";
-export const adminViewEmployeeUrl = "http://localhost:8080/api/admin/all"
-export const adminEditEmployeeUrl = "http://localhost:8080/api/admin/update"
+export const adminViewEmployeeUrl = "http://localhost:8080/api/admin/all";
+export const adminEditEmployeeUrl = "http://localhost:8080/api/admin/update";
+export const adminGetItemCategoryUrl = "http://localhost:8080/api/admin/items/getCategory";
 export const applyLoanUrl = (employeeId) => {
     return `http://localhost:8080/api/items/apply/${employeeId}`
 }

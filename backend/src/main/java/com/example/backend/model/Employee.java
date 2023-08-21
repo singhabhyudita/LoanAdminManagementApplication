@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -31,11 +33,13 @@ public class Employee {
 	private String designation;
 	private String department;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OnDelete(action=OnDeleteAction.CASCADE)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true)
 	@JoinColumn(name="employeeId")
 	private List<EmployeeIssue> issues;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OnDelete(action=OnDeleteAction.CASCADE)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true)
 	@JoinColumn(name="employeeId")
 	private List<EmployeeCard> cards;
 	

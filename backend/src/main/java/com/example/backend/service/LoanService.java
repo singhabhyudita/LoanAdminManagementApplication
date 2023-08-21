@@ -35,6 +35,7 @@ public class LoanService {
 	}
 	
 	public String deleteLoan(String id) {
+		employeeCardRepository.deleteAllByLoanId(id);
 		loanRepository.deleteById(id);
 		return "Success";
 	}
@@ -42,6 +43,10 @@ public class LoanService {
 	public Loan updateLoan(Loan loan) {
 		loanRepository.deleteById(loan.getLoan_id());
 		return loanRepository.save(loan);
+	}
+	public List<String> getCategories(){
+		List<String> list = loanRepository.findDistinctLoanTypes();
+		return list;
 	}
 	
 }

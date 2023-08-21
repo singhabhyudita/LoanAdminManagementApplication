@@ -51,7 +51,7 @@ const Navbar = ({ userType }) => {
 
   return (
     <BootstrapNavbar className="custom-navbar" expand="lg">
-      <BootstrapNavbar.Brand as={Link} to="/admin/dashboard">Loan Admin Management Application</BootstrapNavbar.Brand>
+      <BootstrapNavbar.Brand as={Link} to="/admin/dashboard">Loan Management Application</BootstrapNavbar.Brand>
       <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
       <BootstrapNavbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">

@@ -15,12 +15,17 @@ const AdminItem = () => {
         itemDescription: '',
     })
     const navigate = useNavigate("");
+    const [category, setCategory] = useState([]);
     useEffect(() => {
         const adminname = sessionStorage.getItem("adminname");
         if (!adminname) {
-            navigate("/login/admin")
+            navigate("/login/admin");
         }
-    }, [navigate])
+        AdminItemService.getCategories().then(response => {
+            console.log(response);
+            setCategory(response.data);
+        })
+    }, [])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -55,7 +60,12 @@ const AdminItem = () => {
                     </Col>
                     <Col>
                         <Form.Label>Category</Form.Label>
-                        <Form.Control type="text" placeholder="Enter Item Category" name="itemCategory" value={item.itemCategory} onChange={handleChange}/>
+                        <Form.Control as="select" placeholder="Select Item Category" name="itemCategory" onChange={handleChange}>
+                            <option>Select Item Category</option>
+                        {category.map((item)=> {
+                            return <option value={item}>{item}</option>
+                        })}
+                        </Form.Control>
                     </Col>
                 </Row>
                 <Row className="formGroup">

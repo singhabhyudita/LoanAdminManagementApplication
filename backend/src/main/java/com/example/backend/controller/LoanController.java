@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.model.LoanAvailed;
 import com.example.backend.service.LoanService;
 
@@ -24,7 +25,7 @@ public class LoanController {
 	LoanService loanService;
 	
 	@GetMapping("/all/{id}")
-	public List<LoanAvailed> getItemsById(@PathVariable String id){
+	public List<LoanAvailed> getItemsById(@PathVariable String id) throws ResourceNotFoundException{
 		return loanService.getItemsById(id);
 	}
 

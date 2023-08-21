@@ -1,5 +1,5 @@
 import axios from "axios";
-import { adminAddItemUrl, adminDeleteItemUrl, adminEditItemUrl, adminViewItemUrl,  } from "../URL";
+import { adminAddItemUrl, adminDeleteItemUrl, adminEditItemUrl, adminGetItemCategoryUrl, adminViewItemUrl,  } from "../URL";
 
 class AdminItemService {
     constructor(){
@@ -19,6 +19,9 @@ class AdminItemService {
     }
     editItem(item){
         return axios.put(adminEditItemUrl,item);
+    }
+    getCategories(){
+        return axios.get(adminGetItemCategoryUrl);
     }
 }
 export default new AdminItemService();

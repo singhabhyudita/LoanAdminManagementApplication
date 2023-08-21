@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import EmployeeLogin from "./components/EmployeeLogin"
 import AdminLogin from "./components/AdminLogin";
 import Register from "./components/Register";
-import Dashboard from './components/dashboard'
 import ApplyLoan from "./components/ApplyLoan";
 import ViewPurchase from "./components/ViewPurchase"
 import ViewLoan from "./components/ViewLoan";
@@ -13,6 +12,7 @@ import ViewEmployee from "./components/ViewEmployee";
 import AddEmployee from "./components/AddEmployee";
 import AdminDashBoard from "./components/AdminDashBoard"
 import AdminLoan from "./components/AdminLoan";
+import EmployeeDashBoard from "./components/EmployeeDashBoard";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
         <Route exact path="/login/employee" element={<EmployeeLogin />} />
         <Route exact path="/login/admin" element={<AdminLogin />} />
         <Route exact path="/register" element={<Register />} />
-        <Route exact path="/" element={<Dashboard />} />
+        <Route exact path="/" element={<EmployeeDashBoard />} />
         <Route exact path="/apply-loan" element={<ApplyLoan />} />
         <Route exact path="/view-purchase" element={<ViewPurchase />} />
         <Route exact path="/view-loan" element={<ViewLoan />} />

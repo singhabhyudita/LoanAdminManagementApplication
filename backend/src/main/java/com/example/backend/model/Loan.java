@@ -2,6 +2,9 @@ package com.example.backend.model;
 
 import java.util.List;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -15,7 +18,8 @@ public class Loan {
 	private String loanType;
 	private int duration;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OnDelete(action=OnDeleteAction.CASCADE)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true)
 	@JoinColumn(name="loanId")
 	private List<EmployeeCard> employees;
 	

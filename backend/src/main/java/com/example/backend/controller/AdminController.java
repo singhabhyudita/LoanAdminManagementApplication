@@ -103,6 +103,10 @@ public class AdminController {
 	public Item updateItem(@RequestBody Item item) {
 		return itemService.updateItem(item);
 	}
+	@GetMapping("/items/getCategory")
+	public List<String> getCategory(){
+		return loanService.getCategories();
+	}
 	
 	
 	

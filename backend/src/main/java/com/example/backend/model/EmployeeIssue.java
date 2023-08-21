@@ -2,6 +2,7 @@ package com.example.backend.model;
 
 import java.util.Date;
 
+
 import jakarta.persistence.*;
 
 @Entity
@@ -11,7 +12,9 @@ public class EmployeeIssue {
 	private int issueId;
 	private Date issueDate;
 	private Date return_date;
+	@Column
 	private String employeeId;
+	@Column
 	private String itemId;
 	
 	

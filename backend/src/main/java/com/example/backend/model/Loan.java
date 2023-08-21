@@ -41,5 +41,14 @@ public class Loan {
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
+	public Loan(String loanId, String loanType, int duration) {
+		super();
+		this.loanId = loanId;
+		this.loanType = loanType;
+		this.duration = duration;
+	}
+	public Loan() {
+		super();
+	}
 	
 }

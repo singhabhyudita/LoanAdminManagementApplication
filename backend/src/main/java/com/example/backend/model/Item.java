@@ -94,5 +94,12 @@ public class Item {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	@Override
+	public String toString() {
+		return "Item [itemId=" + itemId + ", itemDescription=" + itemDescription + ", issueStatus=" + issueStatus
+				+ ", itemMake=" + itemMake + ", itemCategory=" + itemCategory + ", itemValuation=" + itemValuation
+				+ ", employees=" + employees + "]";
+	}
 	
 }

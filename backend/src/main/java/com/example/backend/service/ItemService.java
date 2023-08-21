@@ -3,6 +3,7 @@ package com.example.backend.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.backend.exception.NoDataFoundException;
 import com.example.backend.model.EmployeeCard;
 import com.example.backend.model.EmployeeIssue;
 import com.example.backend.model.Item;
@@ -52,10 +53,14 @@ public class ItemService {
 		return list;		
 	}
 	
-	public List<PurchasedItem> getItemsById(String id){
+	public List<PurchasedItem> getItemsById(String id) throws NoDataFoundException{
 		List<PurchasedItem> list= new ArrayList<>();
 		employeeIssueRepository.findByEmployeeId(id).forEach((obj)-> list.add(new PurchasedItem(obj.getIssue_id(),itemRepository.findById(obj.getItemId()).get())));
-		return list;
+		if(list.size()==0)
+			throw new NoDataFoundException("Employee Id not found ");
+		else 
+			return list;
+		
 	}
 	private Date getReturnDate(Date startDate, int duration) {
 		Calendar calendar= Calendar.getInstance();

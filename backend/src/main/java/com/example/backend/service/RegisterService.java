@@ -13,8 +13,7 @@ public class RegisterService {
     @Autowired
     EmployeeRepository employeeRepository;
     public Employee register(Employee emp){
-        employeeRepository.save(emp);
-        return emp;
+    	return employeeRepository.save(emp);
     }
     
     public int checkEmployeeExists(Employee employee)

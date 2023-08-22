@@ -112,6 +112,7 @@ const Register = () => {
         }
         AdminEmployeeService.addEmployee(registerObject)
             .then(response => {
+                console.log(response.data)
                 if (response.data === "") {
                     setError("Couldn't create user Data , Try Again!");
                     setSuccess(null);

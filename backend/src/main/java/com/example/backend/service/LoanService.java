@@ -8,10 +8,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.backend.exception.NoDataFoundException;
 import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.model.Employee;
 import com.example.backend.model.EmployeeCard;
 import com.example.backend.model.EmployeeIssue;
+import com.example.backend.model.Item;
 import com.example.backend.model.Loan;
 import com.example.backend.model.LoanAvailed;
 import com.example.backend.repository.EmployeeCardRepository;
@@ -30,7 +32,7 @@ public class LoanService {
 	@Autowired
 	LoanRepository loanRepository;
 	
-	public List<LoanAvailed> getItemsById(String id) throws ResourceNotFoundException {
+	public List<LoanAvailed> getItemsById(String id) throws ResourceNotFoundException,NoDataFoundException {
 		List<LoanAvailed> list = new ArrayList<>();
 		
 		
@@ -38,15 +40,23 @@ public class LoanService {
     	if(emp!=null)
     	{
     		employeeCardRepository.findByEmployeeId(id).forEach((obj)-> list.add(new LoanAvailed(loanRepository.findById(obj.getLoanId()).get(),obj.getCardIssueDate())));
-    	
-    		return list;
+    		if(list.size()!=0)
+    			return list;
+    		else
+    			throw new NoDataFoundException("No items found");
     	}	
     	else
     		throw new ResourceNotFoundException("Employee Id does not exist");
 	}
 	
-	public List<Loan> findAllLoans(){
-		return loanRepository.findAll();
+	public List<Loan> findAllLoans()throws NoDataFoundException{
+		List<Loan> list = new ArrayList<>();
+		
+		list= loanRepository.findAll();
+		if(list.size()!=0)
+			return list;
+		else
+			throw new NoDataFoundException("No items found");
 	}
 	
 	public Loan addLoan(Loan loan) {
@@ -76,9 +86,12 @@ public class LoanService {
     		throw new ResourceNotFoundException("Loan Id does not exist");
     	
 	}
-	public List<String> getCategories(){
+	public List<String> getCategories()throws NoDataFoundException{
 		List<String> list = loanRepository.findDistinctLoanTypes();
-		return list;
+		if(list.size()!=0)
+			return list;
+		else
+			throw new NoDataFoundException("No categories found");
 	}
 	
 }

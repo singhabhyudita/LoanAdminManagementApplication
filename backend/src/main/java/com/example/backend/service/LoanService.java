@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.backend.exception.RecordAlreadyExistsException;
 
 import com.example.backend.exception.NoDataFoundException;
 
@@ -70,8 +71,11 @@ public class LoanService {
 			throw new NoDataFoundException("No items found");
 	}
 	
-	public Loan addLoan(Loan loan) {
-		return loanRepository.save(loan);
+	public Loan addLoan(Loan loan) throws RecordAlreadyExistsException{
+		if(!loanRepository.findById(loan.getLoan_id()).isEmpty())
+			throw new RecordAlreadyExistsException("Loan ID already exists");
+		else
+			return loanRepository.save(loan);
 	}
 	
 	public String deleteLoan(String id) throws ResourceNotFoundException {

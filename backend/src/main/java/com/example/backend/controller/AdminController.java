@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.backend.exception.RecordAlreadyExistsException;
 import com.example.backend.exception.NoDataFoundException;
 import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.model.Employee;
@@ -73,7 +74,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("/loans/add")
-	public Loan addLoan(@RequestBody Loan loan) {
+	public Loan addLoan(@RequestBody Loan loan) throws RecordAlreadyExistsException{
 		return loanService.addLoan(loan);
 	}
 	
@@ -93,7 +94,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("/items/add")
-	public Item addItem(@RequestBody Item item) {
+	public Item addItem(@RequestBody Item item) throws RecordAlreadyExistsException {
 		return itemService.addItem(item);
 	}
 	

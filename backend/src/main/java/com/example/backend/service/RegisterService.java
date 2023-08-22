@@ -1,5 +1,6 @@
 package com.example.backend.service;
 
+import com.example.backend.exception.RecordAlreadyExistsException;
 import com.example.backend.model.Employee;
 import com.example.backend.repository.EmployeeRepository;
 
@@ -12,8 +13,12 @@ import org.springframework.stereotype.Service;
 public class RegisterService {
     @Autowired
     EmployeeRepository employeeRepository;
-    public Employee register(Employee emp){
-    	return employeeRepository.save(emp);
+    public Employee register(Employee emp) throws RecordAlreadyExistsException{
+    	if(!employeeRepository.findById(emp.getEmployee_id()).isEmpty())
+    		throw new RecordAlreadyExistsException("Employee ID already exists");
+    	else
+	        employeeRepository.save(emp);
+	        return emp;
     }
     
     public int checkEmployeeExists(Employee employee)

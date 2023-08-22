@@ -124,8 +124,11 @@ const Register = () => {
                 }
             })
             .catch(err => {
-                console.log(err)
-                setError("Server Error !");
+                if (err.response.data) {
+                    setError(err.response.data.message);
+                    clearFields();
+                }
+                else setError("Server Error ! Try Again !");
                 setSuccess(null);
             })
     }

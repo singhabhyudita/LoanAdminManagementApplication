@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.exception.NoDataFoundException;
+
 import com.example.backend.exception.ResourceNotFoundException;
+
 import com.example.backend.model.Item;
 import com.example.backend.model.PurchasedItem;
 import com.example.backend.service.ItemService;
@@ -42,7 +44,9 @@ public class ItemController {
 	
 	
 	@GetMapping("/all/{id}")
+
 	public List<PurchasedItem> getItemsById(@PathVariable String id) throws ResourceNotFoundException {
+
 		//itemService.getItemsById("2389");
 		return itemService.getItemsById(id);
 		

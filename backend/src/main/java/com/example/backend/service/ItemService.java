@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.exception.NoDataFoundException;
+
 import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.model.Employee;
+
 import com.example.backend.model.EmployeeCard;
 import com.example.backend.model.EmployeeIssue;
 import com.example.backend.model.Item;
@@ -70,11 +72,13 @@ public class ItemService {
 				
 	}
 	
+
 	public List<PurchasedItem> getItemsById(String id) throws ResourceNotFoundException{
 		List<PurchasedItem> list= new ArrayList<>();
 		employeeIssueRepository.findByEmployeeId(id).forEach((obj)-> list.add(new PurchasedItem(obj.getIssue_id(),itemRepository.findById(obj.getItemId()).get())));
 		if(list.size()==0)
 			throw new ResourceNotFoundException("Employee Id not found ");
+
 		else 
 			return list;
 		

@@ -54,7 +54,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("/add")
-	public Employee addEmployee(@RequestBody Employee e) {
+	public Employee addEmployee(@RequestBody Employee e) throws RecordAlreadyExistsException{
 		return employeeService.addEmployee(e);
 	}
 	

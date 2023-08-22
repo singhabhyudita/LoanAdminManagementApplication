@@ -55,4 +55,12 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler{
 		return new ErrorResponse(HttpStatus.NOT_FOUND.value(),ex.getMessage());
 	}
 	
+	@ExceptionHandler(value = ResourceNotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	public @ResponseBody ErrorResponse handleNoDataFoundException(ResourceNotFoundException ex)
+	{
+		System.out.println(ex.getMessage());
+		return new ErrorResponse(HttpStatus.NOT_FOUND.value(),ex.getMessage());
+	}
+	
 }

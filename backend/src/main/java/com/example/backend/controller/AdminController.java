@@ -48,7 +48,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/all")
-	public List<Employee>findAll(){
+	public List<Employee>findAll() throws NoDataFoundException{
 		return employeeService.findAll();
 	}
 	
@@ -68,7 +68,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/loans/all")
-	public List<Loan> findAllLoans(){
+	public List<Loan> findAllLoans() throws NoDataFoundException{
 		return loanService.findAllLoans();
 	}
 	
@@ -106,7 +106,7 @@ public class AdminController {
 		return itemService.updateItem(item);
 	}
 	@GetMapping("/items/getCategory")
-	public List<String> getCategory(){
+	public List<String> getCategory()throws NoDataFoundException{
 		return loanService.getCategories();
 	}
 	

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.backend.exception.RecordAlreadyExistsException;
 import com.example.backend.model.Loan;
 import com.example.backend.model.LoanAvailed;
 import com.example.backend.repository.EmployeeCardRepository;
@@ -30,8 +31,11 @@ public class LoanService {
 		return loanRepository.findAll();
 	}
 	
-	public Loan addLoan(Loan loan) {
-		return loanRepository.save(loan);
+	public Loan addLoan(Loan loan) throws RecordAlreadyExistsException{
+		if(!loanRepository.findById(loan.getLoan_id()).isEmpty())
+			throw new RecordAlreadyExistsException("Loan ID already exists");
+		else
+			return loanRepository.save(loan);
 	}
 	
 	public String deleteLoan(String id) {

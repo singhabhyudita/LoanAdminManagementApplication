@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.exception.NoDataFoundException;
+import com.example.backend.exception.RecordAlreadyExistsException;
 import com.example.backend.model.EmployeeCard;
 import com.example.backend.model.EmployeeIssue;
 import com.example.backend.model.Item;
@@ -76,8 +77,11 @@ public class ItemService {
 		return itemRepository.findAll();
 	}
 	
-	public Item addItem(Item item) {
-		return itemRepository.save(item);
+	public Item addItem(Item item) throws RecordAlreadyExistsException{
+		if (!itemRepository.findById(item.getItemId()).isEmpty())
+			throw new RecordAlreadyExistsException("Item ID already exists");
+		else
+			return itemRepository.save(item);
 	}
 	
 	public String deleteItem(String id) {

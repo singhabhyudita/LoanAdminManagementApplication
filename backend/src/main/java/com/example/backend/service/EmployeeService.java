@@ -1,13 +1,21 @@
 package com.example.backend.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import com.example.backend.exception.NoDataFoundException;
 import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.model.Employee;
+import com.example.backend.model.Item;
+
+
+import com.example.backend.model.Employee;
+
 import com.example.backend.model.Loan;
 import com.example.backend.repository.EmployeeCardRepository;
 import com.example.backend.repository.EmployeeIssueRepository;
@@ -24,8 +32,14 @@ public class EmployeeService {
 	@Autowired
 	EmployeeCardRepository employeeCardRepository;
 	
-	public List<Employee> findAll(){
-		return employeeRepository.findAll();
+	public List<Employee> findAll()throws NoDataFoundException{
+		List<Employee> list = new ArrayList<>();
+				
+		list= employeeRepository.findAll();
+		if(list.size()!=0)
+			return list;
+		else
+			throw new NoDataFoundException("No employees found");
 	}
 	
 	public Employee addEmployee(Employee e) {

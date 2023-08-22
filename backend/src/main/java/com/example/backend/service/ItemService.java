@@ -73,15 +73,22 @@ public class ItemService {
 	}
 	
 
-	public List<PurchasedItem> getItemsById(String id) throws ResourceNotFoundException{
-		List<PurchasedItem> list= new ArrayList<>();
-		employeeIssueRepository.findByEmployeeId(id).forEach((obj)-> list.add(new PurchasedItem(obj.getIssue_id(),itemRepository.findById(obj.getItemId()).get())));
-		if(list.size()==0)
-			throw new ResourceNotFoundException("Employee Id not found ");
 
-		else 
-			return list;
-		
+	public List<PurchasedItem> getItemsById(String id) throws ResourceNotFoundException,NoDataFoundException{
+		Optional<Employee> emp = employeeRepository.findById(id);
+		if(emp!=null) {
+			List<PurchasedItem> list= new ArrayList<>();
+			employeeIssueRepository.findByEmployeeId(id).forEach((obj)-> list.add(new PurchasedItem(obj.getIssue_id(),itemRepository.findById(obj.getItemId()).get())));
+			if(list.size()==0)
+				throw new NoDataFoundException("No items found ");
+	
+			else 
+				return list;
+		}
+		else
+			throw new ResourceNotFoundException("Employee ID does not exist");
+
+	
 	}
 	private Date getReturnDate(Date startDate, int duration) {
 		Calendar calendar= Calendar.getInstance();

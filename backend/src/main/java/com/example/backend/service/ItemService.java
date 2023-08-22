@@ -73,6 +73,7 @@ public class ItemService {
 	}
 	
 
+
 	public List<PurchasedItem> getItemsById(String id) throws ResourceNotFoundException,NoDataFoundException{
 		Optional<Employee> emp = employeeRepository.findById(id);
 		if(emp!=null) {
@@ -86,6 +87,8 @@ public class ItemService {
 		}
 		else
 			throw new ResourceNotFoundException("Employee ID does not exist");
+
+	
 	}
 	private Date getReturnDate(Date startDate, int duration) {
 		Calendar calendar= Calendar.getInstance();

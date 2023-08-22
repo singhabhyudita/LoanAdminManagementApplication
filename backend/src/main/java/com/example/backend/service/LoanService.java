@@ -43,7 +43,7 @@ public class LoanService {
 		
 		
 		Optional<Employee> emp = employeeRepository.findById(id);
-    	if(emp!=null)
+    	if(!emp.isEmpty())
     	{
     		employeeCardRepository.findByEmployeeId(id).forEach((obj)-> list.add(new LoanAvailed(loanRepository.findById(obj.getLoanId()).get(),obj.getCardIssueDate())));
 
@@ -76,7 +76,7 @@ public class LoanService {
 	
 	public String deleteLoan(String id) throws ResourceNotFoundException {
 		Optional<Loan> loan = loanRepository.findById(id);
-    	if(loan!=null)
+    	if(!loan.isEmpty())
     	{
     		employeeCardRepository.deleteAllByLoanId(id);
     		loanRepository.deleteById(id);

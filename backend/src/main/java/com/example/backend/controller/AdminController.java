@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.backend.exception.NoDataFoundException;
+import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.model.Employee;
 import com.example.backend.model.Item;
 import com.example.backend.model.Loan;
@@ -56,12 +58,12 @@ public class AdminController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public String deleteEmployee(@PathVariable String id) {
+	public String deleteEmployee(@PathVariable String id) throws ResourceNotFoundException {
 		return employeeService.deleteEmployee(id);
 	}
 	
 	@PutMapping("/update")
-	public Employee updateEmployee(@RequestBody Employee e) {
+	public Employee updateEmployee(@RequestBody Employee e) throws ResourceNotFoundException{
 		return employeeService.updateEmployee(e);
 	}
 	
@@ -76,17 +78,17 @@ public class AdminController {
 	}
 	
 	@DeleteMapping("/loans/delete/{id}")
-	public String deleteLoan(@PathVariable String id) {
+	public String deleteLoan(@PathVariable String id) throws ResourceNotFoundException{
 		return loanService.deleteLoan(id);
 	}
 	
 	@PutMapping("/loans/update")
-	public Loan updateLoan(@RequestBody Loan loan) {
+	public Loan updateLoan(@RequestBody Loan loan) throws ResourceNotFoundException{
 		return loanService.updateLoan(loan);
 	}
 	
 	@GetMapping("/items/all")
-	public List<Item> findAllItems(){
+	public List<Item> findAllItems() throws NoDataFoundException{
 		return itemService.findAllItems();
 	}
 	
@@ -96,11 +98,11 @@ public class AdminController {
 	}
 	
 	@DeleteMapping("/items/delete/{id}")
-	public String deleteItem(@PathVariable String id) {
+	public String deleteItem(@PathVariable String id) throws ResourceNotFoundException {
 		return itemService.deleteItem(id);
 	}
 	@PutMapping("/items/update")
-	public Item updateItem(@RequestBody Item item) {
+	public Item updateItem(@RequestBody Item item) throws ResourceNotFoundException {
 		return itemService.updateItem(item);
 	}
 	@GetMapping("/items/getCategory")

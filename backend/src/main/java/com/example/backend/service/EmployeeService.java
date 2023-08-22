@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 
 import com.example.backend.exception.NoDataFoundException;
+import com.example.backend.exception.RecordAlreadyExistsException;
 import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.model.Employee;
 import com.example.backend.model.Item;
@@ -42,8 +43,11 @@ public class EmployeeService {
 			throw new NoDataFoundException("No employees found");
 	}
 	
-	public Employee addEmployee(Employee e) {
-		return employeeRepository.save(e);
+	public Employee addEmployee(Employee e) throws RecordAlreadyExistsException{
+		if(!employeeRepository.findById(e.getEmployee_id()).isEmpty())
+			throw new RecordAlreadyExistsException("Employee ID already exists");
+		else
+			return employeeRepository.save(e);
 	}
 	
 	public String deleteEmployee(String id) throws ResourceNotFoundException{

@@ -106,8 +106,10 @@ const ViewEmployee = () => {
                 const adminname = sessionStorage.getItem("adminname")
                 if (!adminname) navigate("/login/admin")
                 const response = await AdminEmployeeService.viewEmployee();
-                console.log(response.data)
                 setEmployeeData(response.data)
+                if (response.data.length === 0) {
+                    setError("No Employee Data Found !")
+                }
             } catch (err) {
                 setError(err.response.data.message)
             }

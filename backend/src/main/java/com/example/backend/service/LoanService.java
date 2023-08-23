@@ -2,14 +2,18 @@ package com.example.backend.service;
 
 import java.util.List;
 
+
 import org.springframework.stereotype.Service;
+
 
 import com.example.backend.exception.NoDataFoundException;
 import com.example.backend.exception.RecordAlreadyExistsException;
 import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.model.Loan;
 import com.example.backend.model.LoanAvailed;
+
 @Service
+
 public interface LoanService {
 	public List<LoanAvailed> getItemsById(String id) throws ResourceNotFoundException,NoDataFoundException;
 	public List<Loan> findAllLoans()throws NoDataFoundException;

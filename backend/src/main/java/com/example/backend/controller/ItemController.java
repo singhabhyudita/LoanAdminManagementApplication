@@ -23,6 +23,7 @@ import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.model.Item;
 import com.example.backend.model.PurchasedItem;
 import com.example.backend.service.ItemService;
+import com.example.backend.service.ItemServiceImpl;
 
 @RequestMapping("/api/items")
 @CrossOrigin(origins="http://localhost:3000/")

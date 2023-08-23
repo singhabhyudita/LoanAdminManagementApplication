@@ -2,11 +2,17 @@ package com.example.backend.service;
 
 import java.util.List;
 
+
+import org.springframework.stereotype.Service;
+
+
 import com.example.backend.exception.NoDataFoundException;
 import com.example.backend.exception.RecordAlreadyExistsException;
 import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.model.Item;
 import com.example.backend.model.PurchasedItem;
+
+@Service
 
 public interface ItemService {
 	public List<Item> getAllItems()throws NoDataFoundException;

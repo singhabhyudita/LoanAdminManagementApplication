@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RegisterServiceImpl {
+
+public class RegisterServiceImpl implements RegisterService {
+
     @Autowired
     EmployeeRepository employeeRepository;
     public Employee register(Employee emp) throws RecordAlreadyExistsException{

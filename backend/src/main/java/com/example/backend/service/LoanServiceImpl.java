@@ -86,7 +86,7 @@ public class LoanServiceImpl implements LoanService{
 	
 	public Loan updateLoan(Loan loan) throws ResourceNotFoundException{
 		Optional<Loan> ln = loanRepository.findById(loan.getLoan_id());
-    	if(loan!=null)
+    	if(ln!=null)
     	{
 			loanRepository.deleteById(loan.getLoan_id());
 			return loanRepository.save(loan);

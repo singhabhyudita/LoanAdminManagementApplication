@@ -28,11 +28,15 @@ import com.example.backend.repository.EmployeeRepository;
 import com.example.backend.repository.ItemRepository;
 import com.example.backend.repository.LoanRepository;
 import com.example.backend.service.AdminLoginService;
+import com.example.backend.service.AdminLoginServiceImpl;
 import com.example.backend.service.EmployeeService;
+//import com.example.backend.service.EmployeeServiceImpl;
 import com.example.backend.service.ItemService;
 import com.example.backend.service.LoanService;
 import com.example.backend.service.LoginService;
+import com.example.backend.service.LoginServiceImpl;
 import com.example.backend.service.RegisterService;
+import com.example.backend.service.RegisterServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
@@ -101,7 +105,8 @@ public class AdminControllerTest {
 		String str = "string";
 		Mockito.when(adminService.login(ArgumentMatchers.any())).thenReturn(str);
 		String json = mapper.writeValueAsString(loginRequest);
-		MvcResult requestResult = mvc.perform(post("/api/admin/login").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
+		MvcResult requestResult = mvc.perform(post("/api/admin/login").contentType(MediaType.APPLICATION_JSON_UTF8)
+				.content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
 		String result = requestResult.getResponse().getContentAsString();
 		assertEquals(result,str);
 	}
@@ -230,6 +235,7 @@ public class AdminControllerTest {
 		e.setGender('M');
 		e.setPassword("Password@1");
 		//list.add(e);
+		Mockito.when(employeeService.updateEmployee(ArgumentMatchers.any())).thenReturn(e);
 		String json = mapper.writeValueAsString(e);
 
 		mvc.perform(put("/api/admin/update").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$.employee_id",Matchers.equalTo(e.getEmployee_id())));

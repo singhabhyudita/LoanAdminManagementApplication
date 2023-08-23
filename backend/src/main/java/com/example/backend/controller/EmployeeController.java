@@ -1,7 +1,7 @@
 package com.example.backend.controller;
 
 
-import com.example.backend.service.RegisterService;
+import com.example.backend.service.RegisterServiceImpl;
 
 import jakarta.validation.Valid;
 
@@ -16,6 +16,8 @@ import com.example.backend.exception.RecordAlreadyExistsException;
 import com.example.backend.model.Employee;
 import com.example.backend.model.LoginRequest;
 import com.example.backend.service.LoginService;
+import com.example.backend.service.LoginServiceImpl;
+import com.example.backend.service.RegisterService;
 
 @RequestMapping("/api/employee")
 @CrossOrigin(origins="http://localhost:3000/")

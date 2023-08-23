@@ -1,7 +1,9 @@
 package com.example.backend.service;
 
-import com.example.backend.model.LoginRequest;
+import org.springframework.stereotype.Service;
 
+import com.example.backend.model.LoginRequest;
+@Service
 public interface LoginService {
 	public String login(LoginRequest loginRequest);
 	

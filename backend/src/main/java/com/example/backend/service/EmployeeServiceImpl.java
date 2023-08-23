@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.backend.exception.NoDataFoundException;
 import com.example.backend.exception.RecordAlreadyExistsException;
@@ -13,7 +14,7 @@ import com.example.backend.model.Employee;
 import com.example.backend.repository.EmployeeCardRepository;
 import com.example.backend.repository.EmployeeIssueRepository;
 import com.example.backend.repository.EmployeeRepository;
-
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	EmployeeRepository employeeRepository;

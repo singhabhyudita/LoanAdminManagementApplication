@@ -1,10 +1,6 @@
 package com.example.backend.controller;
 
 
-import com.example.backend.service.RegisterServiceImpl;
-
-import jakarta.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,8 +12,9 @@ import com.example.backend.exception.RecordAlreadyExistsException;
 import com.example.backend.model.Employee;
 import com.example.backend.model.LoginRequest;
 import com.example.backend.service.LoginService;
-import com.example.backend.service.LoginServiceImpl;
 import com.example.backend.service.RegisterService;
+
+import jakarta.validation.Valid;
 
 @RequestMapping("/api/employee")
 @CrossOrigin(origins="http://localhost:3000/")

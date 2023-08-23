@@ -2,8 +2,6 @@ package com.example.backend.service;
 
 import java.util.List;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.exception.NoDataFoundException;
@@ -13,9 +11,6 @@ import com.example.backend.model.Employee;
 
 
 @Service
-
-
-
 public interface EmployeeService {
 	public List<Employee> findAll()throws NoDataFoundException;
 	public Employee addEmployee(Employee e) throws RecordAlreadyExistsException;

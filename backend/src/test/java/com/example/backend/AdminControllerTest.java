@@ -235,6 +235,7 @@ public class AdminControllerTest {
 		e.setGender('M');
 		e.setPassword("Password@1");
 		//list.add(e);
+		Mockito.when(employeeService.updateEmployee(ArgumentMatchers.any())).thenReturn(e);
 		String json = mapper.writeValueAsString(e);
 
 		mvc.perform(put("/api/admin/update").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$.employee_id",Matchers.equalTo(e.getEmployee_id())));

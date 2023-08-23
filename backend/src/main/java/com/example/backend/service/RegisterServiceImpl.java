@@ -26,7 +26,7 @@ public class RegisterServiceImpl implements RegisterService {
     public int checkEmployeeExists(Employee employee)
     {
     	Optional<Employee> emp = employeeRepository.findById(employee.getEmployee_id());
-    	if(emp!=null)
+    	if(!emp.isEmpty())
     		return 1;
     	else 
     		return 0;

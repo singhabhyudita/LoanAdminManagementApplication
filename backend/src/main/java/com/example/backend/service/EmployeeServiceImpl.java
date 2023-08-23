@@ -33,7 +33,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		List<Employee> list = new ArrayList<>();
 				
 		list= employeeRepository.findAll();
-		if(list.size()!=0)
+		if(!list.isEmpty())
 			return list;
 		else
 			throw new NoDataFoundException("No employees found");
@@ -48,7 +48,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	public String deleteEmployee(String id) throws ResourceNotFoundException{
 		Optional<Employee> em = employeeRepository.findById(id);
-		if(em!=null) {
+		if(!em.isEmpty()) {
 			employeeIssueRepository.deleteAllByEmployeeId(id);
 			employeeCardRepository.deleteAllByEmployeeId(id);
 			employeeRepository.deleteById(id);
@@ -60,7 +60,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	public Employee updateEmployee(Employee e) throws ResourceNotFoundException {
 		Optional<Employee> em = employeeRepository.findById(e.getEmployee_id());
-		if(em!=null) {
+		if(!em.isEmpty()) {
 			employeeRepository.deleteById(e.getEmployee_id());
 			return employeeRepository.save(e);
 		}

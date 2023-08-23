@@ -17,9 +17,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.exception.NoDataFoundException;
+
+import com.example.backend.exception.ResourceNotFoundException;
+
 import com.example.backend.model.Item;
 import com.example.backend.model.PurchasedItem;
 import com.example.backend.service.ItemService;
+import com.example.backend.service.ItemServiceImpl;
 
 @RequestMapping("/api/items")
 @CrossOrigin(origins="http://localhost:3000/")
@@ -35,13 +39,17 @@ public class ItemController {
 	}
 	
 	@PostMapping("/apply/{id}")
-	public List<Object> apply(@RequestBody Item item, @PathVariable String id){
+	public List<Object> apply(@RequestBody Item item, @PathVariable String id) throws ResourceNotFoundException{
 		return itemService.apply(item,id);	
 	}
 	
 	
 	@GetMapping("/all/{id}")
-	public List<PurchasedItem> getItemsById(@PathVariable String id) throws NoDataFoundException {
+
+
+	public List<PurchasedItem> getItemsById(@PathVariable String id) throws ResourceNotFoundException,NoDataFoundException {
+
+
 		//itemService.getItemsById("2389");
 		return itemService.getItemsById(id);
 		

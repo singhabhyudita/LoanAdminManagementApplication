@@ -20,7 +20,7 @@ const AdminDashBoard = () => {
 
     return (
         <>
-        <Navbar userType={"admin"}/>
+            <Navbar userType={"admin"} />
             <div className="dashboard-container">
                 {userData ?
                     <>

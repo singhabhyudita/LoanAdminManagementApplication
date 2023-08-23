@@ -1,7 +1,7 @@
 package com.example.backend.controller;
 
 
-import com.example.backend.service.RegisterService;
+import com.example.backend.service.RegisterServiceImpl;
 
 import jakarta.validation.Valid;
 
@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.backend.exception.RecordAlreadyExistsException;
 import com.example.backend.model.Employee;
 import com.example.backend.model.LoginRequest;
 import com.example.backend.service.LoginService;
+import com.example.backend.service.LoginServiceImpl;
+import com.example.backend.service.RegisterService;
 
 @RequestMapping("/api/employee")
 @CrossOrigin(origins="http://localhost:3000/")
@@ -26,7 +29,7 @@ public class EmployeeController {
 	RegisterService registerService;
 	
 	@PostMapping("/register")
-	public Employee register(@RequestBody @Valid Employee employee){
+	public Employee register(@RequestBody @Valid Employee employee) throws RecordAlreadyExistsException{
 		return  registerService.register(employee);
 
 	}

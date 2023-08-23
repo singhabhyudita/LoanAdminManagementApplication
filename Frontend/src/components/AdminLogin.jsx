@@ -47,7 +47,10 @@ const AdminLogin = () => {
                     navigate("/admin/dashboard");
                 }
             })
-
+            .catch(err => {
+                setError("Server Error !");
+                setSuccess(null);
+            })
 
     }
 

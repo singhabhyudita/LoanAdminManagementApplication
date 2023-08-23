@@ -20,11 +20,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.example.backend.model.EmployeeIssue;
-import com.example.backend.model.Item;
 import com.example.backend.model.Loan;
 import com.example.backend.model.LoanAvailed;
-import com.example.backend.model.PurchasedItem;
 import com.example.backend.repository.AdminRepository;
 import com.example.backend.repository.EmployeeCardRepository;
 import com.example.backend.repository.EmployeeIssueRepository;
@@ -32,13 +29,11 @@ import com.example.backend.repository.EmployeeRepository;
 import com.example.backend.repository.ItemRepository;
 import com.example.backend.repository.LoanRepository;
 import com.example.backend.service.AdminLoginService;
-import com.example.backend.service.AdminLoginServiceImpl;
 import com.example.backend.service.EmployeeService;
 //import com.example.backend.service.EmployeeServiceImpl;
 import com.example.backend.service.ItemService;
 import com.example.backend.service.LoanService;
 import com.example.backend.service.LoginService;
-import com.example.backend.service.LoginServiceImpl;
 import com.example.backend.service.RegisterService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -95,9 +90,6 @@ public class LoanControllerTest {
 		list.add(la);
 		Mockito.when(loanService.getItemsById(ArgumentMatchers.any())).thenReturn(list);
 		mvc.perform(get("/api/loans/all/{id}","000001").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$",Matchers.hasSize(1)));
-		
-		
-		
 	}
 
 }

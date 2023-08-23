@@ -18,7 +18,7 @@ public class LoginServiceImpl implements LoginService{
 		String result="";
 		Employee employee = null;
 		Optional<Employee>	obj=employeeRepo.findById(loginRequest.getLoginId());
-		if(obj.isPresent())
+		if(!obj.isEmpty())
 		{
 			employee=obj.get();
 		}

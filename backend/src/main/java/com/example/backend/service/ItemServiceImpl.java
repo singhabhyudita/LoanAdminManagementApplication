@@ -45,7 +45,7 @@ public class ItemServiceImpl implements ItemService{
 		List<Item> list = new ArrayList<>();
 		
 		list= itemRepository.findAll();
-		if(list.size()!=0)
+		if(!list.isEmpty())
 			return list;
 		else
 			throw new NoDataFoundException("No items found");
@@ -58,13 +58,12 @@ public class ItemServiceImpl implements ItemService{
 		Loan loan = loanRepository.findByLoanType(type);
 		int duration = loan.getDuration();
 		Optional<Employee> emp = employeeRepository.findById(id);
-    	if(emp!=null)
+    	if(!emp.isEmpty())
     	{
     		EmployeeIssue employeeIssue = new EmployeeIssue(new Date(),this.getReturnDate(new Date(), duration),id,item.getItemId());
     		list.add(employeeIssueRepository.save(employeeIssue));
     		EmployeeCard employeeCard = new EmployeeCard(id,loan.getLoan_id(),new Date());
     		list.add(employeeCardRepository.save(employeeCard));
-    	
     		return list;
     	}
     	else 
@@ -77,7 +76,7 @@ public class ItemServiceImpl implements ItemService{
 
 	public List<PurchasedItem> getItemsById(String id) throws ResourceNotFoundException,NoDataFoundException{
 		Optional<Employee> emp = employeeRepository.findById(id);
-		if(emp!=null) {
+		if(!emp.isEmpty()) {
 			List<PurchasedItem> list= new ArrayList<>();
 			employeeIssueRepository.findByEmployeeId(id).forEach((obj)-> list.add(new PurchasedItem(obj.getIssue_id(),itemRepository.findById(obj.getItemId()).get())));
 			if(list.size()==0)
@@ -101,7 +100,7 @@ public class ItemServiceImpl implements ItemService{
 	public List<Item> findAllItems() throws NoDataFoundException{
 		List<Item> list = new ArrayList<Item>();
 		list=itemRepository.findAll();
-		if(list.size()!=0)
+		if(!list.isEmpty())
 			return list;
 		else 
 			throw new NoDataFoundException("No items found");
@@ -116,7 +115,7 @@ public class ItemServiceImpl implements ItemService{
 	
 	public String deleteItem(String id) throws ResourceNotFoundException {
 		Optional<Loan> loan = loanRepository.findById(id);
-    	if(loan!=null)
+    	if(!loan.isEmpty())
 		{
     		employeeIssueRepository.deleteAllByItemId(id);
     		itemRepository.deleteById(id);
@@ -128,7 +127,7 @@ public class ItemServiceImpl implements ItemService{
 	}
 	public Item updateItem(Item item) throws ResourceNotFoundException {
 		Optional<Item> it = itemRepository.findById(item.getItemId());
-		if(it!=null)
+		if(!it.isEmpty())
 		{
 			itemRepository.deleteById(item.getItemId());
 			return itemRepository.save(item);

@@ -31,11 +31,12 @@ import com.example.backend.repository.EmployeeIssueRepository;
 import com.example.backend.repository.EmployeeRepository;
 import com.example.backend.repository.ItemRepository;
 import com.example.backend.repository.LoanRepository;
-import com.example.backend.service.AdminLoginService;
+import com.example.backend.service.AdminLoginServiceImpl;
 import com.example.backend.service.EmployeeService;
+//import com.example.backend.service.EmployeeServiceImpl;
 import com.example.backend.service.ItemService;
 import com.example.backend.service.LoanService;
-import com.example.backend.service.LoginService;
+import com.example.backend.service.LoginServiceImpl;
 import com.example.backend.service.RegisterService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -55,10 +56,10 @@ public class LoanControllerTest {
 	private EmployeeService employeeService;
 	
 	@MockBean
-	private LoginService loginService;
+	private LoginServiceImpl loginService;
 	
 	@MockBean
-	private AdminLoginService adminService;
+	private AdminLoginServiceImpl adminService;
 	
 	@MockBean
 	private RegisterService registerService;

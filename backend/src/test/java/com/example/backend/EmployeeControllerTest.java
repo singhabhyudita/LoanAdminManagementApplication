@@ -29,15 +29,11 @@ import com.example.backend.repository.EmployeeRepository;
 import com.example.backend.repository.ItemRepository;
 import com.example.backend.repository.LoanRepository;
 import com.example.backend.service.AdminLoginService;
-import com.example.backend.service.AdminLoginServiceImpl;
 import com.example.backend.service.EmployeeService;
-//import com.example.backend.service.EmployeeServiceImpl;
 import com.example.backend.service.ItemService;
 import com.example.backend.service.LoanService;
 import com.example.backend.service.LoginService;
-import com.example.backend.service.LoginServiceImpl;
 import com.example.backend.service.RegisterService;
-import com.example.backend.service.RegisterServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 @RunWith(SpringRunner.class)
@@ -90,6 +86,7 @@ public class EmployeeControllerTest {
 	ObjectMapper mapper = new ObjectMapper().findAndRegisterModules().disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 	
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testLogin() throws Exception {
 		LoginRequest loginRequest = new LoginRequest();
@@ -103,6 +100,7 @@ public class EmployeeControllerTest {
 		assertEquals(result,str);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testRegister() throws Exception{
 		Employee e = new Employee();

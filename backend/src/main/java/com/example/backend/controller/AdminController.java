@@ -44,7 +44,7 @@ public class AdminController {
 	
 	@PostMapping("/login")
 	public String login(@RequestBody LoginRequest loginRequest) {
-		System.out.println(loginRequest.getLoginId());
+		System.out.println(loginRequest.getUsername());
 		return loginService.login(loginRequest);		
 	}
 	

@@ -31,6 +31,8 @@ public class LoanServiceImpl implements LoanService{
 	@Autowired
 	LoanRepository loanRepository;
 	
+	
+	
 
 	public List<LoanAvailed> getItemsById(String id) throws ResourceNotFoundException,NoDataFoundException {
 

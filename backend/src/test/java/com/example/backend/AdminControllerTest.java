@@ -1,6 +1,18 @@
 package com.example.backend;
 
 
+import static org.junit.Assert.assertEquals;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -13,10 +25,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.backend.model.Employee;
-import com.example.backend.model.EmployeeCard;
 import com.example.backend.model.EmployeeIssue;
 import com.example.backend.model.Item;
 import com.example.backend.model.Loan;
@@ -29,20 +39,13 @@ import com.example.backend.repository.ItemRepository;
 import com.example.backend.repository.LoanRepository;
 import com.example.backend.service.AdminLoginService;
 import com.example.backend.service.EmployeeService;
+//import com.example.backend.service.EmployeeServiceImpl;
 import com.example.backend.service.ItemService;
 import com.example.backend.service.LoanService;
 import com.example.backend.service.LoginService;
 import com.example.backend.service.RegisterService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-
-import static org.junit.Assert.assertEquals;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import java.util.Date;
-import java.util.ArrayList;
-import java.util.List;
 @RunWith(SpringRunner.class)
 @WebMvcTest
 public class AdminControllerTest {
@@ -92,7 +95,7 @@ public class AdminControllerTest {
 	
 	ObjectMapper mapper = new ObjectMapper().findAndRegisterModules().disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 	
-	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testLogin() throws Exception {
 		LoginRequest loginRequest = new LoginRequest();
@@ -101,11 +104,13 @@ public class AdminControllerTest {
 		String str = "string";
 		Mockito.when(adminService.login(ArgumentMatchers.any())).thenReturn(str);
 		String json = mapper.writeValueAsString(loginRequest);
-		MvcResult requestResult = mvc.perform(post("/api/admin/login").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
+		MvcResult requestResult = mvc.perform(post("/api/admin/login").contentType(MediaType.APPLICATION_JSON_UTF8)
+				.content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
 		String result = requestResult.getResponse().getContentAsString();
 		assertEquals(result,str);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testAddEmployee() throws Exception{
 		Employee e = new Employee();
@@ -127,6 +132,7 @@ public class AdminControllerTest {
 		
 	
 	}
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testAddLoan() throws Exception{
 		Loan l = new Loan();
@@ -142,6 +148,7 @@ public class AdminControllerTest {
 	
 	
 	}
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testAddItem() throws Exception{
 		Item i = new Item();
@@ -216,6 +223,7 @@ public class AdminControllerTest {
 	
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testUpdateEmployee() throws Exception {
 		//List<Employee> list = new ArrayList<>();
@@ -230,6 +238,7 @@ public class AdminControllerTest {
 		e.setGender('M');
 		e.setPassword("Password@1");
 		//list.add(e);
+		Mockito.when(employeeService.updateEmployee(ArgumentMatchers.any())).thenReturn(e);
 		String json = mapper.writeValueAsString(e);
 
 		mvc.perform(put("/api/admin/update").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$.employee_id",Matchers.equalTo(e.getEmployee_id())));
@@ -251,6 +260,7 @@ public class AdminControllerTest {
 		assertEquals(result,e);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testUpdateLoan() throws Exception {
 		Loan l = new Loan();
@@ -277,6 +287,7 @@ public class AdminControllerTest {
 		assertEquals(result,e);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testUpdateItem() throws Exception {
 		Item i = new Item();

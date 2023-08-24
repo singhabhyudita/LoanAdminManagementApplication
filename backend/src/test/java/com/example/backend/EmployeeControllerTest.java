@@ -86,6 +86,7 @@ public class EmployeeControllerTest {
 	ObjectMapper mapper = new ObjectMapper().findAndRegisterModules().disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 	
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testLogin() throws Exception {
 		LoginRequest loginRequest = new LoginRequest();
@@ -99,6 +100,7 @@ public class EmployeeControllerTest {
 		assertEquals(result,str);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testRegister() throws Exception{
 		Employee e = new Employee();

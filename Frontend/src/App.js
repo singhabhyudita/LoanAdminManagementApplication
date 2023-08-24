@@ -10,9 +10,10 @@ import AdminItem from "./components/AdminItem";
 import AdminViewItem from "./components/AdminViewItem";
 import ViewEmployee from "./components/ViewEmployee";
 import AddEmployee from "./components/AddEmployee";
-import AdmindashBoard from "./components/AdmindashBoard"
+import AdminDashBoard from "./components/AdminDashBoard";
 import AdminLoan from "./components/AdminLoan";
 import EmployeeDashBoard from "./components/EmployeeDashBoard";
+import PageNotFound from "./components/PageNotFound";
 
 function App() {
   return (
@@ -31,7 +32,8 @@ function App() {
         <Route exact path="/admin/item/view" element={<AdminViewItem />} />
         <Route exact path="/admin/employee/view" element={<ViewEmployee />} />
         <Route exact path="/admin/employee/add" element={<AddEmployee />} />
-        <Route exact path="/admin/dashboard" element={<AdmindashBoard />} />
+        <Route exact path="/admin/dashboard" element={<AdminDashBoard />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
   )

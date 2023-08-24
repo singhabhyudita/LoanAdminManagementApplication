@@ -95,6 +95,11 @@ const Register = () => {
         const formattedDateOfBirth = new Date(dateOfBirth).toISOString().split('T')[0];
         const formattedDateOfJoining = new Date(dateOfJoining).toISOString().split('T')[0]
 
+        if (formattedDateOfBirth >= formattedDateOfJoining) {
+            setError("Date Of Birth Cannot Be Greater Than Date Of Joining!")
+            return;
+        }
+
         const registerObject = {
             employee_id: employeeId,
             employee_name: employeeName,
@@ -107,6 +112,7 @@ const Register = () => {
         }
         AdminEmployeeService.addEmployee(registerObject)
             .then(response => {
+                console.log(response.data)
                 if (response.data === "") {
                     setError("Couldn't create user Data , Try Again!");
                     setSuccess(null);
@@ -118,15 +124,18 @@ const Register = () => {
                 }
             })
             .catch(err => {
-                console.log(err)
-                setError("Server Error !");
+                if (err.response.data) {
+                    setError(err.response.data.message);
+                    clearFields();
+                }
+                else setError("Server Error ! Try Again !");
                 setSuccess(null);
             })
     }
 
     return (
         <>
-            <Navbar userType={"admin"}/>
+            <Navbar userType={"admin"} />
             <Container className="login-container">
                 <Form className="register-form">
                     <h2>Employee Registration</h2>

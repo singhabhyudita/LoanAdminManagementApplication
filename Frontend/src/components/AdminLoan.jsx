@@ -43,7 +43,12 @@ const AdminLoan = () => {
         AdminLoanService.addLoan(loan).then(response => {
             if (response.data != null) {
                 navigate("/admin/loan/view");
+            } else {
+                setError("Could Not Add New Data For Loan");
             }
+        })
+        .catch(err => {
+            setError("Could Not Add New Data For Loan");
         })
     }
     return (

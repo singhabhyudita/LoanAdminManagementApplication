@@ -102,10 +102,17 @@ const ViewEmployee = () => {
 
     useEffect(() => {
         const getEmployeeData = async () => {
-            const adminname = sessionStorage.getItem("adminname")
-            if (!adminname) navigate("/login/admin")
-            const response = await AdminEmployeeService.viewEmployee();
-            setEmployeeData(response.data)
+            try {
+                const adminname = sessionStorage.getItem("adminname")
+                if (!adminname) navigate("/login/admin")
+                const response = await AdminEmployeeService.viewEmployee();
+                setEmployeeData(response.data)
+                if (response.data.length === 0) {
+                    setError("No Employee Data Found !")
+                }
+            } catch (err) {
+                setError(err.response.data.message)
+            }
         }
         getEmployeeData();
     }, [navigate])
@@ -129,7 +136,10 @@ const ViewEmployee = () => {
             } else {
                 const updatedEmployeeData = employeeData.filter(employee => employee.employee_id !== id);
                 setEmployeeData(updatedEmployeeData);
-                setError(null);
+                if (updatedEmployeeData.length === 0)
+                    setError("No Employee Data Found !");
+                else
+                    setError(null);
             }
         } catch (err) {
             setError("Could Not Delete The User!")
@@ -137,7 +147,7 @@ const ViewEmployee = () => {
     }
     return (
         <>
-            <Navbar userType={"admin"}/>
+            <Navbar userType={"admin"} />
             <Modal show={isModalShown} onHide={() => setIsModalShown(false)} style={{ minWidth: "700px" }}>
                 <Modal.Header closeButton>
                     <Modal.Title >Edit Data for user {employeeName}</Modal.Title>

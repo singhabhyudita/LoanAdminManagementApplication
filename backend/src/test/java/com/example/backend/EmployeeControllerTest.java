@@ -29,15 +29,11 @@ import com.example.backend.repository.EmployeeRepository;
 import com.example.backend.repository.ItemRepository;
 import com.example.backend.repository.LoanRepository;
 import com.example.backend.service.AdminLoginService;
-import com.example.backend.service.AdminLoginServiceImpl;
 import com.example.backend.service.EmployeeService;
-//import com.example.backend.service.EmployeeServiceImpl;
 import com.example.backend.service.ItemService;
 import com.example.backend.service.LoanService;
 import com.example.backend.service.LoginService;
-import com.example.backend.service.LoginServiceImpl;
 import com.example.backend.service.RegisterService;
-import com.example.backend.service.RegisterServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 @RunWith(SpringRunner.class)
@@ -90,6 +86,21 @@ public class EmployeeControllerTest {
 	ObjectMapper mapper = new ObjectMapper().findAndRegisterModules().disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 	
 	
+<<<<<<< HEAD
+//	@Test
+//	public void testLogin() throws Exception {
+//		LoginRequest loginRequest = new LoginRequest();
+//		loginRequest.setLoginId("123456");
+//		loginRequest.setPassword("Password@1");
+//		String str = "string";
+//		Mockito.when(loginService.login(ArgumentMatchers.any())).thenReturn(str);
+//		String json = mapper.writeValueAsString(loginRequest);
+//		MvcResult requestResult = mvc.perform(post("/api/employee/login").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
+//		String result = requestResult.getResponse().getContentAsString();
+//		assertEquals(result,str);
+//	}
+=======
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testLogin() throws Exception {
 		LoginRequest loginRequest = new LoginRequest();
@@ -102,7 +113,9 @@ public class EmployeeControllerTest {
 		String result = requestResult.getResponse().getContentAsString();
 		assertEquals(result,str);
 	}
+>>>>>>> aeb1c76e62711be9113861db82e8b8bee494bc52
 	
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testRegister() throws Exception{
 		Employee e = new Employee();

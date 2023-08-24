@@ -2,8 +2,6 @@ package com.example.backend.service;
 
 import java.util.List;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -20,6 +18,5 @@ public interface EmployeeService {
 	public Employee addEmployee(Employee e) throws RecordAlreadyExistsException;
 	public String deleteEmployee(String id) throws ResourceNotFoundException;
 	public Employee updateEmployee(Employee e) throws ResourceNotFoundException;
-	
 
 }

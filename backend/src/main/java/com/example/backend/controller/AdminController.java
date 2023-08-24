@@ -110,7 +110,4 @@ public class AdminController {
 	public List<String> getCategory()throws NoDataFoundException{
 		return loanService.getCategories();
 	}
-	
-	
-	
 }

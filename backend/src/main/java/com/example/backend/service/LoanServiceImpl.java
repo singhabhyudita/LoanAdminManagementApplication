@@ -37,21 +37,14 @@ public class LoanServiceImpl implements LoanService{
 	public List<LoanAvailed> getItemsById(String id) throws ResourceNotFoundException,NoDataFoundException {
 
 		List<LoanAvailed> list = new ArrayList<>();
-		
-		
 		Optional<Employee> emp = employeeRepository.findById(id);
     	if(!emp.isEmpty())
     	{
     		employeeCardRepository.findByEmployeeId(id).forEach((obj)-> list.add(new LoanAvailed(loanRepository.findById(obj.getLoanId()).get(),obj.getCardIssueDate())));
-
-    		if(list.size()!=0)
+    		if(!list.isEmpty())
     			return list;
     		else
     			throw new NoDataFoundException("No items found");
-
-    	
-    		
-
     	}	
     	else
     		throw new ResourceNotFoundException("Employee Id does not exist");
@@ -61,7 +54,7 @@ public class LoanServiceImpl implements LoanService{
 		List<Loan> list = new ArrayList<>();
 		
 		list= loanRepository.findAll();
-		if(list.size()!=0)
+		if(!list.isEmpty())
 			return list;
 		else
 			throw new NoDataFoundException("No items found");
@@ -88,7 +81,7 @@ public class LoanServiceImpl implements LoanService{
 	
 	public Loan updateLoan(Loan loan) throws ResourceNotFoundException{
 		Optional<Loan> ln = loanRepository.findById(loan.getLoan_id());
-    	if(loan!=null)
+    	if(!ln.isEmpty())
     	{
 			loanRepository.deleteById(loan.getLoan_id());
 			return loanRepository.save(loan);
@@ -99,7 +92,7 @@ public class LoanServiceImpl implements LoanService{
 	}
 	public List<String> getCategories()throws NoDataFoundException{
 		List<String> list = loanRepository.findDistinctLoanTypes();
-		if(list.size()!=0)
+		if(!list.isEmpty())
 			return list;
 		else
 			throw new NoDataFoundException("No categories found");

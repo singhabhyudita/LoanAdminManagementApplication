@@ -20,6 +20,7 @@ import com.example.backend.repository.EmployeeRepository;
 public class LoginServiceImpl implements LoginService, UserDetailsService {
 	@Autowired 
 	EmployeeRepository employeeRepo;
+
 	@Autowired
 	private PasswordEncoder bcryptEncoder;
 	@Autowired
@@ -28,6 +29,10 @@ public class LoginServiceImpl implements LoginService, UserDetailsService {
 		LoginRequest userDetails = (LoginRequest) this.loadUserByUsername(loginRequest.getUsername());
 		if(bcryptEncoder.matches(loginRequest.getPassword(), userDetails.getPassword())) {
 			return new LoginResponse(jwtTokenUtil.generateToken(userDetails),userDetails.getUsername(),employeeRepo.findById(loginRequest.getUsername()).get().getEmployee_name());
+
+	
+	
+
 		}
 		else throw new ResourceNotFoundException("No employee found with the given credentials");
 	}

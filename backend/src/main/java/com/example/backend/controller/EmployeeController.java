@@ -1,7 +1,9 @@
 package com.example.backend.controller;
 
 
+
 import jakarta.validation.Valid;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,6 +19,8 @@ import com.example.backend.model.LoginRequest;
 import com.example.backend.model.LoginResponse;
 import com.example.backend.service.LoginService;
 import com.example.backend.service.RegisterService;
+
+import jakarta.validation.Valid;
 
 @RequestMapping("/api/employee")
 @CrossOrigin(origins="http://localhost:3000/")

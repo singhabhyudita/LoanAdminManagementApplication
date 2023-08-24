@@ -3,18 +3,16 @@ import { Table } from 'react-bootstrap';
 import itemServiceObject from '../services/ItemServices';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
+import { useSelector } from 'react-redux';
 
 const ViewPurchase = () => {
     const [tableData, setTableData] = useState(null);
-    const [userData, setUserData] = useState(null);
+    const userData = useSelector(state => state.userId);
     const navigate = useNavigate();
     useEffect(() => {
-        const userId = sessionStorage.getItem("username");
-        if (!userId) navigate("/login/employee");
-        setUserData(userId)
         const getPurchasedItems = async () => {
             try {
-                const result = await itemServiceObject.viewPurchasedItemService(userId);
+                const result = await itemServiceObject.viewPurchasedItemService(userData);
                 setTableData(result.data)
             } catch (err) {
                 console.log(err);

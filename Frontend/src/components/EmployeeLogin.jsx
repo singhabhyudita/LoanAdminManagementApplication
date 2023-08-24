@@ -5,7 +5,8 @@ import "../styles/EmployeeLogin.css"
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import LoginServices from '../services/LoginServices';
-
+import { useDispatch } from 'react-redux';
+import { setUser } from '../store/actions';
 
 const EmployeeLogin = () => {
     const [employeeId, setEmployeeId] = useState("");
@@ -13,6 +14,7 @@ const EmployeeLogin = () => {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     // const { setAuthenticated } = useAuth();
 
     const handleEmployeeIdChange = (event) => {
@@ -50,9 +52,10 @@ const EmployeeLogin = () => {
                 } else {
                     setSuccess(`Login Successfull !`);
                     setError(null);
-                    // setAuthenticated(true);
-                    sessionStorage.setItem("username", response.data)
+                    dispatch(setUser(response.data, "user"));
                     navigate("/");
+                    sessionStorage.setItem("userId", response.data);
+                    sessionStorage.setItem("userRole", "user");
                 }
             })
             .catch(err => {

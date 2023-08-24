@@ -14,7 +14,6 @@ import com.example.backend.model.LoginRequest;
 import com.example.backend.model.LoginResponse;
 
 @Service
-
 public interface LoginService extends UserDetailsService{
 	public LoginResponse login(LoginRequest loginRequest) throws ResourceNotFoundException;
 

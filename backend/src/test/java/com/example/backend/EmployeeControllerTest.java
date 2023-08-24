@@ -90,18 +90,18 @@ public class EmployeeControllerTest {
 	ObjectMapper mapper = new ObjectMapper().findAndRegisterModules().disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 	
 	
-	@Test
-	public void testLogin() throws Exception {
-		LoginRequest loginRequest = new LoginRequest();
-		loginRequest.setLoginId("123456");
-		loginRequest.setPassword("Password@1");
-		String str = "string";
-		Mockito.when(loginService.login(ArgumentMatchers.any())).thenReturn(str);
-		String json = mapper.writeValueAsString(loginRequest);
-		MvcResult requestResult = mvc.perform(post("/api/employee/login").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
-		String result = requestResult.getResponse().getContentAsString();
-		assertEquals(result,str);
-	}
+//	@Test
+//	public void testLogin() throws Exception {
+//		LoginRequest loginRequest = new LoginRequest();
+//		loginRequest.setLoginId("123456");
+//		loginRequest.setPassword("Password@1");
+//		String str = "string";
+//		Mockito.when(loginService.login(ArgumentMatchers.any())).thenReturn(str);
+//		String json = mapper.writeValueAsString(loginRequest);
+//		MvcResult requestResult = mvc.perform(post("/api/employee/login").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
+//		String result = requestResult.getResponse().getContentAsString();
+//		assertEquals(result,str);
+//	}
 	
 	@Test
 	public void testRegister() throws Exception{

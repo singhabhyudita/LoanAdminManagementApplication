@@ -13,19 +13,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.backend.exception.RecordAlreadyExistsException;
 import com.example.backend.exception.NoDataFoundException;
+import com.example.backend.exception.RecordAlreadyExistsException;
 import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.model.Employee;
 import com.example.backend.model.Item;
 import com.example.backend.model.Loan;
 import com.example.backend.model.LoginRequest;
 import com.example.backend.service.AdminLoginService;
-import com.example.backend.service.AdminLoginServiceImpl;
 import com.example.backend.service.EmployeeService;
 import com.example.backend.service.ItemService;
-//import com.example.backend.service.EmployeeServiceImpl;
-import com.example.backend.service.ItemServiceImpl;
 import com.example.backend.service.LoanService;
 
 
@@ -47,7 +44,7 @@ public class AdminController {
 	
 	@PostMapping("/login")
 	public String login(@RequestBody LoginRequest loginRequest) {
-		System.out.println(loginRequest.getLoginId());
+		System.out.println(loginRequest.getUsername());
 		return loginService.login(loginRequest);		
 	}
 	

@@ -52,8 +52,6 @@ public class AdminControllerTest {
 	@Autowired
 	private MockMvc mvc;
 	
-	
-	
 	@MockBean
 	private ItemService itemService;
 	
@@ -71,9 +69,7 @@ public class AdminControllerTest {
 	
 	@MockBean
 	private RegisterService registerService;
-	
-	
-	
+
 	@MockBean
 	private AdminRepository adminRepository;
 	
@@ -114,8 +110,6 @@ public class AdminControllerTest {
 	@Test
 	public void testAddEmployee() throws Exception{
 		Employee e = new Employee();
-//		List<EmployeeIssue> issues = new ArrayList<>();
-//		List<EmployeeCard> cards = new ArrayList<>();
 		e.setDate_of_birth(new Date());
 		e.setDate_of_joining(new Date());
 		e.setDepartment("IT");
@@ -143,10 +137,6 @@ public class AdminControllerTest {
 		String json = mapper.writeValueAsString(l);
 
 		mvc.perform(post("/api/admin/loans/add").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$.loan_id",Matchers.equalTo(l.getLoan_id())));
-
-		
-	
-	
 	}
 	@SuppressWarnings("deprecation")
 	@Test
@@ -170,8 +160,7 @@ public class AdminControllerTest {
 	@Test
 	public void testFindAll() throws Exception {
 		List<Employee> list = new ArrayList<>();
-		Employee e = new Employee();
-//		
+		Employee e = new Employee();	
 		e.setDate_of_birth(new Date());
 		e.setDate_of_joining(new Date());
 		e.setDepartment("IT");
@@ -199,8 +188,6 @@ public class AdminControllerTest {
 		Mockito.when(loanService.findAllLoans()).thenReturn(list);
 		
 		mvc.perform(get("/api/admin/loans/all").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$",Matchers.hasSize(1)));
-		
-	
 	}
 	
 	@Test
@@ -219,16 +206,12 @@ public class AdminControllerTest {
 		Mockito.when(itemService.findAllItems()).thenReturn(list);
 		
 		mvc.perform(get("/api/admin/items/all").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$",Matchers.hasSize(1)));
-		
-	
 	}
 	
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testUpdateEmployee() throws Exception {
-		//List<Employee> list = new ArrayList<>();
-		Employee e = new Employee();
-//		
+		Employee e = new Employee();	
 		e.setDate_of_birth(new Date());
 		e.setDate_of_joining(new Date());
 		e.setDepartment("IT");
@@ -242,11 +225,6 @@ public class AdminControllerTest {
 		String json = mapper.writeValueAsString(e);
 
 		mvc.perform(put("/api/admin/update").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$.employee_id",Matchers.equalTo(e.getEmployee_id())));
-
-		
-		
-	
-		
 	}
 	
 	@Test
@@ -271,9 +249,6 @@ public class AdminControllerTest {
 		String json = mapper.writeValueAsString(l);
 
 		mvc.perform(put("/api/admin/loans/update").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$.loan_id",Matchers.equalTo(l.getLoan_id())));
-
-	
-		
 	}
 	
 	@Test
@@ -302,8 +277,6 @@ public class AdminControllerTest {
 		Mockito.when(itemService.updateItem(ArgumentMatchers.any())).thenReturn(i);
 		String json = mapper.writeValueAsString(i);
 		mvc.perform(put("/api/admin/items/update").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$.itemId",Matchers.equalTo(i.getItemId())));;
-		
-		
 	}
 	
 	@Test

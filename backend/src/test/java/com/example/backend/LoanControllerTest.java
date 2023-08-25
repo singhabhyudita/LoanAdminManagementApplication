@@ -60,9 +60,7 @@ public class LoanControllerTest {
 	
 	@MockBean
 	private RegisterService registerService;
-	
-	
-	
+
 	@MockBean
 	private AdminRepository adminRepository;
 	

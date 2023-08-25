@@ -12,37 +12,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.exception.NoDataFoundException;
-
 import com.example.backend.exception.ResourceNotFoundException;
-
 import com.example.backend.model.Item;
 import com.example.backend.model.PurchasedItem;
 import com.example.backend.service.ItemService;
 
 @RequestMapping("/api/items")
-@CrossOrigin(origins="http://localhost:3000/")
+@CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 public class ItemController {
 	@Autowired
 	ItemService itemService;
-	
+
 	@GetMapping("/showItems")
-	public List<Item> getAllItems()throws NoDataFoundException
-	{
+	public List<Item> getAllItems() throws NoDataFoundException {
 		return itemService.getAllItems();
 	}
-	
+
 	@PostMapping("/apply/{id}")
-	public List<Object> apply(@RequestBody Item item, @PathVariable String id) throws ResourceNotFoundException{
-		return itemService.apply(item,id);	
+	public List<Object> apply(@RequestBody Item item, @PathVariable String id) throws ResourceNotFoundException {
+		return itemService.apply(item, id);
 	}
-	
-	
+
 	@GetMapping("/all/{id}")
-	public List<PurchasedItem> getItemsById(@PathVariable String id) throws ResourceNotFoundException,NoDataFoundException {
-		//itemService.getItemsById("2389");
+	public List<PurchasedItem> getItemsById(@PathVariable String id) throws ResourceNotFoundException, NoDataFoundException {
 		return itemService.getItemsById(id);
-		
 	}
-	
+
 }

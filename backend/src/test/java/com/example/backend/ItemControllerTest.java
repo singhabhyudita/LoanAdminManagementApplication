@@ -61,9 +61,7 @@ public class ItemControllerTest {
 	
 	@MockBean
 	private RegisterService registerService;
-	
-	
-	
+
 	@MockBean
 	private AdminRepository adminRepository;
 	
@@ -103,8 +101,6 @@ public class ItemControllerTest {
 		Mockito.when(itemService.apply(ArgumentMatchers.any(),ArgumentMatchers.any())).thenReturn(list);
 		String json = mapper.writeValueAsString(i);
 		mvc.perform(post("/api/items/apply/{id}","000001").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$",Matchers.hasSize(1)));
-		//String result = requestResult.getResponse().getContentAsString();
-		//assertEquals(result.,list);
 	}
 	
 	@Test
@@ -125,9 +121,6 @@ public class ItemControllerTest {
 		list.add(item);
 		Mockito.when(itemService.getItemsById(ArgumentMatchers.any())).thenReturn(list);
 		mvc.perform(get("/api/items/all/{id}","000001").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$",Matchers.hasSize(1)));
-		
-		
-		
 	}
 	
 }

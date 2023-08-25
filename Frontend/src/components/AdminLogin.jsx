@@ -3,13 +3,16 @@ import { Container, Form, Button } from 'react-bootstrap'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/EmployeeLogin.css"
 import { useNavigate } from 'react-router-dom';
-import LoginServices from '../services/LoginServices';
+import LoginService from '../services/LoginService';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../store/actions';
 
 const AdminLogin = () => {
     const [adminId, setAdminId] = useState("");
     const [adminPassword, setAdminPassword] = useState("");
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleAdminIdChange = (event) => {
         setAdminId(event.target.value);
@@ -32,7 +35,7 @@ const AdminLogin = () => {
             loginId: adminId,
             password: adminPassword
         }
-        LoginServices.adminLoginService(loginObject)
+        LoginService.adminLoginService(loginObject)
             .then(response => {
                 if (response.data === "Invalid user") {
                     setError("User data not found!");
@@ -43,7 +46,9 @@ const AdminLogin = () => {
                 } else {
                     setSuccess(`Login Successfull !`);
                     setError(null);
-                    sessionStorage.setItem("adminname", response.data)
+                    sessionStorage.setItem("userId", response.data);
+                    sessionStorage.setItem("userRole", "admin");
+                    dispatch(setUser(response.data, "admin"));
                     navigate("/admin/dashboard");
                 }
             })

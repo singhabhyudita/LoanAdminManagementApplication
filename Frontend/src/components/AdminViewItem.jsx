@@ -4,15 +4,8 @@ import AdminItemService from "../services/AdminItemService";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 const AdminViewItem = () => {
-    const navigate = useNavigate();
     const [errorModal, setErrorModal] = useState(null);
     const [error, setError] = useState(null);
-    useEffect(() => {
-        const adminname = sessionStorage.getItem("adminname");
-        if (!adminname) {
-            navigate("/login/admin")
-        }
-    }, [navigate])
     const [items, setItems] = useState([]);
     const [editItemData, setEditItemData] = useState({
         itemId: '',

@@ -4,8 +4,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/EmployeeLogin.css"
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import LoginServices from '../services/LoginServices';
-
+import LoginService from '../services/LoginService';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../store/actions';
 
 const EmployeeLogin = () => {
     const [employeeId, setEmployeeId] = useState("");
@@ -13,6 +14,7 @@ const EmployeeLogin = () => {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     // const { setAuthenticated } = useAuth();
 
     const handleEmployeeIdChange = (event) => {
@@ -39,25 +41,17 @@ const EmployeeLogin = () => {
             loginId: employeeId,
             password: employeePassword
         }
-        LoginServices.employeeLoginService(loginObject)
+        LoginService.employeeLoginService(loginObject)
             .then(response => {
-                if (response.data === "Invalid user") {
-                    setError("User data not found!");
-                    setSuccess(null);
-                } else if (response.data === "Password not matching") {
-                    setError("Invalid Credentials!");
-                    setSuccess(null);
-                } else {
-                    setSuccess(`Login Successfull !`);
-                    setError(null);
-                    // setAuthenticated(true);
-                    sessionStorage.setItem("username", response.data)
-                    navigate("/");
-                }
+                setSuccess(`Login Successfull !`);
+                setError(null);
+                dispatch(setUser(response.data.employeeName, "user"));
+                navigate("/");
+                sessionStorage.setItem("userId", response.data.employeeName);
+                sessionStorage.setItem("userRole", "user");
             })
             .catch(err => {
-                console.log(err)
-                setError("Server Error !");
+                setError(err.response.data.message);
                 setSuccess(null);
             })
     }

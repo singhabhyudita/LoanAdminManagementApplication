@@ -7,10 +7,12 @@ import com.example.backend.model.EmployeeIssue;
 
 import jakarta.transaction.Transactional;
 
-public interface EmployeeIssueRepository extends JpaRepository<EmployeeIssue,String>{
+public interface EmployeeIssueRepository extends JpaRepository<EmployeeIssue, String> {
 	List<EmployeeIssue> findByEmployeeId(String employee_id);
+
 	@Transactional
 	void deleteAllByEmployeeId(String employee_id);
+
 	@Transactional
 	void deleteAllByItemId(String item_id);
 }

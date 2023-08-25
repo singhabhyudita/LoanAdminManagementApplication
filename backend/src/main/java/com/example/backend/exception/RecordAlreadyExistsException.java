@@ -1,3 +1,4 @@
+
 package com.example.backend.exception;
 
 public class RecordAlreadyExistsException extends Exception {

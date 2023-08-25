@@ -99,7 +99,7 @@ public class EmployeeControllerTest {
 		String result = requestResult.getResponse().getContentAsString();
 		assertEquals(result,str);
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testRegister() throws Exception{

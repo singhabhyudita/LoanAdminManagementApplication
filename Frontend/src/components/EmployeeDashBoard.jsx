@@ -4,23 +4,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 import "../styles/dashboard.css";
 import Navbar from './Navbar';
+import { useSelector } from 'react-redux';
 
 const EmployeeDashBoard = () => {
-    const [userData, setUserData] = useState(null);
+    const userData = useSelector(state => state.userId);
     const navigate = useNavigate();
-    useEffect(() => {
-        const username = sessionStorage.getItem("username");
-        if (username) {
-            setUserData(username);
-        } else {
-            setUserData(null);
-            navigate("/login/employee")
-        }
-    }, [navigate])
 
     return (
         <>
-        <Navbar userType={userData}/>
+            <Navbar userType={userData} />
             <div className="dashboard-container">
                 {userData ?
                     <>

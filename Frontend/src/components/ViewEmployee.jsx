@@ -103,8 +103,6 @@ const ViewEmployee = () => {
     useEffect(() => {
         const getEmployeeData = async () => {
             try {
-                const adminname = sessionStorage.getItem("adminname")
-                if (!adminname) navigate("/login/admin")
                 const response = await AdminEmployeeService.viewEmployee();
                 setEmployeeData(response.data)
                 if (response.data.length === 0) {

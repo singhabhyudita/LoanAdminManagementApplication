@@ -1,9 +1,7 @@
 package com.example.backend.exception;
 
 public class RecordAlreadyExistsException extends Exception {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private String message;
 
@@ -19,7 +17,5 @@ public class RecordAlreadyExistsException extends Exception {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
-	
-}
 
+}

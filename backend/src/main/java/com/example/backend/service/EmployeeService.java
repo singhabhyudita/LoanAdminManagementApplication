@@ -9,13 +9,15 @@ import com.example.backend.exception.RecordAlreadyExistsException;
 import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.model.Employee;
 
-
 @Service
 
 public interface EmployeeService {
-	public List<Employee> findAll()throws NoDataFoundException;
+	public List<Employee> findAll() throws NoDataFoundException;
+
 	public Employee addEmployee(Employee e) throws RecordAlreadyExistsException;
+
 	public String deleteEmployee(String id) throws ResourceNotFoundException;
+
 	public Employee updateEmployee(Employee e) throws ResourceNotFoundException;
-	
+
 }

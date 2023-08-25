@@ -1,4 +1,5 @@
 package com.example.backend.exception;
+
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -18,49 +19,42 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class CustomExceptionHandler extends ResponseEntityExceptionHandler{
+public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	//@ExceptionHandler(MethodArgumentNotValidException.class)
-	protected ResponseEntity<Object> handleMethodArgumentNotValid(
-			MethodArgumentNotValidException ex,
-			HttpHeaders headers, HttpStatus status, WebRequest request)
-	{
-	
-	Map<String,Object> responseBody = new LinkedHashMap<>();
-	responseBody.put("timestamp", new Date());
-	responseBody.put("status", status.value());
-	
-	List <String> errors= ex.getBindingResult().getFieldErrors()
-			.stream()
-			.map(x -> x.getDefaultMessage())
-			.collect(Collectors.toList());
-	
-	responseBody.put("errors", errors);
-	return new ResponseEntity<>(responseBody,headers,status);
-}
-	
+	// @ExceptionHandler(MethodArgumentNotValidException.class)
+	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+			HttpHeaders headers, HttpStatus status, WebRequest request) {
+
+		Map<String, Object> responseBody = new LinkedHashMap<>();
+		responseBody.put("timestamp", new Date());
+		responseBody.put("status", status.value());
+
+		List<String> errors = ex.getBindingResult().getFieldErrors().stream().map(x -> x.getDefaultMessage())
+				.collect(Collectors.toList());
+
+		responseBody.put("errors", errors);
+		return new ResponseEntity<>(responseBody, headers, status);
+	}
+
 	@ExceptionHandler(value = NoDataFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	public @ResponseBody ErrorResponse handleNoDataFoundException(NoDataFoundException ex)
-	{
+	public @ResponseBody ErrorResponse handleNoDataFoundException(NoDataFoundException ex) {
 		System.out.println(ex.getMessage());
-		return new ErrorResponse(HttpStatus.NOT_FOUND.value(),ex.getMessage());
+		return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
 	}
-	
+
 	@ExceptionHandler(value = RecordAlreadyExistsException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	public @ResponseBody ErrorResponse handleRecordAlreadyExistsException(RecordAlreadyExistsException ex)
-	{
+	public @ResponseBody ErrorResponse handleRecordAlreadyExistsException(RecordAlreadyExistsException ex) {
 		System.out.println(ex.getMessage());
-		return new ErrorResponse(HttpStatus.NOT_FOUND.value(),ex.getMessage());
+		return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
 	}
-	
+
 	@ExceptionHandler(value = ResourceNotFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	public @ResponseBody ErrorResponse handleNoDataFoundException(ResourceNotFoundException ex)
-	{
+	public @ResponseBody ErrorResponse handleNoDataFoundException(ResourceNotFoundException ex) {
 		System.out.println(ex.getMessage());
-		return new ErrorResponse(HttpStatus.NOT_FOUND.value(),ex.getMessage());
+		return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
 	}
-	
+
 }

@@ -7,9 +7,11 @@ import { logout } from '../store/actions';
 
 const Navbar = ({ userType }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logout());
+    navigate("/");
   };
 
   const renderAdminDropdown = () => {

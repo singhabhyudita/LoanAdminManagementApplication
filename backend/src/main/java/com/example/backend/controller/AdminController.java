@@ -25,89 +25,90 @@ import com.example.backend.service.EmployeeService;
 import com.example.backend.service.ItemService;
 import com.example.backend.service.LoanService;
 
-
 @RequestMapping("/api/admin")
-@CrossOrigin(origins="http://localhost:3000/")
+@CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 public class AdminController {
 	@Autowired
 	AdminLoginService loginService;
-	
+
 	@Autowired
 	EmployeeService employeeService;
-	
+
 	@Autowired
 	LoanService loanService;
-	
+
 	@Autowired
 	ItemService itemService;
-	
+
 	@PostMapping("/login")
 	public String login(@RequestBody LoginRequest loginRequest) {
-		System.out.println(loginRequest.getUsername());
-		return loginService.login(loginRequest);		
+		System.out.println(loginRequest.getLoginId());
+		return loginService.login(loginRequest);
 	}
-	
+
 	@GetMapping("/all")
-	public List<Employee>findAll() throws NoDataFoundException{
+	public List<Employee> findAll() throws NoDataFoundException {
 		return employeeService.findAll();
 	}
-	
+
 	@PostMapping("/add")
-	public Employee addEmployee(@RequestBody Employee e) throws RecordAlreadyExistsException{
+	public Employee addEmployee(@RequestBody Employee e) throws RecordAlreadyExistsException {
 		return employeeService.addEmployee(e);
 	}
-	
+
 	@DeleteMapping("/delete/{id}")
 	public String deleteEmployee(@PathVariable String id) throws ResourceNotFoundException {
 		return employeeService.deleteEmployee(id);
 	}
-	
+
 	@PutMapping("/update")
-	public Employee updateEmployee(@RequestBody Employee e) throws ResourceNotFoundException{
+	public Employee updateEmployee(@RequestBody Employee e) throws ResourceNotFoundException {
 		return employeeService.updateEmployee(e);
 	}
-	
+
 	@GetMapping("/loans/all")
-	public List<Loan> findAllLoans() throws NoDataFoundException{
+	public List<Loan> findAllLoans() throws NoDataFoundException {
 		return loanService.findAllLoans();
 	}
-	
+
 	@PostMapping("/loans/add")
-	public Loan addLoan(@RequestBody Loan loan) throws RecordAlreadyExistsException{
+	public Loan addLoan(@RequestBody Loan loan) throws RecordAlreadyExistsException {
 		return loanService.addLoan(loan);
 	}
-	
+
 	@DeleteMapping("/loans/delete/{id}")
-	public String deleteLoan(@PathVariable String id) throws ResourceNotFoundException{
+	public String deleteLoan(@PathVariable String id) throws ResourceNotFoundException {
 		return loanService.deleteLoan(id);
 	}
-	
+
 	@PutMapping("/loans/update")
-	public Loan updateLoan(@RequestBody Loan loan) throws ResourceNotFoundException{
+	public Loan updateLoan(@RequestBody Loan loan) throws ResourceNotFoundException {
 		return loanService.updateLoan(loan);
 	}
-	
+
 	@GetMapping("/items/all")
-	public List<Item> findAllItems() throws NoDataFoundException{
+	public List<Item> findAllItems() throws NoDataFoundException {
 		return itemService.findAllItems();
 	}
-	
+
 	@PostMapping("/items/add")
 	public Item addItem(@RequestBody Item item) throws RecordAlreadyExistsException {
 		return itemService.addItem(item);
 	}
-	
+
 	@DeleteMapping("/items/delete/{id}")
 	public String deleteItem(@PathVariable String id) throws ResourceNotFoundException {
 		return itemService.deleteItem(id);
 	}
+
 	@PutMapping("/items/update")
 	public Item updateItem(@RequestBody Item item) throws ResourceNotFoundException {
 		return itemService.updateItem(item);
 	}
+
 	@GetMapping("/items/getCategory")
-	public List<String> getCategory()throws NoDataFoundException{
+	public List<String> getCategory() throws NoDataFoundException {
 		return loanService.getCategories();
 	}
 }

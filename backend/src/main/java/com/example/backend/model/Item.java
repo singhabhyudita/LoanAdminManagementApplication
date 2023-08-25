@@ -20,10 +20,10 @@ public class Item {
 	private String itemMake;
 	private String itemCategory;
 	private int itemValuation;
-	
-	@OnDelete(action=OnDeleteAction.CASCADE)
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval= true)
-	@JoinColumn(name="itemId")
+
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "itemId")
 	private List<EmployeeIssue> employees;
 
 	public String getItemId() {
@@ -105,5 +105,5 @@ public class Item {
 				+ ", itemMake=" + itemMake + ", itemCategory=" + itemCategory + ", itemValuation=" + itemValuation
 				+ ", employees=" + employees + "]";
 	}
-	
+
 }

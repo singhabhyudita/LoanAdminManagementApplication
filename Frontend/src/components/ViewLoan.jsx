@@ -23,18 +23,27 @@ export const ViewLoan = () => {
     getinfo();
   }, [navigate])
 
+  const checkActiveLoan = (cardIssueDate) => {
+    const previousDate = new Date(cardIssueDate);
+    const modifiedYear = previousDate.getFullYear() + 3;
+    previousDate.setFullYear(modifiedYear);
+    if (previousDate >= Date.now()) return true;
+    return false;
+  }
+
   return (
     <>
       <Navbar userType={userData} />
       <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "90vh", minWidth: "100vw" }}>
         <h2 className="table-header" style={{ marginBottom: "20px" }}>Loan Cards Availed</h2>
-        <Table striped bordered hover responsive style={{ minWidth: "80vw" }}>
+        <Table striped bordered hover responsive style={{ minWidth: "80vw", textAlign: "center" }}>
           <thead>
             <tr>
               <th>Loan Id</th>
               <th>Loan Type</th>
               <th>Duration</th>
               <th>Card Issue Date</th>
+              <th>Active Loans</th>
             </tr>
           </thead>
           <tbody>{data ? data.map((user, index) => {
@@ -44,6 +53,7 @@ export const ViewLoan = () => {
                 <td>{user.loan.loan_type}</td>
                 <td>{user.loan.duration}</td>
                 <td>{user.cardIssueDate.split("T")[0]}</td>
+                <td>{checkActiveLoan(user.cardIssueDate) ? "✔️" : "❌"}</td>
               </tr>
             )
           }) : null}</tbody>

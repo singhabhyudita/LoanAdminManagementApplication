@@ -15,10 +15,10 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 	private AdminRepository adminRepo;
 	
 	public String login(LoginRequest loginRequest) {
-		System.out.println(loginRequest.getUsername());
+		System.out.println(loginRequest.getLoginId());
 		
-		Optional<Admin> admin= adminRepo.findById(loginRequest.getUsername());
-		System.out.println(loginRequest.getUsername());
+		Optional<Admin> admin= adminRepo.findById(loginRequest.getLoginId());
+		//System.out.println(loginRequest.getUsername());
 		if(admin.isPresent())
 			if(admin.get().getPassword().equals(loginRequest.getPassword()))return admin.get().getAdmin_id();
 			else return "Password not matching";

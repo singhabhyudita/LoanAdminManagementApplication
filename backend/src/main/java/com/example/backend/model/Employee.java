@@ -15,41 +15,43 @@ import jakarta.persistence.*;
 
 @Entity
 public class Employee {
-	
+
 	@Id
-	@NotBlank(message="Employee Id can't be blank")
-	@Length(min=6,max=6, message="Employee Id can be of 6 characters only ")
+	@NotBlank(message = "Employee Id can't be blank")
+	@Length(min = 6, max = 6, message = "Employee Id can be of 6 characters only ")
 	private String employeeId;
-	@NotBlank(message="Password can't be blank")
-	@Length(min=10,max=60,message="Password can be of 10-60 characters only")
+	@NotBlank(message = "Password can't be blank")
+	@Length(min = 10, max = 60, message = "Password can be of 10-60 characters only")
 	private String password;
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	private String employeeName;
 	private String designation;
 	private String department;
-	
-	@OnDelete(action=OnDeleteAction.CASCADE)
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true)
-	@JoinColumn(name="employeeId")
-	private List<EmployeeIssue> issues;
-	
-	@OnDelete(action=OnDeleteAction.CASCADE)
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true)
-	@JoinColumn(name="employeeId")
-	private List<EmployeeCard> cards;
-	
 
-	
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "employeeId")
+	private List<EmployeeIssue> issues;
+
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "employeeId")
+	private List<EmployeeCard> cards;
+
 	public Employee() {
 		super();
 	}
-	
+
 	private char gender;
+
 	public Employee(
 			@NotBlank(message = "Employee Id can't be blank") @Length(min = 6, max = 6, message = "Employee Id can be of 6 characters only ") String employeeId,
 			@NotBlank(message = "Password can't be blank") @Length(min = 10, max = 60, message = "Password can be of 10-60 characters only") String password,
@@ -65,53 +67,66 @@ public class Employee {
 		this.date_of_birth = date_of_birth;
 		this.date_of_joining = date_of_joining;
 	}
-	@JsonFormat(pattern="yyyy-MM-DD")
+
+	@JsonFormat(pattern = "yyyy-MM-DD")
 	private Date date_of_birth;
-	@JsonFormat(pattern="yyyy-MM-DD")
+	@JsonFormat(pattern = "yyyy-MM-DD")
 	private Date date_of_joining;
+
 	public String getEmployee_id() {
 		return employeeId;
 	}
+
 	public void setEmployee_id(String employee_id) {
 		this.employeeId = employee_id;
 	}
+
 	public String getEmployee_name() {
 		return employeeName;
 	}
+
 	public void setEmployee_name(String employee_name) {
 		this.employeeName = employee_name;
 	}
+
 	public String getDesignation() {
 		return designation;
 	}
+
 	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
+
 	public String getDepartment() {
 		return department;
 	}
+
 	public void setDepartment(String department) {
 		this.department = department;
 	}
+
 	public char getGender() {
 		return gender;
 	}
+
 	public void setGender(char gender) {
 		this.gender = gender;
 	}
+
 	public Date getDate_of_birth() {
 		return date_of_birth;
 	}
+
 	public void setDate_of_birth(Date date_of_birth) {
 		this.date_of_birth = date_of_birth;
 	}
+
 	public Date getDate_of_joining() {
 		return date_of_joining;
 	}
+
 	public void setDate_of_joining(Date date_of_joining) {
 		this.date_of_joining = date_of_joining;
 	}
-	
-	
 
 }

@@ -1,10 +1,5 @@
 package com.example.backend.controller;
 
-
-
-import jakarta.validation.Valid;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,23 +18,23 @@ import com.example.backend.service.RegisterService;
 import jakarta.validation.Valid;
 
 @RequestMapping("/api/employee")
-@CrossOrigin(origins="http://localhost:3000/")
+@CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 public class EmployeeController {
-	@Autowired 
+	@Autowired
 	LoginService loginService;
 	@Autowired
 	RegisterService registerService;
-	
+
 	@PostMapping("/register")
-	public Employee register(@RequestBody @Valid Employee employee) throws RecordAlreadyExistsException{
-		return  registerService.register(employee);
+	public Employee register(@RequestBody @Valid Employee employee) throws RecordAlreadyExistsException {
+		return registerService.register(employee);
 
 	}
+
 	@PostMapping("/login")
 	public LoginResponse login(@RequestBody LoginRequest loginRequest) throws ResourceNotFoundException {
-		return loginService.login(loginRequest);		
+		return loginService.login(loginRequest);
 	}
-	
 
 }

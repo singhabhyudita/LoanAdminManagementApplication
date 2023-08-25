@@ -43,24 +43,15 @@ const EmployeeLogin = () => {
         }
         LoginServices.employeeLoginService(loginObject)
             .then(response => {
-                if (response.data === "Invalid user") {
-                    setError("User data not found!");
-                    setSuccess(null);
-                } else if (response.data === "Password not matching") {
-                    setError("Invalid Credentials!");
-                    setSuccess(null);
-                } else {
-                    setSuccess(`Login Successfull !`);
-                    setError(null);
-                    dispatch(setUser(response.data, "user"));
-                    navigate("/");
-                    sessionStorage.setItem("userId", response.data);
-                    sessionStorage.setItem("userRole", "user");
-                }
+                setSuccess(`Login Successfull !`);
+                setError(null);
+                dispatch(setUser(response.data.employeeId, "user"));
+                navigate("/");
+                sessionStorage.setItem("userId", response.data.employeeId);
+                sessionStorage.setItem("userRole", "user");
             })
             .catch(err => {
-                console.log(err)
-                setError("Server Error !");
+                setError(err.response.data.message);
                 setSuccess(null);
             })
     }

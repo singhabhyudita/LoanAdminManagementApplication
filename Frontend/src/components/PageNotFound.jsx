@@ -2,22 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import userEvent from '@testing-library/user-event';
+import { useSelector } from 'react-redux';
 
 const PageNotFound = () => {
-    const [userEvent, setUser] = useState(null);
-    const navigate = useNavigate();
-    useEffect(() => {
-        const userType = sessionStorage.getItem("username");
-        if (userType) {
-            setUser(userType);
-        } else {
-            if (sessionStorage.getItem("adminname")) {
-                setUser("admin");
-            } else {
-                navigate("/");
-            }
-        }
-    }, [navigate])
+    const userEvent = useSelector(state => state.userId)
     return (
         <>
             <Navbar userType={userEvent} />

@@ -4,13 +4,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+
 import com.example.backend.exception.NoDataFoundException;
 import com.example.backend.exception.RecordAlreadyExistsException;
 import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.model.Employee;
 
-@Service
+import com.example.backend.repository.EmployeeRepository;
 
+@Service
 public interface EmployeeService {
 	public List<Employee> findAll() throws NoDataFoundException;
 

@@ -4,12 +4,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/EmployeeLogin.css"
 import { useNavigate } from 'react-router-dom';
 import LoginServices from '../services/LoginServices';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../store/actions';
 
 const AdminLogin = () => {
     const [adminId, setAdminId] = useState("");
     const [adminPassword, setAdminPassword] = useState("");
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleAdminIdChange = (event) => {
         setAdminId(event.target.value);
@@ -43,7 +46,9 @@ const AdminLogin = () => {
                 } else {
                     setSuccess(`Login Successfull !`);
                     setError(null);
-                    sessionStorage.setItem("adminname", response.data)
+                    sessionStorage.setItem("userId", response.data);
+                    sessionStorage.setItem("userRole", "admin");
+                    dispatch(setUser(response.data, "admin"));
                     navigate("/admin/dashboard");
                 }
             })

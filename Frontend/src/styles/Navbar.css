@@ -1,11 +1,12 @@
 .custom-navbar {
-background-color: #333;
+background-color: #d72525e2;
 color: #fff;
 padding: 10px 80px;
 }
 
 .custom-navbar .navbar-brand {
 color: #fff;
+font-weight: bold;
 }
 
 .custom-navbar .navbar-toggler-icon {
@@ -15,12 +16,11 @@ background-color: #fff;
 .custom-navbar .nav-link {
 color: #fff;
 margin: 0 5px;
-font-weight: bold;
 padding: 5px;
 }
 
 .custom-navbar .nav-link:hover {
-color: #f5f5f5;
+color: rgba(233, 244, 77, 0.865);
 }
 
 .custom-navbar .nav-link.active {
@@ -36,23 +36,23 @@ margin-right: 20px;
 display: none;
 }
 
-.custom-navbar .dropdown-menu {
-background-color: #333;
-border: none;
-}
+
 
 .custom-navbar .dropdown-item {
 color: #fff;
 }
 
-.custom-navbar .dropdown-item:hover {
-background-color: #555;
-}
 
 .custom-navbar .logout-button {
     margin-left: 20px;
+    background-color: #fff;
+    color: rgba(212, 116, 47, 0.865);
+    border: 0px;
 }
-
+.custom-navbar .logout-button:hover{
+    background-color: white;
+    color:rgba(212, 116, 47, 0.865);
+}
 .ml-auto{
     display: flex;
     justify-content: space-between;
@@ -70,4 +70,7 @@ background-color: #555;
     display: flex;
     align-items: space-between;
     align-items: center;
+}
+.username{
+    color:rgba(233, 244, 77, 0.865);
 }

@@ -25,6 +25,8 @@
 .login-form h2 {
     text-align: center;
     margin-bottom: 20px;
+    background-color: #d72525e2;
+    color: white
 }
 
 .register-form h2 {
@@ -74,4 +76,12 @@
 .routing Button {
     margin: 0 40px;
     width: 100%;
+    background-color: rgba(242, 226, 52, 0.865);
+    border: 0px;
+    color: rgba(212, 116, 47, 0.865);
+}
+#login-button{
+    background-color: rgba(242, 226, 52, 0.865);
+    border: 0px;
+    color: rgba(212, 116, 47, 0.865);
 }

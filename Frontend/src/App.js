@@ -18,6 +18,7 @@ import { Provider } from 'react-redux';
 import store from "./store/store";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { Fragment } from "react";
+import Home from "./components/Home";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route exact path="/login/employee" element={<EmployeeLogin />} />
             <Route exact path="/login/admin" element={<AdminLogin />} />
             <Route exact path="/register" element={<Register />} />
+            <Route exact path="/home" element={<Home />} />
             <Route exact path="/" element={<ProtectedRoute allowedRoles={['user']} element={<EmployeeDashBoard />} />} />
             <Route exact path="/apply-loan" element={<ProtectedRoute allowedRoles={['user']} element={<ApplyLoan />} />} />
             <Route exact path="/view-purchase" element={<ProtectedRoute allowedRoles={['user']} element={<ViewItem />} />} />

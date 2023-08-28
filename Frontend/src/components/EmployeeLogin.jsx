@@ -4,7 +4,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/EmployeeLogin.css"
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
 import LoginService from '../services/LoginService';
+=======
+import LoginServices from '../services/LoginServices';
+>>>>>>> 18046880ba6b45add660234b7b24dda4b07f97eb
 import { useDispatch } from 'react-redux';
 import { setUser } from '../store/actions';
 
@@ -45,10 +49,16 @@ const EmployeeLogin = () => {
             .then(response => {
                 setSuccess(`Login Successfull !`);
                 setError(null);
+<<<<<<< HEAD
                 dispatch(setUser(response.data.employeeName, "user"));
                 navigate("/");
                 sessionStorage.setItem("userId", response.data.employeeId);
                 console.log(sessionStorage.getItem("userId"))
+=======
+                dispatch(setUser(response.data.employeeId, "user"));
+                navigate("/");
+                sessionStorage.setItem("userId", response.data.employeeId);
+>>>>>>> 18046880ba6b45add660234b7b24dda4b07f97eb
                 sessionStorage.setItem("userRole", "user");
             })
             .catch(err => {

@@ -30,13 +30,21 @@ function App() {
             <Route exact path="/register" element={<Register />} />
             <Route exact path="/" element={<ProtectedRoute allowedRoles={['user']} element={<EmployeeDashBoard />} />} />
             <Route exact path="/apply-loan" element={<ProtectedRoute allowedRoles={['user']} element={<ApplyLoan />} />} />
+<<<<<<< HEAD
             <Route exact path="/view-purchase" element={<ProtectedRoute allowedRoles={['user']} element={<ViewItem />} />} />
+=======
+            <Route exact path="/view-purchase" element={<ProtectedRoute allowedRoles={['user']} element={<ViewPurchase />} />} />
+>>>>>>> 18046880ba6b45add660234b7b24dda4b07f97eb
             <Route exact path="/view-loan" element={<ProtectedRoute allowedRoles={['user']} element={<ViewLoan />} />} />
             <Route exact path="/admin/loan/add" element={<ProtectedRoute allowedRoles={['admin']} element={<AdminLoan />} />} />
             <Route exact path="/admin/loan/view" element={<ProtectedRoute allowedRoles={['admin']} element={<AdminViewLoan />} />} />
             <Route exact path="/admin/item/add" element={<ProtectedRoute allowedRoles={['admin']} element={<AdminItem />} />} />
             <Route exact path="/admin/item/view" element={<ProtectedRoute allowedRoles={['admin']} element={<AdminViewItem />} />} />
+<<<<<<< HEAD
             <Route exact path="/admin/employee/view" element={<ProtectedRoute allowedRoles={['admin']} element={<AdminViewEmployee />} />} />
+=======
+            <Route exact path="/admin/employee/view" element={<ProtectedRoute allowedRoles={['admin']} element={<ViewEmployee />} />} />
+>>>>>>> 18046880ba6b45add660234b7b24dda4b07f97eb
             <Route exact path="/admin/employee/add" element={<ProtectedRoute allowedRoles={['admin']} element={<AddEmployee />} />} />
             <Route exact path='/admin/dashboard' element={<ProtectedRoute allowedRoles={['admin']} element={<AdminDashBoard />} />} />
             <Route path="*" element={<PageNotFound />} />

@@ -3,6 +3,7 @@ import { Row, Form, Container, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import { useSelector } from 'react-redux';
+<<<<<<< HEAD
 import ItemService from '../services/ItemService';
 import LoanService from '../services/LoanService';
 import "../styles/background.css";
@@ -10,6 +11,11 @@ import "../styles/background.css";
 const ApplyLoan = () => {
     const employeeId = sessionStorage.userId;
     console.log(sessionStorage.userId)
+=======
+
+const ApplyLoan = () => {
+    const employeeId = useSelector(state => state.userId);
+>>>>>>> 18046880ba6b45add660234b7b24dda4b07f97eb
     const [itemCategory, setItemCategory] = useState(null);
     const [makeCategory, setMakeCategory] = useState(null);
     const [descriptionCategory, setDescriptionCategory] = useState(null);
@@ -27,7 +33,11 @@ const ApplyLoan = () => {
     useEffect(() => {
         const getBasicDetails = async () => {
             try {
+<<<<<<< HEAD
                 const responseValue = await ItemService.viewItemsService();
+=======
+                const responseValue = await itemServiceObject.viewItemsService();
+>>>>>>> 18046880ba6b45add660234b7b24dda4b07f97eb
                 setResponse(responseValue.data)
                 setItemCategory([...new Set(responseValue.data
                     .map((item, index) => {
@@ -112,7 +122,10 @@ const ApplyLoan = () => {
     return (
         <>
             <Navbar userType={employeeId} />
+<<<<<<< HEAD
             <div className='div-background'>
+=======
+>>>>>>> 18046880ba6b45add660234b7b24dda4b07f97eb
             <Container className="login-container">
                 <Form className="register-form">
                     <h2>Apply For Loan</h2>
@@ -171,7 +184,10 @@ const ApplyLoan = () => {
                 </Form>
 
             </Container>
+<<<<<<< HEAD
             </div>
+=======
+>>>>>>> 18046880ba6b45add660234b7b24dda4b07f97eb
         </>
     )
 }

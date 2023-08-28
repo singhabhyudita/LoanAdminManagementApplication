@@ -17,12 +17,12 @@ const EmployeeDashBoard = () => {
     return (
         <>
             <Navbar userType={userData} />
-            
+            <div className='div-background'>
                 {userData ?
                     <>
                         
                         
-                        <Container>
+                        <Container >
                         <Row>
                         <Col>
                         <Card >
@@ -86,7 +86,7 @@ const EmployeeDashBoard = () => {
                         
                     </> :
                     <h1>Are you allowed to visit here ? 🤨</h1>}
-            
+            </div>
         </>
     )
 }

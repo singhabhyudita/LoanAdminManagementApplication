@@ -47,7 +47,8 @@ const EmployeeLogin = () => {
                 setError(null);
                 dispatch(setUser(response.data.employeeName, "user"));
                 navigate("/");
-                sessionStorage.setItem("userId", response.data.employeeName);
+                sessionStorage.setItem("userId", response.data.employeeId);
+                console.log(sessionStorage.getItem("userId"))
                 sessionStorage.setItem("userRole", "user");
             })
             .catch(err => {
@@ -68,11 +69,11 @@ const EmployeeLogin = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Enter Password" value={employeePassword} onChange={(e) => handlePasswordChange(e)} />
                 </Form.Group>
-                <Button variant="primary" onClick={handleFormSubmit}>  Submit </Button>
+                <Button className="login-button" onClick={handleFormSubmit}>  Login </Button>
                 {error ? <div className="error">{error}</div> : null}
                 {success ? <div className="success">{success}</div> : null}
             </Form>
-            <div className="routing"><div>Don't have an account ? </div><Link to="/register"><Button variant="primary">Register</Button></Link></div>
+            <div className="routing"><div>Don't have an account ? </div><Link to="/register"><Button >Register</Button></Link></div>
         </Container>
     )
 }

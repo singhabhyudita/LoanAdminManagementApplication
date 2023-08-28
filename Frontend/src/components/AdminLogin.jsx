@@ -71,7 +71,7 @@ const AdminLogin = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Enter Password" value={adminPassword} onChange={(e) => handlePasswordChange(e)} />
                 </Form.Group>
-                <Button variant="primary" onClick={handleFormSubmit}>  Submit </Button>
+                <Button className="login-button" onClick={handleFormSubmit}>  Login </Button>
                 {error ? <div className="error">{error}</div> : null}
                 {success ? <div className="success">{success}</div> : null}
             </Form>

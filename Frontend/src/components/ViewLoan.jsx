@@ -4,6 +4,8 @@ import LoanService from '../services/LoanService';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import { useSelector } from 'react-redux';
+import "../styles/tables.css";
+import "../styles/background.css";
 
 
 export const ViewLoan = () => {
@@ -34,9 +36,9 @@ export const ViewLoan = () => {
   return (
     <>
       <Navbar userType={userData} />
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "90vh", minWidth: "100vw" }}>
-        <h2 className="table-header" style={{ marginBottom: "20px" }}>Loan Cards Availed</h2>
-        <Table striped bordered hover responsive style={{ minWidth: "80vw", textAlign: "center" }}>
+      <div className='div-background'>
+        <h2 className="table-header" style={{ marginBottom: "20px"}}>Loan Cards Availed</h2>
+        <Table className='table' striped bordered hover   >
           <thead>
             <tr>
               <th>Loan Id</th>

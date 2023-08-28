@@ -4,9 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import { useSelector } from 'react-redux';
 import ItemService from '../services/ItemService';
+import LoanService from '../services/LoanService';
+import "../styles/background.css";
 
 const ApplyLoan = () => {
-    const employeeId = useSelector(state => state.userId);
+    const employeeId = sessionStorage.userId;
+    console.log(sessionStorage.userId)
     const [itemCategory, setItemCategory] = useState(null);
     const [makeCategory, setMakeCategory] = useState(null);
     const [descriptionCategory, setDescriptionCategory] = useState(null);
@@ -97,7 +100,7 @@ const ApplyLoan = () => {
                 itemCategory: object.itemCategory,
                 itemValuation: object.itemValuation
             }
-            await ItemService.applyLoanService(itemObject, employeeId)
+            await LoanService.applyLoanService(itemObject, employeeId)
             navigate("/view-purchase")
             setError(null);
         } catch (err) {
@@ -109,6 +112,7 @@ const ApplyLoan = () => {
     return (
         <>
             <Navbar userType={employeeId} />
+            <div className='div-background'>
             <Container className="login-container">
                 <Form className="register-form">
                     <h2>Apply For Loan</h2>
@@ -167,6 +171,7 @@ const ApplyLoan = () => {
                 </Form>
 
             </Container>
+            </div>
         </>
     )
 }

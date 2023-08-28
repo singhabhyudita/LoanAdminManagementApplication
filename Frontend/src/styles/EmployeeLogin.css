@@ -12,6 +12,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: lightgray
 }
 
 .login-form {
@@ -25,6 +26,8 @@
 .login-form h2 {
     text-align: center;
     margin-bottom: 20px;
+    background-color: #d72525e2;
+    color: white
 }
 
 .register-form h2 {
@@ -74,4 +77,29 @@
 .routing Button {
     margin: 0 40px;
     width: 100%;
+    background-color: rgba(241, 187, 37, 0.865);
+    border: 0px;
+    color: #d72525e2;
+    font-weight:bold;
+}
+.login-button{
+    background-color: rgba(241, 187, 37, 0.865);
+    border: 0px;
+    color: #d72525e2;
+    font-weight:bold;
+}
+.login-button:hover{
+    background-color: rgba(241, 187, 37, 0.865);
+    border: 0px;
+    color: rgba(212, 116, 47, 0.865);
+    font-weight:bold;
+
+}
+.routing Button:hover {
+    margin: 0 40px;
+    width: 100%;
+    background-color: rgba(241, 187, 37, 0.865);
+    border: 0px;
+    color: rgba(212, 116, 47, 0.865);
+    font-weight:bold;
 }

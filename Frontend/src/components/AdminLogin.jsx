@@ -60,6 +60,7 @@ const AdminLogin = () => {
     }
 
     return (
+        <div className='div-background'>
         <Container className="login-container">
             <Form className="login-form">
                 <h2>Admin Login</h2>
@@ -75,7 +76,7 @@ const AdminLogin = () => {
                 {error ? <div className="error">{error}</div> : null}
                 {success ? <div className="success">{success}</div> : null}
             </Form>
-        </Container>
+        </Container></div>
     )
 }
 

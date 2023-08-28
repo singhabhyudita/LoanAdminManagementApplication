@@ -58,10 +58,12 @@ const EmployeeLogin = () => {
     }
 
     return (
-        <Container className="login-container">
+        <div className='div-background'>
+        <Container className="login-container" >
+            
             <Form className="login-form">
                 <h2>Employee Login</h2>
-                <Form.Group className="formGroup">
+                <Form.Group className="formGroup ">
                     <Form.Label>Employee Id</Form.Label>
                     <Form.Control type="text" placeholder="Enter Employee ID" value={employeeId} onChange={(e) => handleEmployeeIdChange(e)} />
                 </Form.Group>
@@ -75,6 +77,7 @@ const EmployeeLogin = () => {
             </Form>
             <div className="routing"><div>Don't have an account ? </div><Link to="/register"><Button >Register</Button></Link></div>
         </Container>
+        </div>
     )
 }
 

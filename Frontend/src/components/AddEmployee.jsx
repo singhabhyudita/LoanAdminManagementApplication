@@ -19,12 +19,7 @@ const Register = () => {
     const [success, setSuccess] = useState(null);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const adminname = sessionStorage.getItem("adminname");
-        if (!adminname) {
-            navigate("/login/admin")
-        }
-    }, [navigate])
+
 
     const handleEmployeeIdChange = (event) => {
         setEmployeeId(event.target.value);

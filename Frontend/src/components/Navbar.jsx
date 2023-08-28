@@ -20,7 +20,7 @@ const Navbar = ({ userType }) => {
         <>
           <NavDropdown title="Employee Data" className="admin-dropdown">
             <NavDropdown.Item as={Link} to="/admin/employee/view">View Employee Data</NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/admin/employee/add">Add admin data</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/admin/employee/add">Add Employee data</NavDropdown.Item>
           </NavDropdown>
           <NavDropdown title="Loan Data" className="admin-dropdown">
             <NavDropdown.Item as={Link} to="/admin/loan/view">View Loan Data</NavDropdown.Item>

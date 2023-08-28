@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Form, Container, Button } from 'react-bootstrap';
-import itemServiceObject from '../services/ItemServices';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import { useSelector } from 'react-redux';
+import ItemService from '../services/ItemService';
 
 const ApplyLoan = () => {
     const employeeId = useSelector(state => state.userId);
@@ -24,7 +24,7 @@ const ApplyLoan = () => {
     useEffect(() => {
         const getBasicDetails = async () => {
             try {
-                const responseValue = await itemServiceObject.viewItemsService();
+                const responseValue = await ItemService.viewItemsService();
                 setResponse(responseValue.data)
                 setItemCategory([...new Set(responseValue.data
                     .map((item, index) => {
@@ -97,7 +97,7 @@ const ApplyLoan = () => {
                 itemCategory: object.itemCategory,
                 itemValuation: object.itemValuation
             }
-            await itemServiceObject.applyLoanService(itemObject, employeeId)
+            await ItemService.applyLoanService(itemObject, employeeId)
             navigate("/view-purchase")
             setError(null);
         } catch (err) {
@@ -171,4 +171,4 @@ const ApplyLoan = () => {
     )
 }
 
-export default ApplyLoan
+export default ApplyLoan;

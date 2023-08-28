@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap';
-import itemServiceObject from '../services/ItemServices';
+import ItemService from '../services/ItemService';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import { useSelector } from 'react-redux';
 
-const ViewPurchase = () => {
+const ViewItem = () => {
     const [tableData, setTableData] = useState(null);
     const userData = useSelector(state => state.userId);
     const navigate = useNavigate();
     useEffect(() => {
         const getPurchasedItems = async () => {
             try {
-                const result = await itemServiceObject.viewPurchasedItemService(userData);
+                const result = await ItemService.viewPurchasedItemService(userData);
                 setTableData(result.data)
             } catch (err) {
                 console.log(err);
@@ -60,4 +60,4 @@ const ViewPurchase = () => {
     )
 }
 
-export default ViewPurchase;
+export default ViewItem;

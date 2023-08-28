@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/EmployeeLogin.css"
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import LoginServices from '../services/LoginServices';
+import LoginService from '../services/LoginService';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../store/actions';
 
@@ -41,13 +41,13 @@ const EmployeeLogin = () => {
             loginId: employeeId,
             password: employeePassword
         }
-        LoginServices.employeeLoginService(loginObject)
+        LoginService.employeeLoginService(loginObject)
             .then(response => {
                 setSuccess(`Login Successfull !`);
                 setError(null);
-                dispatch(setUser(response.data.employeeId, "user"));
+                dispatch(setUser(response.data.employeeName, "user"));
                 navigate("/");
-                sessionStorage.setItem("userId", response.data.employeeId);
+                sessionStorage.setItem("userId", response.data.employeeName);
                 sessionStorage.setItem("userRole", "user");
             })
             .catch(err => {

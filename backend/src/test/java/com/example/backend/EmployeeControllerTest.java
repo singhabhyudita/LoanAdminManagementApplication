@@ -40,9 +40,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 public class EmployeeControllerTest {
 	@Autowired
 	private MockMvc mvc;
-	
-	
-	
+
 	@MockBean
 	private ItemService itemService;
 	
@@ -60,9 +58,7 @@ public class EmployeeControllerTest {
 	
 	@MockBean
 	private RegisterService registerService;
-	
-	
-	
+
 	@MockBean
 	private AdminRepository adminRepository;
 	
@@ -82,7 +78,8 @@ public class EmployeeControllerTest {
 	private LoanRepository loanRepository;
 
 	ObjectMapper mapper = new ObjectMapper().findAndRegisterModules().disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-
+	
+	
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testLogin() throws Exception {
@@ -95,12 +92,10 @@ public class EmployeeControllerTest {
 		mvc.perform(post("/api/employee/login").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$.employeeId",Matchers.equalTo(loginRequest.getLoginId())));
 	}
 
-	
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testRegister() throws Exception{
-		Employee e = new Employee();
-//		
+		Employee e = new Employee();		
 		e.setDate_of_birth(new Date());
 		e.setDate_of_joining(new Date());
 		e.setDepartment("IT");
@@ -114,8 +109,6 @@ public class EmployeeControllerTest {
 
 		mvc.perform(post("/api/employee/register").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(status().isOk()).andExpect(jsonPath("$.employee_id",Matchers.equalTo(e.getEmployee_id())));
 
-		
-	
 	}
 
 }

@@ -22,7 +22,6 @@ public class LoginRequest  {
 	
 	
 	public String getLoginId() {
-		// TODO Auto-generated method stub
 		return this.loginId;
 	}
 	

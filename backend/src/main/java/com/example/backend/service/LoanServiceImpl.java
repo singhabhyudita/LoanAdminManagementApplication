@@ -19,7 +19,6 @@ import com.example.backend.repository.EmployeeRepository;
 import com.example.backend.repository.LoanRepository;
 
 @Service
-
 public class LoanServiceImpl implements LoanService {
 	@Autowired
 	EmployeeCardRepository employeeCardRepository;

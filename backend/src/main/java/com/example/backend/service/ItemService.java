@@ -11,7 +11,6 @@ import com.example.backend.model.Item;
 import com.example.backend.model.PurchasedItem;
 
 @Service
-
 public interface ItemService {
 	public List<Item> getAllItems() throws NoDataFoundException;
 

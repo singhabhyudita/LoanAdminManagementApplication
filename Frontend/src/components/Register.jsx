@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Container, Form, Button, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/EmployeeLogin.css';
-import { Link } from 'react-router-dom';
-import RegisterServices from "../services/RegisterServices";
+import { Link, useNavigate } from 'react-router-dom';
+import RegisterService from "../services/RegisterService";
 
 const Register = () => {
   const [employeeId, setEmployeeId] = useState('');
@@ -16,6 +16,7 @@ const Register = () => {
   const [employeePassword, setEmployeePassword] = useState('');
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const navigate = useNavigate("");
 
   const handleEmployeeIdChange = (event) => {
     setEmployeeId(event.target.value);
@@ -66,7 +67,11 @@ const Register = () => {
       setSuccess(null)
       return;
     }
-
+    if(employeeId.length<6){
+      setError("Employee Id should be of 6 characters");
+      setSuccess(null);
+      return;
+    }
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     if (!passwordRegex.test(employeePassword)) {
@@ -101,7 +106,7 @@ const Register = () => {
       date_of_joining: formattedDateOfJoining,
       password: employeePassword
     }
-    RegisterServices.registerEmployee(registerObject)
+    RegisterService.registerEmployee(registerObject)
       .then(response => {
         if (response.data === "") {
           setError("Couldn't create user Data , Try Again!");
@@ -109,6 +114,7 @@ const Register = () => {
         } else {
           setSuccess(`Register Successfull , Please Log In !`);
           setError(null);
+          navigate("/login/employee");
           clearFields();
         }
       })

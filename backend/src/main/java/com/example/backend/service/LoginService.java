@@ -10,5 +10,5 @@ import com.example.backend.model.LoginResponse;
 @Service
 public interface LoginService {
 	public LoginResponse login(LoginRequest loginRequest) throws ResourceNotFoundException;
-
+	
 }

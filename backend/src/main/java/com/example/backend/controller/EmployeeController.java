@@ -29,7 +29,6 @@ public class EmployeeController {
 	@PostMapping("/register")
 	public Employee register(@RequestBody @Valid Employee employee) throws RecordAlreadyExistsException {
 		return registerService.register(employee);
-
 	}
 
 	@PostMapping("/login")

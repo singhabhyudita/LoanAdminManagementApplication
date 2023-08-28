@@ -17,7 +17,7 @@ public class RegisterServiceImpl implements RegisterService {
 		if (!employeeRepository.findById(emp.getEmployee_id()).isEmpty())
 			throw new RecordAlreadyExistsException("Employee ID already exists");
 		else
-			return emp;
+			return employeeRepository.save(emp);
 	}
 
 }

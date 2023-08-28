@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Table from 'react-bootstrap/Table';
-import itemServiceObject from '../services/ItemServices';
+import LoanService from '../services/LoanService';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import { useSelector } from 'react-redux';
@@ -14,7 +14,7 @@ export const ViewLoan = () => {
   useEffect(() => {
     const getinfo = async () => {
       try {
-        const response = await itemServiceObject.viewLoanService(userData);
+        const response = await LoanService.viewLoanService(userData);
         setData(response.data);
       } catch (err) {
         console.log(err);

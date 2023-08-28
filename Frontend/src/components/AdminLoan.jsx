@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button, Container, Form, Row, Col } from "react-bootstrap";
 import AdminLoanService from "../services/AdminLoanService";
 import { useNavigate } from "react-router-dom";

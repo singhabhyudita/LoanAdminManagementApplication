@@ -47,8 +47,9 @@ const AdminLogin = () => {
                     setSuccess(`Login Successfull !`);
                     setError(null);
                     sessionStorage.setItem("userId", response.data);
+                    sessionStorage.setItem("userName", "admin");
                     sessionStorage.setItem("userRole", "admin");
-                    dispatch(setUser(response.data, "admin"));
+                    dispatch(setUser(response.data, "admin" , "admin"));
                     navigate("/admin/dashboard");
                 }
             })
@@ -63,7 +64,7 @@ const AdminLogin = () => {
         <div className='div-background'>
         <Container className="login-container">
             <Form className="login-form">
-                <h2>Admin Login</h2>
+                <h2 style={{paddingBottom : "20px"}}>Admin Login</h2>
                 <Form.Group className="formGroup">
                     <Form.Label>Admin Id</Form.Label>
                     <Form.Control type="text" placeholder="Enter Admin ID" value={adminId} onChange={(e) => handleAdminIdChange(e)} />

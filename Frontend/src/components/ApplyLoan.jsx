@@ -8,8 +8,8 @@ import LoanService from '../services/LoanService';
 import "../styles/background.css";
 
 const ApplyLoan = () => {
-    const employeeId = sessionStorage.userId;
-    console.log(sessionStorage.userId)
+    const employeeId = useSelector(state => state.userId);
+    const employeeName = useSelector(state => state.userName);
     const [itemCategory, setItemCategory] = useState(null);
     const [makeCategory, setMakeCategory] = useState(null);
     const [descriptionCategory, setDescriptionCategory] = useState(null);
@@ -111,7 +111,7 @@ const ApplyLoan = () => {
 
     return (
         <>
-            <Navbar userType={employeeId} />
+            <Navbar userType={employeeName} />
             <div className='div-background'>
             <Container className="login-container">
                 <Form className="register-form">

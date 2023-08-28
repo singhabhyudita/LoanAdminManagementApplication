@@ -58,7 +58,9 @@ const EmployeeLogin = () => {
     }
 
     return (
-        <Container className="login-container">
+        <div className='div-background'>
+        <Container className="login-container" >
+            
             <Form className="login-form">
                 <h2 style={{paddingBottom : "20px"}}>Employee Login</h2>
                 <Form.Group className="formGroup">
@@ -75,6 +77,7 @@ const EmployeeLogin = () => {
             </Form>
             <div className="routing"><div>Don't have an account ? </div><Link to="/register"><Button >Register</Button></Link></div>
         </Container>
+        </div>
     )
 }
 

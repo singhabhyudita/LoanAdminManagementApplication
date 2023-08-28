@@ -15,6 +15,7 @@ const ViewItem = () => {
         const getPurchasedItems = async () => {
             try {
                 const result = await ItemService.viewPurchasedItemService(userData);
+                console.log(result)
                 setTableData(result.data)
             } catch (err) {
                 console.log(err);

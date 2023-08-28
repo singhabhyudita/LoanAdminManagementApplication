@@ -9,15 +9,11 @@ import com.example.backend.exception.NoDataFoundException;
 import com.example.backend.exception.RecordAlreadyExistsException;
 import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.model.Employee;
-<<<<<<< HEAD
 
 
 import com.example.backend.repository.EmployeeRepository;
 
 
-=======
-import com.example.backend.repository.EmployeeRepository;
->>>>>>> 18046880ba6b45add660234b7b24dda4b07f97eb
 @Service
 public interface EmployeeService {
 	public List<Employee> findAll() throws NoDataFoundException;

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { employeeRegisterUrl } from '../URL'
 
-class RegisterServices {
+class RegisterService {
     constructor() {
         this.registerEmployee = this.registerEmployee.bind(this);
     }
@@ -11,6 +11,4 @@ class RegisterServices {
     }
 }
 
-const resgisterServiceObject = new RegisterServices();
-
-export default resgisterServiceObject;
+export default new RegisterService();

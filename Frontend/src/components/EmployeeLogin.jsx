@@ -4,8 +4,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/EmployeeLogin.css"
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import LoginServices from '../services/LoginServices';
-
+import LoginService from '../services/LoginService';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../store/actions';
 
 const EmployeeLogin = () => {
     const [employeeId, setEmployeeId] = useState("");
@@ -13,6 +14,7 @@ const EmployeeLogin = () => {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     // const { setAuthenticated } = useAuth();
 
     const handleEmployeeIdChange = (event) => {
@@ -39,33 +41,28 @@ const EmployeeLogin = () => {
             loginId: employeeId,
             password: employeePassword
         }
-        LoginServices.employeeLoginService(loginObject)
+        LoginService.employeeLoginService(loginObject)
             .then(response => {
-                if (response.data === "Invalid user") {
-                    setError("User data not found!");
-                    setSuccess(null);
-                } else if (response.data === "Password not matching") {
-                    setError("Invalid Credentials!");
-                    setSuccess(null);
-                } else {
-                    setSuccess(`Login Successfull !`);
-                    setError(null);
-                    // setAuthenticated(true);
-                    sessionStorage.setItem("username", response.data)
-                    navigate("/");
-                }
+                setSuccess(`Login Successfull !`);
+                setError(null);
+                dispatch(setUser(response.data.employeeId, "user",response.data.employeeName));
+                navigate("/");
+                sessionStorage.setItem("userId", response.data.employeeId);
+                sessionStorage.setItem("userName", response.data.employeeName);
+                sessionStorage.setItem("userRole", "user");
             })
             .catch(err => {
-                console.log(err)
-                setError("Server Error !");
+                setError(err.response.data.message);
                 setSuccess(null);
             })
     }
 
     return (
-        <Container className="login-container">
+        <div className='div-background'>
+        <Container className="login-container" >
+            
             <Form className="login-form">
-                <h2>Employee Login</h2>
+                <h2 style={{paddingBottom : "20px"}}>Employee Login</h2>
                 <Form.Group className="formGroup">
                     <Form.Label>Employee Id</Form.Label>
                     <Form.Control type="text" placeholder="Enter Employee ID" value={employeeId} onChange={(e) => handleEmployeeIdChange(e)} />
@@ -74,12 +71,13 @@ const EmployeeLogin = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Enter Password" value={employeePassword} onChange={(e) => handlePasswordChange(e)} />
                 </Form.Group>
-                <Button variant="primary" onClick={handleFormSubmit}>  Submit </Button>
+                <Button className="login-button" onClick={handleFormSubmit}>  Login </Button>
                 {error ? <div className="error">{error}</div> : null}
                 {success ? <div className="success">{success}</div> : null}
             </Form>
-            <div className="routing"><div>Don't have an account ? </div><Link to="/register"><Button variant="primary">Register</Button></Link></div>
+            <div className="routing"><div>Don't have an account ? </div><Link to="/register"><Button >Register</Button></Link></div>
         </Container>
+        </div>
     )
 }
 

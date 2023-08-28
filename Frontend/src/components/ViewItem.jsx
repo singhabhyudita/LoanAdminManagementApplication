@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap';
-import itemServiceObject from '../services/ItemServices';
+import ItemService from '../services/ItemService';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
+import { useSelector } from 'react-redux';
+import "../styles/background.css";
 
-const ViewPurchase = () => {
+const ViewItem = () => {
     const [tableData, setTableData] = useState(null);
-    const [userData, setUserData] = useState(null);
+    const userData = useSelector(state => state.userId);
+    const employeeName = useSelector(state => state.userName);
     const navigate = useNavigate();
     useEffect(() => {
-        const userId = sessionStorage.getItem("username");
-        if (!userId) navigate("/login/employee");
-        setUserData(userId)
         const getPurchasedItems = async () => {
             try {
-                const result = await itemServiceObject.viewPurchasedItemService(userId);
+                const result = await ItemService.viewPurchasedItemService(userData);
+                console.log(result)
                 setTableData(result.data)
             } catch (err) {
                 console.log(err);
@@ -24,10 +25,10 @@ const ViewPurchase = () => {
     }, [navigate])
     return (
         <>
-            <Navbar userType={userData} />
-            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "90vh", minWidth: "100vw" }}>
-                <h2 className="table-header" style={{ marginBottom: "20px" }}>Items Purchased</h2>
-                <Table striped bordered hover responsive style={{ minWidth: "80vw" }}>
+            <Navbar userType={employeeName} />
+            <div className='div-background'>
+                <h2 className="table-header" >Items Purchased</h2>
+                <Table striped bordered hover  style={{ minWidth: "80vw" }}>
                     <thead>
                         <tr>
                             <th>Issue Id</th>
@@ -62,4 +63,4 @@ const ViewPurchase = () => {
     )
 }
 
-export default ViewPurchase;
+export default ViewItem;

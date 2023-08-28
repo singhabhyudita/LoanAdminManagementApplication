@@ -19,12 +19,7 @@ const Register = () => {
     const [success, setSuccess] = useState(null);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const adminname = sessionStorage.getItem("adminname");
-        if (!adminname) {
-            navigate("/login/admin")
-        }
-    }, [navigate])
+    
 
     const handleEmployeeIdChange = (event) => {
         setEmployeeId(event.target.value);
@@ -136,8 +131,9 @@ const Register = () => {
     return (
         <>
             <Navbar userType={"admin"} />
+            <div className='div-background'>
             <Container className="login-container">
-                <Form className="register-form">
+                <Form className="register-form" >
                     <h2>Employee Registration</h2>
                     <Row className='formGroup'>
                         <Col>
@@ -184,13 +180,14 @@ const Register = () => {
                             <Form.Control type="date" value={dateOfJoining} onChange={handleDateOfJoiningChange} />
                         </Col>
                     </Row>
-                    <Button variant="primary" type="button" onClick={handleFormSubmit}>
-                        Submit
+                    <Button className="login-button" type="button" onClick={handleFormSubmit}>
+                        Register
                     </Button>
                     {error ? <div className="error">{error}</div> : null}
                     {success ? <div className="success">{success}</div> : null}
                 </Form>
             </Container>
+            </div>
         </>
     );
 }

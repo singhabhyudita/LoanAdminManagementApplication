@@ -17,8 +17,6 @@ import com.example.backend.exception.ResourceNotFoundException;
 import com.example.backend.model.LoanAvailed;
 import com.example.backend.service.LoanService;
 
-
-
 @RequestMapping("/api/loans")
 @CrossOrigin(origins="http://localhost:3000/")
 @RestController
@@ -28,7 +26,6 @@ public class LoanController {
 	LoanService loanService;
 	
 	@GetMapping("/all/{id}")
-
 	public List<LoanAvailed> getItemsById(@PathVariable String id) throws ResourceNotFoundException,NoDataFoundException{
 		return loanService.getItemsById(id);
 	}

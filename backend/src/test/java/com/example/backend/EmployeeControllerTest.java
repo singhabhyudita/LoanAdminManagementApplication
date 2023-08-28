@@ -1,6 +1,5 @@
 package com.example.backend;
 
-import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -18,10 +17,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 
 import com.example.backend.model.Employee;
 import com.example.backend.model.LoginRequest;
+import com.example.backend.model.LoginResponse;
 import com.example.backend.repository.AdminRepository;
 import com.example.backend.repository.EmployeeCardRepository;
 import com.example.backend.repository.EmployeeIssueRepository;
@@ -41,9 +40,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 public class EmployeeControllerTest {
 	@Autowired
 	private MockMvc mvc;
-	
-	
-	
+
 	@MockBean
 	private ItemService itemService;
 	
@@ -61,9 +58,7 @@ public class EmployeeControllerTest {
 	
 	@MockBean
 	private RegisterService registerService;
-	
-	
-	
+
 	@MockBean
 	private AdminRepository adminRepository;
 	
@@ -81,8 +76,7 @@ public class EmployeeControllerTest {
 	
 	@MockBean
 	private LoanRepository loanRepository;
-	
-	
+
 	ObjectMapper mapper = new ObjectMapper().findAndRegisterModules().disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 	
 	
@@ -92,19 +86,16 @@ public class EmployeeControllerTest {
 		LoginRequest loginRequest = new LoginRequest();
 		loginRequest.setLoginId("123456");
 		loginRequest.setPassword("Password@1");
-		String str = "string";
-		Mockito.when(loginService.login(ArgumentMatchers.any())).thenReturn(str);
+		LoginResponse loginResponse = new LoginResponse(loginRequest.getLoginId(),"abc");
+		Mockito.when(loginService.login(ArgumentMatchers.any())).thenReturn(loginResponse);
 		String json = mapper.writeValueAsString(loginRequest);
-		MvcResult requestResult = mvc.perform(post("/api/employee/login").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
-		String result = requestResult.getResponse().getContentAsString();
-		assertEquals(result,str);
+		mvc.perform(post("/api/employee/login").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$.employeeId",Matchers.equalTo(loginRequest.getLoginId())));
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testRegister() throws Exception{
-		Employee e = new Employee();
-//		
+		Employee e = new Employee();		
 		e.setDate_of_birth(new Date());
 		e.setDate_of_joining(new Date());
 		e.setDepartment("IT");
@@ -118,8 +109,6 @@ public class EmployeeControllerTest {
 
 		mvc.perform(post("/api/employee/register").contentType(MediaType.APPLICATION_JSON_UTF8).content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(status().isOk()).andExpect(jsonPath("$.employee_id",Matchers.equalTo(e.getEmployee_id())));
 
-		
-	
 	}
 
 }

@@ -3,8 +3,9 @@ import { Button, Modal, Table, Col, Form, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import AdminEmployeeService from '../services/AdminEmployeeService';
 import Navbar from './Navbar';
+import "../styles/background.css";
 
-const ViewEmployee = () => {
+const AdminViewEmployee = () => {
     const [employeeData, setEmployeeData] = useState(null);
     const [error, setError] = useState(null);
     const [isModalShown, setIsModalShown] = useState(false);
@@ -103,8 +104,6 @@ const ViewEmployee = () => {
     useEffect(() => {
         const getEmployeeData = async () => {
             try {
-                const adminname = sessionStorage.getItem("adminname")
-                if (!adminname) navigate("/login/admin")
                 const response = await AdminEmployeeService.viewEmployee();
                 setEmployeeData(response.data)
                 if (response.data.length === 0) {
@@ -198,9 +197,9 @@ const ViewEmployee = () => {
                     </Form>
                 </Modal.Body>
             </Modal>
-            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "90vh", minWidth: "100vw" }}>
+            <div className='div-background'>
                 <h2 className="table-header" style={{ marginBottom: "20px" }}>Employee List</h2>
-                <Table striped bordered hover responsive style={{ minWidth: "80vw" }}>
+                <Table striped bordered hover  style={{ minWidth: "80vw" }}>
                     <thead>
                         <tr>
                             <th>Employee Id</th>
@@ -238,4 +237,4 @@ const ViewEmployee = () => {
     )
 }
 
-export default ViewEmployee
+export default AdminViewEmployee;

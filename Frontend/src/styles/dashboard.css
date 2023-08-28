@@ -1,26 +1,35 @@
-.dashboard-container {
-    width: 100vw;
-}
-
-.welcome-text {
+.card-title{
+    background-color: rgba(241, 187, 37, 0.865);
     text-align: center;
+    color: rgba(212, 116, 47, 0.865);
+    padding: 5%;
+}
+
+.dropdown-item:hover{
+    color: rgba(212, 116, 47, 0.865);
+}
+
+#dropdown-basic-button{
+    background-color:rgba(241, 187, 37, 0.865);
+    border: 0px;
+    color: rgba(212, 116, 47, 0.865);
+}
+
+#apply-loan{
+    width: 60%;
+    height: 60%;
+}
+
+.dashboard-card {
+    text-align: center;
+    color: rgba(212, 116, 47, 0.865);
+
+    @media (max-width: 768px) {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+#dropdown-basic-button{
     width: 100%;
-    margin-top: 10px;
-}
-
-.controllers {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    min-height: 250px;
-}
-
-.log-out {
-    display: fixed;
-    top: 10px;
-}
-
-.controllers{
-    min-width: 100%;
-    min-height: 90vh;
 }

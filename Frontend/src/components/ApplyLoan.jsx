@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Form, Container, Button } from 'react-bootstrap';
-import itemServiceObject from '../services/ItemServices';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import { useSelector } from 'react-redux';
+import ItemService from '../services/ItemService';
+import LoanService from '../services/LoanService';
+import "../styles/background.css";
 
 const ApplyLoan = () => {
-    const employeeId = useSelector(state => state.userId);
+    const employeeId = sessionStorage.userId;
+    console.log(sessionStorage.userId)
     const [itemCategory, setItemCategory] = useState(null);
     const [makeCategory, setMakeCategory] = useState(null);
     const [descriptionCategory, setDescriptionCategory] = useState(null);
@@ -24,7 +27,7 @@ const ApplyLoan = () => {
     useEffect(() => {
         const getBasicDetails = async () => {
             try {
-                const responseValue = await itemServiceObject.viewItemsService();
+                const responseValue = await ItemService.viewItemsService();
                 setResponse(responseValue.data)
                 setItemCategory([...new Set(responseValue.data
                     .map((item, index) => {
@@ -97,7 +100,7 @@ const ApplyLoan = () => {
                 itemCategory: object.itemCategory,
                 itemValuation: object.itemValuation
             }
-            await itemServiceObject.applyLoanService(itemObject, employeeId)
+            await LoanService.applyLoanService(itemObject, employeeId)
             navigate("/view-purchase")
             setError(null);
         } catch (err) {
@@ -109,6 +112,7 @@ const ApplyLoan = () => {
     return (
         <>
             <Navbar userType={employeeId} />
+            <div className='div-background'>
             <Container className="login-container">
                 <Form className="register-form">
                     <h2>Apply For Loan</h2>
@@ -167,8 +171,9 @@ const ApplyLoan = () => {
                 </Form>
 
             </Container>
+            </div>
         </>
     )
 }
 
-export default ApplyLoan
+export default ApplyLoan;

@@ -20,7 +20,7 @@ const Navbar = ({ userType }) => {
         <>
           <NavDropdown title="Employee Data" className="admin-dropdown">
             <NavDropdown.Item as={Link} to="/admin/employee/view">View Employee Data</NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/admin/employee/add">Add admin data</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/admin/employee/add">Add employee data</NavDropdown.Item>
           </NavDropdown>
           <NavDropdown title="Loan Data" className="admin-dropdown">
             <NavDropdown.Item as={Link} to="/admin/loan/view">View Loan Data</NavDropdown.Item>
@@ -54,10 +54,9 @@ const Navbar = ({ userType }) => {
     <BootstrapNavbar className="custom-navbar" expand="lg">
       <img
               src="../images/logo.png"
-              width="80"
+              width="120"
               height="50"
-              className="d-inline-block align-top"
-              
+              style={{marginRight : "10px"}}
             />
       <BootstrapNavbar.Brand as={Link} to={userType === "admin" ? "/admin/dashboard" : "/"}>Loan Management Application</BootstrapNavbar.Brand>
       <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />

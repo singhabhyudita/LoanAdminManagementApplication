@@ -3,6 +3,8 @@ import { Button, Form, Modal, ModalBody, Table, Row, Col } from "react-bootstrap
 import AdminItemService from "../services/AdminItemService";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import "../styles/background.css";
+
 const AdminViewItem = () => {
     const [errorModal, setErrorModal] = useState(null);
     const [error, setError] = useState(null);
@@ -124,9 +126,9 @@ const AdminViewItem = () => {
                             </Form>
                         </ModalBody>
                     </Modal>
-                    <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: "90vh", minWidth: "100vw" }}>
+                    <div className="div-background">
                         <h2 className="table-header" style={{ marginBottom: "20px" }}>Items List</h2>
-                        <Table triped bordered hover responsive style={{ minWidth: "80vw" }}>
+                        <Table triped bordered hover style={{ minWidth: "80vw" }}>
                             <thead>
                                 <tr>
                                     <th>Item ID</th>

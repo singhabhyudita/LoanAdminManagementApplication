@@ -27,11 +27,11 @@ const EmployeeDashBoard = () => {
                         <Col>
                         <Card >
                         <Card.Title>View Loans</Card.Title>
-                    
-                        <Card.Img variant="top" src="../images/card.jpg" />
+                        <div  style={{minHeight :"300px", minWidth: "200px",justifyContent:"center",display:"flex",alignItems:"center"}}>
+                        <Card.Img variant="top" src="../images/card.jpg" /></div>
                         <Card.Body>
                         <h5>
-                        View details about the loan cards that you own
+                        View loan cards that you own
                         </h5>
                          </Card.Body>
                         <Card.Footer>
@@ -47,11 +47,12 @@ const EmployeeDashBoard = () => {
                         <Card>
                     
                         <Card.Title>Apply for Loans</Card.Title>
-                        <Card.Img id="apply-loan" variant="top" src="../images/apply-loan.png"  />
+                        <div  style={{minHeight :"300px", minWidth: "200px",justifyContent:"center",display:"flex",alignItems:"center"}}>
+                        <Card.Img id="apply-loan" variant="top" src="../images/apply-loan.png"  /></div>
 
                         <Card.Body>
                         <h5>
-                        View details about the loan cards that you own
+                        Apply for loans
                         </h5>
                         </Card.Body>
                         <Card.Footer>
@@ -67,7 +68,9 @@ const EmployeeDashBoard = () => {
                         <Col>
                             <Card>
                                 <Card.Title>View Items Purchased</Card.Title>
-                                <Card.Body></Card.Body>
+                                <div  style={{minHeight :"300px", minWidth: "200px",justifyContent:"center",display:"flex",alignItems:"center"}}>
+                        <Card.Img id="apply-loan" variant="top" src="../images/cart-image.jpg"  /></div>
+                                <Card.Body><h5>View Items purchased</h5></Card.Body>
                                 <Card.Footer>
                                 <div className="controllers">
                                     <DropdownButton id="dropdown-basic-button" title="Items Purchased">

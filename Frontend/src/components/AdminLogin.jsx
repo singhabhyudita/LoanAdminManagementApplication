@@ -3,7 +3,7 @@ import { Container, Form, Button } from 'react-bootstrap'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/EmployeeLogin.css"
 import { useNavigate } from 'react-router-dom';
-import LoginServices from '../services/LoginServices';
+import LoginService from '../services/LoginService';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../store/actions';
 
@@ -35,7 +35,7 @@ const AdminLogin = () => {
             loginId: adminId,
             password: adminPassword
         }
-        LoginServices.adminLoginService(loginObject)
+        LoginService.adminLoginService(loginObject)
             .then(response => {
                 if (response.data === "Invalid user") {
                     setError("User data not found!");
@@ -71,7 +71,7 @@ const AdminLogin = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Enter Password" value={adminPassword} onChange={(e) => handlePasswordChange(e)} />
                 </Form.Group>
-                <Button variant="primary" onClick={handleFormSubmit}>  Submit </Button>
+                <Button className="login-button" onClick={handleFormSubmit}>  Login </Button>
                 {error ? <div className="error">{error}</div> : null}
                 {success ? <div className="success">{success}</div> : null}
             </Form>

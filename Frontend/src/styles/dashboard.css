@@ -36,16 +36,17 @@
    
 }
 .card-title{
-    background-color: rgba(242, 226, 52, 0.865);
+    background-color: rgba(241, 187, 37, 0.865);
     text-align: center;
     color: rgba(212, 116, 47, 0.865);
+    padding: 5%;
 }
 
 .dropdown-item:hover{
     color: rgba(212, 116, 47, 0.865);
 }
 #dropdown-basic-button{
-    background-color:rgba(242, 226, 52, 0.865);
+    background-color:rgba(241, 187, 37, 0.865);
     border: 0px;
     color: rgba(212, 116, 47, 0.865);
   }

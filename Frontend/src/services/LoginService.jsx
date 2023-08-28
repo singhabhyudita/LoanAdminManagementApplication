@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { employeeLoginUrl, adminLoginUrl } from '../URL';
 
-class LoginServices {
+class LoginService {
     constructor() {
         this.employeeLoginService = this.employeeLoginService.bind(this);
         this.adminLoginService = this.adminLoginService.bind(this);
@@ -16,6 +16,4 @@ class LoginServices {
     }
 }
 
-const loginServiceObject = new LoginServices();
-
-export default loginServiceObject;
+export default new LoginService();;

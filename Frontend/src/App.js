@@ -3,12 +3,12 @@ import EmployeeLogin from "./components/EmployeeLogin"
 import AdminLogin from "./components/AdminLogin";
 import Register from "./components/Register";
 import ApplyLoan from "./components/ApplyLoan";
-import ViewPurchase from "./components/ViewPurchase"
+import ViewItem from "../src/components/ViewItem";
 import ViewLoan from "./components/ViewLoan";
 import AdminViewLoan from "./components/AdminViewLoan";
 import AdminItem from "./components/AdminItem";
 import AdminViewItem from "./components/AdminViewItem";
-import ViewEmployee from "./components/ViewEmployee";
+import AdminViewEmployee from "./components/AdminViewEmployee";
 import AddEmployee from "./components/AddEmployee";
 import AdminDashBoard from "./components/AdminDashBoard";
 import AdminLoan from "./components/AdminLoan";
@@ -30,13 +30,13 @@ function App() {
             <Route exact path="/register" element={<Register />} />
             <Route exact path="/" element={<ProtectedRoute allowedRoles={['user']} element={<EmployeeDashBoard />} />} />
             <Route exact path="/apply-loan" element={<ProtectedRoute allowedRoles={['user']} element={<ApplyLoan />} />} />
-            <Route exact path="/view-purchase" element={<ProtectedRoute allowedRoles={['user']} element={<ViewPurchase />} />} />
+            <Route exact path="/view-purchase" element={<ProtectedRoute allowedRoles={['user']} element={<ViewItem />} />} />
             <Route exact path="/view-loan" element={<ProtectedRoute allowedRoles={['user']} element={<ViewLoan />} />} />
             <Route exact path="/admin/loan/add" element={<ProtectedRoute allowedRoles={['admin']} element={<AdminLoan />} />} />
             <Route exact path="/admin/loan/view" element={<ProtectedRoute allowedRoles={['admin']} element={<AdminViewLoan />} />} />
             <Route exact path="/admin/item/add" element={<ProtectedRoute allowedRoles={['admin']} element={<AdminItem />} />} />
             <Route exact path="/admin/item/view" element={<ProtectedRoute allowedRoles={['admin']} element={<AdminViewItem />} />} />
-            <Route exact path="/admin/employee/view" element={<ProtectedRoute allowedRoles={['admin']} element={<ViewEmployee />} />} />
+            <Route exact path="/admin/employee/view" element={<ProtectedRoute allowedRoles={['admin']} element={<AdminViewEmployee />} />} />
             <Route exact path="/admin/employee/add" element={<ProtectedRoute allowedRoles={['admin']} element={<AddEmployee />} />} />
             <Route exact path='/admin/dashboard' element={<ProtectedRoute allowedRoles={['admin']} element={<AdminDashBoard />} />} />
             <Route path="*" element={<PageNotFound />} />

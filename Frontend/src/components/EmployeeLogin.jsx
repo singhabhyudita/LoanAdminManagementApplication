@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/EmployeeLogin.css"
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import LoginServices from '../services/LoginServices';
+import LoginService from '../services/LoginService';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../store/actions';
 
@@ -41,13 +41,14 @@ const EmployeeLogin = () => {
             loginId: employeeId,
             password: employeePassword
         }
-        LoginServices.employeeLoginService(loginObject)
+        LoginService.employeeLoginService(loginObject)
             .then(response => {
                 setSuccess(`Login Successfull !`);
                 setError(null);
-                dispatch(setUser(response.data.employeeId, "user"));
+                dispatch(setUser(response.data.employeeName, "user"));
                 navigate("/");
                 sessionStorage.setItem("userId", response.data.employeeId);
+                console.log(sessionStorage.getItem("userId"))
                 sessionStorage.setItem("userRole", "user");
             })
             .catch(err => {
@@ -72,7 +73,7 @@ const EmployeeLogin = () => {
                 {error ? <div className="error">{error}</div> : null}
                 {success ? <div className="success">{success}</div> : null}
             </Form>
-            <div className="routing"><div>Don't have an account ? </div><Link to="/register"><Button variant="primary">Register</Button></Link></div>
+            <div className="routing"><div>Don't have an account ? </div><Link to="/register"><Button >Register</Button></Link></div>
         </Container>
     )
 }

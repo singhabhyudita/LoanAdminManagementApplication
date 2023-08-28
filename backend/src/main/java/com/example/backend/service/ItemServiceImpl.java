@@ -114,8 +114,8 @@ public class ItemServiceImpl implements ItemService{
 	}
 	
 	public String deleteItem(String id) throws ResourceNotFoundException {
-		Optional<Item> item = itemRepository.findById(id);
-    	if(!item.isEmpty())
+		Optional<Loan> loan = loanRepository.findById(id);
+    	if(!loan.isEmpty())
 		{
     		employeeIssueRepository.deleteAllByItemId(id);
     		itemRepository.deleteById(id);

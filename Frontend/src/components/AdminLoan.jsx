@@ -47,6 +47,7 @@ const AdminLoan = () => {
     return (
         <>
             <Navbar userType={"admin"} />
+            <div className="div-background">
             <Container className="login-container">
                 <Form className="register-form">
                     <h2>Loan Cards Master Data Details</h2>
@@ -72,6 +73,7 @@ const AdminLoan = () => {
                     {error ? <div className="error">{error}</div> : null}
                 </Form>
             </Container>
+            </div>
         </>
     )
 }

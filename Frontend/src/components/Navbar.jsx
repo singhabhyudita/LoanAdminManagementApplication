@@ -52,6 +52,12 @@ const Navbar = ({ userType }) => {
 
   return (
     <BootstrapNavbar className="custom-navbar" expand="lg">
+      <img
+              src="../images/logo.png"
+              width="120"
+              height="50"
+              style={{marginRight : "10px"}}
+            />
       <BootstrapNavbar.Brand as={Link} to={userType === "admin" ? "/admin/dashboard" : "/"}>Loan Management Application</BootstrapNavbar.Brand>
       <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
       <BootstrapNavbar.Collapse id="basic-navbar-nav">
@@ -60,8 +66,8 @@ const Navbar = ({ userType }) => {
             {renderAdminDropdown()}
           </div>
           <div className='right-navbar'>
-            <Nav.Item className="welcome-message" style={{ textTransform: "capitalize" }}>Welcome {userType}</Nav.Item>
-            <Button variant="danger" className="logout-button" onClick={handleLogout}>Logout</Button>
+            <Nav.Item className="welcome-message" style={{ textTransform: "capitalize" }}>Welcome <span className="username">{userType}</span></Nav.Item>
+            <Button className="logout-button" onClick={handleLogout}>Logout</Button>
           </div>
         </Nav>
       </BootstrapNavbar.Collapse>

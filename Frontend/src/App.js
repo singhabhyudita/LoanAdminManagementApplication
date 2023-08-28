@@ -8,9 +8,9 @@ import ViewLoan from "./components/ViewLoan";
 import AdminViewLoan from "./components/AdminViewLoan";
 import AdminItem from "./components/AdminItem";
 import AdminViewItem from "./components/AdminViewItem";
-import ViewEmployee from "./components/ViewEmployee";
+import AdminViewEmployee from "./components/AdminViewEmployee";
 import AddEmployee from "./components/AddEmployee";
-import AdminDashBoard from "./components/AdmindashBoard";
+import AdminDashBoard from "./components/AdminDashBoard";
 import AdminLoan from "./components/AdminLoan";
 import EmployeeDashBoard from "./components/EmployeeDashBoard";
 import PageNotFound from "./components/PageNotFound";
@@ -36,7 +36,7 @@ function App() {
             <Route exact path="/admin/loan/view" element={<ProtectedRoute allowedRoles={['admin']} element={<AdminViewLoan />} />} />
             <Route exact path="/admin/item/add" element={<ProtectedRoute allowedRoles={['admin']} element={<AdminItem />} />} />
             <Route exact path="/admin/item/view" element={<ProtectedRoute allowedRoles={['admin']} element={<AdminViewItem />} />} />
-            <Route exact path="/admin/employee/view" element={<ProtectedRoute allowedRoles={['admin']} element={<ViewEmployee />} />} />
+            <Route exact path="/admin/employee/view" element={<ProtectedRoute allowedRoles={['admin']} element={<AdminViewEmployee />} />} />
             <Route exact path="/admin/employee/add" element={<ProtectedRoute allowedRoles={['admin']} element={<AddEmployee />} />} />
             <Route exact path='/admin/dashboard' element={<ProtectedRoute allowedRoles={['admin']} element={<AdminDashBoard />} />} />
             <Route path="*" element={<PageNotFound />} />

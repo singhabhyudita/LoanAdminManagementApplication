@@ -14,6 +14,7 @@ import AdminDashBoard from "./components/AdminDashBoard";
 import AdminLoan from "./components/AdminLoan";
 import EmployeeDashBoard from "./components/EmployeeDashBoard";
 import PageNotFound from "./components/PageNotFound";
+import Home from "./components/Home";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route exact path="/admin/employee/view" element={<ViewEmployee />} />
         <Route exact path="/admin/employee/add" element={<AddEmployee />} />
         <Route exact path="/admin/dashboard" element={<AdminDashBoard />} />
+        <Route exact path="/home" element={<Home />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>

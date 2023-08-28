@@ -80,7 +80,12 @@
     border: 0px;
     color: rgba(212, 116, 47, 0.865);
 }
-#login-button{
+.login-button{
+    background-color: rgba(242, 226, 52, 0.865);
+    border: 0px;
+    color: rgba(212, 116, 47, 0.865);
+}
+.login-button:hover{
     background-color: rgba(242, 226, 52, 0.865);
     border: 0px;
     color: rgba(212, 116, 47, 0.865);

@@ -45,10 +45,10 @@ const EmployeeLogin = () => {
             .then(response => {
                 setSuccess(`Login Successfull !`);
                 setError(null);
-                dispatch(setUser(response.data.employeeName, "user"));
+                dispatch(setUser(response.data.employeeId, "user",response.data.employeeName));
                 navigate("/");
                 sessionStorage.setItem("userId", response.data.employeeId);
-                console.log(sessionStorage.getItem("userId"))
+                sessionStorage.setItem("userName", response.data.employeeName);
                 sessionStorage.setItem("userRole", "user");
             })
             .catch(err => {
@@ -60,7 +60,7 @@ const EmployeeLogin = () => {
     return (
         <Container className="login-container">
             <Form className="login-form">
-                <h2>Employee Login</h2>
+                <h2 style={{paddingBottom : "20px"}}>Employee Login</h2>
                 <Form.Group className="formGroup">
                     <Form.Label>Employee Id</Form.Label>
                     <Form.Control type="text" placeholder="Enter Employee ID" value={employeeId} onChange={(e) => handleEmployeeIdChange(e)} />

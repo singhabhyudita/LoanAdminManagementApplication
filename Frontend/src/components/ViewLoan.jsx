@@ -11,6 +11,7 @@ import "../styles/background.css";
 export const ViewLoan = () => {
   const [data, setData] = useState(null);
   const userData = useSelector(state => state.userId);
+  const userName = useSelector(state => state.userName);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,7 +36,7 @@ export const ViewLoan = () => {
 
   return (
     <>
-      <Navbar userType={userData} />
+      <Navbar userType={userName} />
       <div className='div-background'>
         <h2 className="table-header" style={{ marginBottom: "20px"}}>Loan Cards Availed</h2>
         <Table className='table' striped bordered hover   >

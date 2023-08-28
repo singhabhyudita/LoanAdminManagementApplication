@@ -28,3 +28,11 @@
     padding-top: 5%;
     padding-bottom: 0;
  }
+
+ .div-background{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-height: calc(100vh - 80px);
+ }

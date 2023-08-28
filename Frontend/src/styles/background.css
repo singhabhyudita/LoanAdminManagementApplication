@@ -1,15 +1,22 @@
-.div-background { 
-    display: "flex";
-    flex-direction: "column";
-    justify-content: "center";
-    align-items: "center";
-    min-height: "90vh";
-    min-width: "100vw";
+.background-container {
+    margin: 0;
+    padding: 0;
     background-image: url("../images/background-image.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    width: 100%;
+    background-attachment: fixed;
+    min-height: 100vh;
     height: 100vh;
-    
+    width: 100vw;
+    top: 0;
+    left: 0;
+    position: fixed;
+}
+
+.dashboard-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 88vh;
 }

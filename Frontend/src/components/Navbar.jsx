@@ -10,8 +10,8 @@ const Navbar = ({ userType }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    navigate("/login/employee");
     dispatch(logout());
-    navigate("/");
   };
 
   const renderAdminDropdown = () => {
@@ -53,10 +53,11 @@ const Navbar = ({ userType }) => {
   return (
     <BootstrapNavbar className="custom-navbar" expand="lg">
       <img
-              src="../images/logo.png"
+              src={require('../images/logo.png')}
               width="120"
               height="50"
               style={{marginRight : "10px"}}
+              alt="Wells Fargo"
             />
       <BootstrapNavbar.Brand as={Link} to={userType === "admin" ? "/admin/dashboard" : "/"}>Loan Management Application</BootstrapNavbar.Brand>
       <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />

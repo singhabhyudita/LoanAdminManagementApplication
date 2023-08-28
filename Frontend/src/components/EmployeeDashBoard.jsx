@@ -28,7 +28,7 @@ const EmployeeDashBoard = () => {
                         <Card >
                         <Card.Title>View Loans</Card.Title>
                         <div  style={{minHeight :"300px", minWidth: "200px",justifyContent:"center",display:"flex",alignItems:"center"}}>
-                        <Card.Img variant="top" src="../images/card.jpg" /></div>
+                        <Card.Img variant="top" src={require('../images/card.jpg')} /></div>
                         <Card.Body>
                         <h5>
                         View loan cards that you own
@@ -48,7 +48,7 @@ const EmployeeDashBoard = () => {
                     
                         <Card.Title>Apply for Loans</Card.Title>
                         <div  style={{minHeight :"300px", minWidth: "200px",justifyContent:"center",display:"flex",alignItems:"center"}}>
-                        <Card.Img id="apply-loan" variant="top" src="../images/apply-loan.png"  /></div>
+                        <Card.Img id="apply-loan" variant="top" src={require('../images/apply-loan.png')}  /></div>
 
                         <Card.Body>
                         <h5>
@@ -69,7 +69,7 @@ const EmployeeDashBoard = () => {
                             <Card>
                                 <Card.Title>View Items Purchased</Card.Title>
                                 <div  style={{minHeight :"300px", minWidth: "200px",justifyContent:"center",display:"flex",alignItems:"center"}}>
-                        <Card.Img id="apply-loan" variant="top" src="../images/cart-image.jpg"  /></div>
+                        <Card.Img id="apply-loan" variant="top" src={require('../images/cart-image.png')}  /></div>
                                 <Card.Body><h5>View Items purchased</h5></Card.Body>
                                 <Card.Footer>
                                 <div className="controllers">

@@ -9,11 +9,13 @@ import "../styles/background.css";
 const ViewItem = () => {
     const [tableData, setTableData] = useState(null);
     const userData = useSelector(state => state.userId);
+    const employeeName = useSelector(state => state.userName);
     const navigate = useNavigate();
     useEffect(() => {
         const getPurchasedItems = async () => {
             try {
                 const result = await ItemService.viewPurchasedItemService(userData);
+                console.log(result)
                 setTableData(result.data)
             } catch (err) {
                 console.log(err);
@@ -23,7 +25,7 @@ const ViewItem = () => {
     }, [navigate])
     return (
         <>
-            <Navbar userType={userData} />
+            <Navbar userType={employeeName} />
             <div className='div-background'>
                 <h2 className="table-header" >Items Purchased</h2>
                 <Table striped bordered hover  style={{ minWidth: "80vw" }}>

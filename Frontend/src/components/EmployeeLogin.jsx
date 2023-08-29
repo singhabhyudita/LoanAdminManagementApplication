@@ -58,7 +58,7 @@ const EmployeeLogin = () => {
     }
 
     return (
-        <div className='div-background'>
+        <div className='background-container'>
         <Container className="login-container" >
             
             <Form className="login-form">

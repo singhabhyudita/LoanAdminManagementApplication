@@ -10,7 +10,7 @@ const Navbar = ({ userType }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    navigate("/login/employee");
+    navigate("/home");
     dispatch(logout());
   };
 
@@ -20,7 +20,7 @@ const Navbar = ({ userType }) => {
         <>
           <NavDropdown title="Employee Data" className="admin-dropdown">
             <NavDropdown.Item as={Link} to="/admin/employee/view">View Employee Data</NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/admin/employee/add">Add employee data</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/admin/employee/add">Add Employee data</NavDropdown.Item>
           </NavDropdown>
           <NavDropdown title="Loan Data" className="admin-dropdown">
             <NavDropdown.Item as={Link} to="/admin/loan/view">View Loan Data</NavDropdown.Item>
@@ -56,7 +56,7 @@ const Navbar = ({ userType }) => {
               src={require('../images/logo.png')}
               width="120"
               height="50"
-              style={{marginRight : "10px"}}
+              className='logo'
               alt="Wells Fargo"
             />
       <BootstrapNavbar.Brand as={Link} to={userType === "admin" ? "/admin/dashboard" : "/"}>Loan Management Application</BootstrapNavbar.Brand>

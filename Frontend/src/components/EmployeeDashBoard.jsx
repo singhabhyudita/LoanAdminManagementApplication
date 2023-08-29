@@ -3,6 +3,7 @@ import { DropdownButton, Dropdown } from 'react-bootstrap'
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 import "../styles/dashboard.css";
+import "../styles/background.css";
 import Navbar from './Navbar';
 import { useSelector } from 'react-redux';
 import Container from 'react-bootstrap/Container';
@@ -17,12 +18,9 @@ const EmployeeDashBoard = () => {
     return (
         <>
             <Navbar userType={userData} />
-            <div className="background-container"></div>
-            <div className="dashboard-container">
+            <div className="dashboard-container background-container">
                 {userData ?
                     <>
-                        
-                        
                         <Container>
                         <Row className="card-row">
                         <Col xs={12} md={4}>

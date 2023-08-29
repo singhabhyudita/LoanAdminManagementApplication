@@ -37,9 +37,9 @@ export const ViewLoan = () => {
   return (
     <>
       <Navbar userType={userName} />
-      <div className='div-background'>
+      <div className='background-container'>
         <h2 className="table-header" style={{ marginBottom: "20px"}}>Loan Cards Availed</h2>
-        <Table className='table' striped bordered hover   >
+        <Table className='table' striped bordered hover>
           <thead>
             <tr>
               <th>Loan Id</th>

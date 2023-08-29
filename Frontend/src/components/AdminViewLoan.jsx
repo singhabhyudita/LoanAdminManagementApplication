@@ -4,6 +4,7 @@ import AdminLoanService from "../services/AdminLoanService";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import "../styles/background.css";
+import "../styles/tables.css";
 
 const AdminViewLoan = () => {
     const [errorModal, setErrorModal] = useState(null);
@@ -111,9 +112,9 @@ const AdminViewLoan = () => {
                             </Form>
                         </ModalBody>
                     </Modal>
-                    <div className="div-background">
+                    <div className="background-container">
                         <h2 className="table-header" style={{ marginBottom: "20px" }}>Loan List</h2>
-                        <Table triped bordered hover style={{ minWidth: "80vw" }}>
+                        <Table className='table' triped bordered hover style={{ minWidth: "80vw" }}>
                             <thead>
                                 <tr>
                                     <th>Loan ID</th>

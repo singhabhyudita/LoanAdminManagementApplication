@@ -3,6 +3,7 @@ import { Button, Container, Form, Row, Col } from "react-bootstrap";
 import AdminLoanService from "../services/AdminLoanService";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import "../styles/background.css";
 
 const AdminLoan = () => {
     const [loanId, setLoanId] = useState("");
@@ -47,7 +48,7 @@ const AdminLoan = () => {
     return (
         <>
             <Navbar userType={"admin"} />
-            <div className="div-background">
+            <div className="background-container">
             <Container className="login-container">
                 <Form className="register-form">
                     <h2>Loan Cards Master Data Details</h2>

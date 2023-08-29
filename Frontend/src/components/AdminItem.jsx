@@ -3,6 +3,8 @@ import AdminItemService from "../services/AdminItemService";
 import { useNavigate } from "react-router-dom";
 import { Button, Container, Form, Row, Col } from "react-bootstrap";
 import Navbar from "./Navbar";
+import "../styles/background.css";
+
 
 const AdminItem = () => {
     const [errorModal, setErrorModal] = useState(null);
@@ -45,7 +47,7 @@ const AdminItem = () => {
     return (
         <>
             <Navbar userType={"admin"} />
-            <div className="div-background">
+            <div className="background-container">
             <Container className="login-container">
                 <Form className="register-form">
                     <h2>Add New Item</h2>

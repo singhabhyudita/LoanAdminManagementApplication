@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import { useSelector } from 'react-redux';
 import "../styles/background.css";
+import "../styles/tables.css";
 
 const ViewItem = () => {
     const [tableData, setTableData] = useState(null);
@@ -26,9 +27,9 @@ const ViewItem = () => {
     return (
         <>
             <Navbar userType={employeeName} />
-            <div className='div-background'>
+            <div className='background-container'>
                 <h2 className="table-header" >Items Purchased</h2>
-                <Table striped bordered hover  style={{ minWidth: "80vw" }}>
+                <Table className='table' striped bordered hover>
                     <thead>
                         <tr>
                             <th>Issue Id</th>

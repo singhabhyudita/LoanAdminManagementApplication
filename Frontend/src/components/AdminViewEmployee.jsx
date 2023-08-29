@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import AdminEmployeeService from '../services/AdminEmployeeService';
 import Navbar from './Navbar';
 import "../styles/background.css";
+import "../styles/tables.css";
 
 const AdminViewEmployee = () => {
     const [employeeData, setEmployeeData] = useState(null);
@@ -197,9 +198,9 @@ const AdminViewEmployee = () => {
                     </Form>
                 </Modal.Body>
             </Modal>
-            <div className='div-background'>
+            <div className='background-container'>
                 <h2 className="table-header" style={{ marginBottom: "20px" }}>Employee List</h2>
-                <Table striped bordered hover  style={{ minWidth: "80vw" }}>
+                <Table className='table' striped bordered hover  style={{ minWidth: "80vw" }}>
                     <thead>
                         <tr>
                             <th>Employee Id</th>

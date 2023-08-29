@@ -4,6 +4,7 @@ import AdminItemService from "../services/AdminItemService";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import "../styles/background.css";
+import "../styles/tables.css";
 
 const AdminViewItem = () => {
     const [errorModal, setErrorModal] = useState(null);
@@ -126,9 +127,9 @@ const AdminViewItem = () => {
                             </Form>
                         </ModalBody>
                     </Modal>
-                    <div className="div-background">
+                    <div className="background-container">
                         <h2 className="table-header" style={{ marginBottom: "20px" }}>Items List</h2>
-                        <Table triped bordered hover style={{ minWidth: "80vw" }}>
+                        <Table className='table' triped bordered hover style={{ minWidth: "80vw" }}>
                             <thead>
                                 <tr>
                                     <th>Item ID</th>

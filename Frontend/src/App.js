@@ -10,7 +10,7 @@ import AdminItem from "./components/AdminItem";
 import AdminViewItem from "./components/AdminViewItem";
 import AdminViewEmployee from "./components/AdminViewEmployee";
 import AddEmployee from "./components/AddEmployee";
-import AdmindashBoard from "./components/AdmindashBoard";
+import AdminDashBoard from "./components/AdmindashBoard";
 import AdminLoan from "./components/AdminLoan";
 import EmployeeDashBoard from "./components/EmployeeDashBoard";
 import PageNotFound from "./components/PageNotFound";
@@ -40,7 +40,7 @@ function App() {
             <Route exact path="/admin/item/view" element={<ProtectedRoute allowedRoles={['admin']} element={<AdminViewItem />} />} />
             <Route exact path="/admin/employee/view" element={<ProtectedRoute allowedRoles={['admin']} element={<AdminViewEmployee />} />} />
             <Route exact path="/admin/employee/add" element={<ProtectedRoute allowedRoles={['admin']} element={<AddEmployee />} />} />
-            <Route exact path='/admin/dashboard' element={<ProtectedRoute allowedRoles={['admin']} element={<AdmindashBoard />} />} />
+            <Route exact path='/admin/dashboard' element={<ProtectedRoute allowedRoles={['admin']} element={<AdminDashBoard />} />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Fragment>

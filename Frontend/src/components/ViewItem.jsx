@@ -27,7 +27,8 @@ const ViewItem = () => {
     return (
         <>
             <Navbar userType={employeeName} />
-            <div className='background-container'>
+            <div className="background-container"></div>
+                <div className="table-container">
                 <h2 className="table-header" >Items Purchased</h2>
                 <Table className='table' striped bordered hover>
                     <thead>

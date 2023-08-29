@@ -127,7 +127,8 @@ const AdminViewItem = () => {
                             </Form>
                         </ModalBody>
                     </Modal>
-                    <div className="background-container">
+                    <div className="background-container"></div>
+                        <div className="table-container">
                         <h2 className="table-header" style={{ marginBottom: "20px" }}>Items List</h2>
                         <Table className='table' triped bordered hover style={{ minWidth: "80vw" }}>
                             <thead>

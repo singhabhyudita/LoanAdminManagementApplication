@@ -23,7 +23,16 @@
 .dashboard-card {
     text-align: center;
     color: rgba(212, 116, 47, 0.865);
-
+    margin-top: 20%;
+    @media (max-width: 768px) {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}
+.admin-card {
+    text-align: center;
+    color: rgba(212, 116, 47, 0.865);
+    margin-top: 30%;
     @media (max-width: 768px) {
         margin-top: 20px;
         margin-bottom: 20px;
@@ -32,4 +41,8 @@
 
 #dropdown-basic-button{
     width: 100%;
+}
+.employee-image {
+    height: 300px;
+    object-fit: cover;
 }

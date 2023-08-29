@@ -23,11 +23,11 @@ const AdminDashBoard = () => {
             <Container>
               <Row className="card-row">
                 <Col xs={12} md={4}>
-                  <Card className="dashboard-card">
+                  <Card className="admin-card">
                     <Card.Title>Employee Data</Card.Title>
                     <div
                       style={{
-                        minHeight: "300px",
+                        minHeight: "200px",
                         minWidth: "200px",
                         justifyContent: "center",
                         display: "flex",
@@ -36,7 +36,8 @@ const AdminDashBoard = () => {
                     >
                       <Card.Img
                         variant="top"
-                        src={require("../images/card.jpg")}
+                        src={require("../images/employee.jpg")}
+                        className='employee-image'
                       />
                     </div>
                     <Card.Body>
@@ -60,7 +61,7 @@ const AdminDashBoard = () => {
                   </Card>
                 </Col>
                 <Col xs={12} md={4}>
-                  <Card className="dashboard-card">
+                  <Card className="admin-card">
                     <Card.Title>Loan Data</Card.Title>
                     <div
                       style={{
@@ -74,7 +75,7 @@ const AdminDashBoard = () => {
                       <Card.Img
                         id="apply-loan"
                         variant="top"
-                        src={require("../images/apply-loan.png")}
+                        src={require("../images/card.jpg")}
                       />
                     </div>
 
@@ -101,7 +102,7 @@ const AdminDashBoard = () => {
                   </Card>
                 </Col>
                 <Col xs={12} md={4}>
-                  <Card className="dashboard-card">
+                  <Card className="admin-card">
                     <Card.Title>Item Data</Card.Title>
                     <div
                       style={{
@@ -115,7 +116,7 @@ const AdminDashBoard = () => {
                       <Card.Img
                         id="apply-loan"
                         variant="top"
-                        src={require("../images/cart-image.png")}
+                        src={require("../images/apply-loan.png")}
                       />
                     </div>
                     <Card.Body>

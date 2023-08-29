@@ -112,7 +112,8 @@ const ApplyLoan = () => {
     return (
         <>
             <Navbar userType={employeeName} />
-            <div className='background-container'>
+            <div className='background-container'></div>
+            <div className='table-container'>
             <Container className="login-container">
                 <Form className="register-form">
                     <h2>Apply For Loan</h2>

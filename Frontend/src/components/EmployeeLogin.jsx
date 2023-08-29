@@ -46,7 +46,7 @@ const EmployeeLogin = () => {
                 setSuccess(`Login Successfull !`);
                 setError(null);
                 dispatch(setUser(response.data.employeeId, "user",response.data.employeeName));
-                navigate("/");
+                navigate("/employee/dashboard");
                 sessionStorage.setItem("userId", response.data.employeeId);
                 sessionStorage.setItem("userName", response.data.employeeName);
                 sessionStorage.setItem("userRole", "user");

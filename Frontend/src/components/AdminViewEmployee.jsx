@@ -198,7 +198,8 @@ const AdminViewEmployee = () => {
                     </Form>
                 </Modal.Body>
             </Modal>
-            <div className='background-container'>
+            <div className="background-container"></div>
+                <div className="table-container">
                 <h2 className="table-header" style={{ marginBottom: "20px" }}>Employee List</h2>
                 <Table className='table' striped bordered hover  style={{ minWidth: "80vw" }}>
                     <thead>

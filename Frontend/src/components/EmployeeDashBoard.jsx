@@ -24,7 +24,7 @@ const EmployeeDashBoard = () => {
                         <Container>
                         <Row className="card-row">
                         <Col xs={12} md={4}>
-                        <Card  className="dashboard-card">
+                        <Card className="dashboard-card">
                         <Card.Title>View Loans</Card.Title>
                         <div  style={{minHeight :"300px", minWidth: "200px",justifyContent:"center",display:"flex",alignItems:"center"}}>
                         <Card.Img variant="top" src={require('../images/card.jpg')} /></div>

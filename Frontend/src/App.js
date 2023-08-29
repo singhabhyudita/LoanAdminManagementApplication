@@ -29,8 +29,8 @@ function App() {
             <Route exact path="/login/employee" element={<EmployeeLogin />} />
             <Route exact path="/login/admin" element={<AdminLogin />} />
             <Route exact path="/register" element={<Register />} />
-            <Route exact path="/home" element={<Home />} />
-            <Route exact path="/" element={<ProtectedRoute allowedRoles={['user']} element={<EmployeeDashBoard />} />} />
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/employee/dashboard" element={<ProtectedRoute allowedRoles={['user']} element={<EmployeeDashBoard />} />} />
             <Route exact path="/apply-loan" element={<ProtectedRoute allowedRoles={['user']} element={<ApplyLoan />} />} />
             <Route exact path="/view-purchase" element={<ProtectedRoute allowedRoles={['user']} element={<ViewItem />} />} />
             <Route exact path="/view-loan" element={<ProtectedRoute allowedRoles={['user']} element={<ViewLoan />} />} />

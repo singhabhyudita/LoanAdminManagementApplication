@@ -12,6 +12,7 @@
     top: 0;
     left: 0;
     position: fixed;
+    z-index: -5;
 }
 
 .dashboard-container{
@@ -19,4 +20,14 @@
     justify-content: space-between;
     align-items: center;
     min-height: 88vh;
+    z-index: 10;
+}
+
+.table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 88vh;
+    z-index: 10;
 }

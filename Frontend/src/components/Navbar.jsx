@@ -10,7 +10,7 @@ const Navbar = ({ userType }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    navigate("/home");
+    navigate("/");
     dispatch(logout());
   };
 
@@ -18,15 +18,15 @@ const Navbar = ({ userType }) => {
     if (userType === 'admin') {
       return (
         <>
-          <NavDropdown title="Employee Data" className="admin-dropdown">
+          <NavDropdown title="Employee" className="admin-dropdown">
             <NavDropdown.Item as={Link} to="/admin/employee/view">View Employee Data</NavDropdown.Item>
             <NavDropdown.Item as={Link} to="/admin/employee/add">Add Employee data</NavDropdown.Item>
           </NavDropdown>
-          <NavDropdown title="Loan Data" className="admin-dropdown">
+          <NavDropdown title="Loan" className="admin-dropdown">
             <NavDropdown.Item as={Link} to="/admin/loan/view">View Loan Data</NavDropdown.Item>
             <NavDropdown.Item as={Link} to="/admin/loan/add">Add Loan Data</NavDropdown.Item>
           </NavDropdown>
-          <NavDropdown title="Item Data" className="admin-dropdown">
+          <NavDropdown title="Item" className="admin-dropdown">
             <NavDropdown.Item as={Link} to="/admin/item/view">View Item Data</NavDropdown.Item>
             <NavDropdown.Item as={Link} to="/admin/item/add">Add Item Data</NavDropdown.Item>
           </NavDropdown>
@@ -52,14 +52,16 @@ const Navbar = ({ userType }) => {
 
   return (
     <BootstrapNavbar className="custom-navbar" expand="lg">
+      <BootstrapNavbar.Brand as={Link} to={userType === "admin" ? "/admin/dashboard" : "/employee/dashboard"} className='brand'>
       <img
               src={require('../images/logo.png')}
-              width="120"
-              height="50"
               className='logo'
               alt="Wells Fargo"
             />
-      <BootstrapNavbar.Brand as={Link} to={userType === "admin" ? "/admin/dashboard" : "/"}>Loan Management Application</BootstrapNavbar.Brand>
+      <div>
+        Loan Management Application
+      </div>
+      </BootstrapNavbar.Brand>
       <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
       <BootstrapNavbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">

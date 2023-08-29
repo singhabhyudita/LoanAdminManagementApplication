@@ -80,3 +80,8 @@ color: #d72525e2;
 .username{
     color:rgba(233, 244, 77, 0.865);
 }
+.logo {
+    width: 20%;
+    height: auto;
+    padding-left: 5%;
+}

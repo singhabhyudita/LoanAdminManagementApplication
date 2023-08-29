@@ -131,7 +131,7 @@ const Register = () => {
     return (
         <>
             <Navbar userType={"admin"} />
-            <div className='div-background'>
+            <div className='background-container'>
             <Container className="login-container">
                 <Form className="register-form" >
                     <h2>Employee Registration</h2>

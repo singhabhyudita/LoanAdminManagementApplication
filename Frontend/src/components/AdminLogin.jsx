@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import LoginService from '../services/LoginService';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../store/actions';
+import "../styles/background.css";
 
 const AdminLogin = () => {
     const [adminId, setAdminId] = useState("");
@@ -61,7 +62,7 @@ const AdminLogin = () => {
     }
 
     return (
-        <div className='div-background'>
+        <div className='background-container'>
         <Container className="login-container">
             <Form className="login-form">
                 <h2 style={{paddingBottom : "20px"}}>Admin Login</h2>

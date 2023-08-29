@@ -11,21 +11,20 @@ import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-const EmployeeDashBoard = () => {
+const AdminDashBoard = () => {
   const userData = useSelector((state) => state.userName);
   const navigate = useNavigate();
 
   return (
     <>
       <Navbar userType={userData} />
-      <div className="background-container"></div>
-        <div className="dashboard-container">
+        <div className="dashboard-container background-container">
           {userData ? (
             <Container>
               <Row className="card-row">
                 <Col xs={12} md={4}>
                   <Card className="dashboard-card">
-                    <Card.Title>View Loans</Card.Title>
+                    <Card.Title>Employee Data</Card.Title>
                     <div
                       style={{
                         minHeight: "300px",
@@ -41,16 +40,19 @@ const EmployeeDashBoard = () => {
                       />
                     </div>
                     <Card.Body>
-                      <h5>View loan cards that you own</h5>
+                      <h5>Add or View Employees</h5>
                     </Card.Body>
                     <Card.Footer>
                       <div className="controllers">
                         <DropdownButton
                           id="dropdown-basic-button"
-                          title="View Loans"
+                          title="Add/View Employees"
                         >
-                          <Dropdown.Item onClick={() => navigate("/view-loan")}>
-                            View All Loan Data
+                          <Dropdown.Item onClick={() => navigate("/admin/employee/add")}>
+                            Add an employee
+                          </Dropdown.Item>
+                          <Dropdown.Item onClick={()=> navigate("/admin/employee/view")}>
+                            View all employees
                           </Dropdown.Item>
                         </DropdownButton>
                       </div>
@@ -59,7 +61,7 @@ const EmployeeDashBoard = () => {
                 </Col>
                 <Col xs={12} md={4}>
                   <Card className="dashboard-card">
-                    <Card.Title>Apply for Loans</Card.Title>
+                    <Card.Title>Loan Data</Card.Title>
                     <div
                       style={{
                         minHeight: "300px",
@@ -77,18 +79,21 @@ const EmployeeDashBoard = () => {
                     </div>
 
                     <Card.Body>
-                      <h5>Apply for loans</h5>
+                      <h5>Add or View Loans</h5>
                     </Card.Body>
                     <Card.Footer>
                       <div className="controllers">
                         <DropdownButton
                           id="dropdown-basic-button"
-                          title="Apply For Loan"
+                          title="Add/View Loans"
                         >
                           <Dropdown.Item
-                            onClick={() => navigate("/apply-loan")}
+                            onClick={() => navigate("/admin/loan/add")}
                           >
-                            Apply For Loan By Purchasing Item
+                           Add a loan
+                          </Dropdown.Item>
+                          <Dropdown.Item onClick={() => navigate("/admin/loan/view")}>
+                            View all loans
                           </Dropdown.Item>
                         </DropdownButton>
                       </div>
@@ -97,7 +102,7 @@ const EmployeeDashBoard = () => {
                 </Col>
                 <Col xs={12} md={4}>
                   <Card className="dashboard-card">
-                    <Card.Title>View Items Purchased</Card.Title>
+                    <Card.Title>Item Data</Card.Title>
                     <div
                       style={{
                         minHeight: "300px",
@@ -114,16 +119,19 @@ const EmployeeDashBoard = () => {
                       />
                     </div>
                     <Card.Body>
-                      <h5>View Items purchased</h5>
+                      <h5>Add or View Items</h5>
                     </Card.Body>
                     <Card.Footer>
                       <div className="controllers">
                         <DropdownButton
                           id="dropdown-basic-button"
-                          title="Items Purchased"
+                          title="Add/View Items"
                         >
-                          <Dropdown.Item onClick={() => navigate("/view-loan")}>
-                            View All Purchased Items
+                          <Dropdown.Item onClick={() => navigate("/admin/item/add")}>
+                            Add an Item
+                          </Dropdown.Item>
+                          <Dropdown.Item onClick={() => navigate("/admin/item/view")}>
+                            View all Items
                           </Dropdown.Item>
                         </DropdownButton>
                       </div>
@@ -140,4 +148,4 @@ const EmployeeDashBoard = () => {
   );
 };
 
-export default EmployeeDashBoard;
+export default AdminDashBoard;

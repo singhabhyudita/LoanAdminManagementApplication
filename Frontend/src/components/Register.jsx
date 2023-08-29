@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/EmployeeLogin.css';
 import { Link, useNavigate } from 'react-router-dom';
 import RegisterService from "../services/RegisterService";
+import "../styles/background.css";
 
 const Register = () => {
   const [employeeId, setEmployeeId] = useState('');
@@ -129,6 +130,7 @@ const Register = () => {
   }
 
   return (
+    <div className='background-container'>
     <Container className="login-container">
       <Form className="register-form" style={{ marginTop: "60px" }} responsive>
         <h2>Employee Registration</h2>
@@ -185,6 +187,7 @@ const Register = () => {
       </Form>
       <div className="routing"><div>Existing User ? </div><Link to="/login/employee"><Button className='login-button'>Login</Button></Link></div>
     </Container>
+  </div>
   );
 }
 

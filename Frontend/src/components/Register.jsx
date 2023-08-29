@@ -130,7 +130,7 @@ const Register = () => {
 
   return (
     <Container className="login-container">
-      <Form className="register-form" style={{ marginTop: "60px" }}>
+      <Form className="register-form" style={{ marginTop: "60px" }} responsive>
         <h2>Employee Registration</h2>
         <Row className='formGroup'>
           <Col>
